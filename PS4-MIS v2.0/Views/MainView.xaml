@@ -1,0 +1,44 @@
+﻿<Window x:Class="PS4_MIS_v2._0.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PS4_MIS_v2._0.Views"
+        mc:Ignorable="d"
+        Title="Police Station 4 MIS" Width="1280" Height="720" Background="#FF7686C3" WindowState="Maximized">
+    <Window.Resources>
+        <SolidColorBrush x:Key="buttonColor" Color="#FF29506D"/>
+    </Window.Resources>
+    <Grid Background="#FF343477">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Background="#FF29506D">
+            <Grid Height="115">
+                <Image VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Source="/PS4-MIS v2.0;component/Resources/PNP-Logo.png"/>
+            </Grid>
+            <StackPanel>
+                <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="22">Philippine National Police</TextBlock>
+                <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="22">Police Station 4</TextBlock>
+                <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="12" Name="displayNameTextblock"></TextBlock>
+            </StackPanel>
+            <StackPanel>
+                <Button Height="40" Background="{DynamicResource buttonColor}" Foreground="White" x:Name="loadCriminalRecords">Criminal Records</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" Name="patrolScheduleButton" HorizontalAlignment="Left" Width="260">Patrol Schedule</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" Name="employeeRecordsButton">Employee Records</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" Name="wantedPeopleButton">Wanted People</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" Name="policeReportsButton">Police Reports</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" Name="messagesButton">Messages</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" Name="payrollButton">Payroll</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" Name="stolenVehiclesButton">Stolen Vehicles</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" Name="visitorLogbookButton">Visitor Logbook</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" Name="inventoryButton">Inventory</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" Name="logoutButton">Logout</Button>
+            </StackPanel>
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <ContentControl x:Name="ActiveItem"/>
+        </Grid>
+    </Grid>
+</Window>
