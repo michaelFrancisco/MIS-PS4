@@ -15,5 +15,10 @@ namespace PS4_MIS_v2._0.ViewModels
         {
             ActivateItem(new CriminalRecordsViewModel());
         }
+
+        public void criminalRecordsButton()
+        {
+            ActivateItem(new CriminalRecordsViewModel());
+        }
     }
 }

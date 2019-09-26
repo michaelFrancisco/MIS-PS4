@@ -18,9 +18,9 @@ namespace PS4_MIS_v2._0.Views
     /// <summary>
     /// Interaction logic for CriminalRecordsView.xaml
     /// </summary>
-    public partial class CriminalRecordsView : UserControl
+    public partial class EmployeeRecordsView : UserControl
     {
-        public CriminalRecordsView()
+        public EmployeeRecordsView()
         {
             InitializeComponent();
         }
