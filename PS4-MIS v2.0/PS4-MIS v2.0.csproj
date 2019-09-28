@@ -72,17 +72,53 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="connection.cs" />
-    <Compile Include="ViewModels\CriminalRecordsViewModel.cs" />
+    <Compile Include="ViewModels\CriminalRecords\AddCriminalRecordViewModel.cs" />
+    <Compile Include="ViewModels\CriminalRecords\CriminalRecordsViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeRecords\AddEmployeeRecordViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeRecords\EmployeeRecordsViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\InventoryViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Views\CriminalRecordsView.xaml.cs">
+    <Compile Include="ViewModels\MostWanted\MostWantedViewModel.cs" />
+    <Compile Include="ViewModels\Payroll\PayrollViewModel.cs" />
+    <Compile Include="ViewModels\PoliceReports\PoliceReportsViewModel.cs" />
+    <Compile Include="ViewModels\StolenVehicles\StolenVehiclesViewModel.cs" />
+    <Compile Include="ViewModels\VisitorLogbook\VisitorLogbookViewModel.cs" />
+    <Compile Include="Views\CriminalRecords\AddCriminalRecordView.xaml.cs">
+      <DependentUpon>AddCriminalRecordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CriminalRecords\CriminalRecordsView.xaml.cs">
       <DependentUpon>CriminalRecordsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmployeeRecords\AddEmployeeRecordView.xaml.cs">
+      <DependentUpon>AddEmployeeRecordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmployeeRecords\EmployeeRecordsView.xaml.cs">
+      <DependentUpon>EmployeeRecordsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\InventoryView.xaml.cs">
+      <DependentUpon>InventoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MostWanted\MostWantedView.xaml.cs">
+      <DependentUpon>MostWantedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payroll\PayrollView.xaml.cs">
+      <DependentUpon>PayrollView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PoliceReports\PoliceReportsView.xaml.cs">
+      <DependentUpon>PoliceReportsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StolenVehicles\StolenVehiclesView.xaml.cs">
+      <DependentUpon>StolenVehiclesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VisitorLogbook\VisitorLogbookView.xaml.cs">
+      <DependentUpon>VisitorLogbookView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -114,7 +150,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\CriminalRecordsView.xaml">
+    <Page Include="Views\CriminalRecords\AddCriminalRecordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CriminalRecords\CriminalRecordsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeeRecords\AddEmployeeRecordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeeRecords\EmployeeRecordsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\InventoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,6 +175,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MostWanted\MostWantedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Payroll\PayrollView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PoliceReports\PoliceReportsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StolenVehicles\StolenVehiclesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VisitorLogbook\VisitorLogbookView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

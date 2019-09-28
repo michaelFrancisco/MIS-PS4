@@ -1,0 +1,87 @@
+﻿<Window x:Class="PS4_MIS_v2._0.Views.EmployeeRecords.AddEmployeeRecordView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PS4_MIS_v2._0.Views"
+        mc:Ignorable="d"
+        Title="addRecord" Height="600" Width="600" WindowStyle="ToolWindow" Background="#FF343477">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" FontSize="16" Foreground="White" Content="First Name" HorizontalAlignment="Right"/>
+        <Label Grid.Row="1" FontSize="16" Foreground="White" Content="Middle Name" HorizontalAlignment="Right"/>
+        <Label Grid.Row="2" FontSize="16" Foreground="White" Content="Last Name" HorizontalAlignment="Right"/>
+        <Label Grid.Row="3" FontSize="16" Foreground="White" Content="Sex" HorizontalAlignment="Right"/>
+        <Label Grid.Row="4" FontSize="16" Foreground="White" Content="Birthdate" HorizontalAlignment="Right"/>
+        <Label Grid.Row="5" FontSize="16" Foreground="White" Content="Age" HorizontalAlignment="Right"/>
+        <Label Grid.Row="6" FontSize="16" Foreground="White" Content="Birthplace" HorizontalAlignment="Right"/>
+        <Label Grid.Row="7" FontSize="16" Foreground="White" Content="Nationality" HorizontalAlignment="Right"/>
+        <Label Grid.Row="8" FontSize="16" Foreground="White" Content="Address" HorizontalAlignment="Right"/>
+        <TextBox Name="firstnameTextbox" Grid.Row="0" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="middlenameTextbox" Grid.Row="1" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="lastnameTextbox" Grid.Row="2" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <ComboBox Name="sexCombobox" Grid.Row="3" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+            <ComboBoxItem Content="Male"/>
+            <ComboBoxItem Content="Female"/>
+        </ComboBox>
+        <DatePicker Name="birthdateDatepicker" Grid.Row="4" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="ageTextbox" Grid.Row="5" Grid.Column="1" FontSize="16" Width="200" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="birthplaceTextbox" Grid.Row="6" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="nationalityTextbox" Grid.Row="7" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="addressTextbox" Grid.Row="8" Grid.Column="1" FontSize="16" Width="200" Grid.RowSpan="3" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="5" />
+        <Label Grid.Row="11" FontSize="16" Foreground="White" Content="Department" HorizontalAlignment="Right"/>
+        <Label Grid.Row="12" FontSize="16" Foreground="White" Content="Position" HorizontalAlignment="Right"/>
+        <Label Grid.Row="14" FontSize="16" Foreground="White" Content="Rank" HorizontalAlignment="Right"/>
+        <Label Grid.Row="15" FontSize="16" Foreground="White" Content="Civil Status" HorizontalAlignment="Right"/>
+        <Label Grid.Row="16" FontSize="16" Foreground="White" Content="User Level" HorizontalAlignment="Right" Width="82" Height="32" VerticalAlignment="Center"/>
+        <Label Grid.Row="8" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right"/>
+        <Label Grid.Row="9" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right"/>
+        <Label Grid.Row="10" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right"/>
+        <TextBox Name="departmentTextbox" Grid.Row="11" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="positionTextbox" Grid.Row="12" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="rankTextbox" Grid.Row="14" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <ComboBox Name="civilstatusCombobox" Grid.Row="15" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+            <ComboBoxItem Content="Single"/>
+            <ComboBoxItem Content="Married"/>
+            <ComboBoxItem Content="Widowed"/>
+        </ComboBox>
+        <ComboBox Name="userlevelCombobox" Grid.Row="16" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+            <ComboBoxItem Content="Admin"/>
+            <ComboBoxItem Content="Jailer"/>
+            <ComboBoxItem Content="Field Officer"/>
+            <ComboBoxItem Content="Inventory"/>
+        </ComboBox>
+        <TextBox Name="remarksTextbox" Grid.Row="10" Grid.Column="2" Grid.RowSpan="6" Margin="10" TextWrapping="Wrap"></TextBox>
+        <Label Grid.Row="9" Grid.Column="2" FontSize="16" Foreground="White" Content="Remarks" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        <Button Name="changePictureButton" Content="Change Picture" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Width="100" Height="24" Background="#FF4B2D73" Foreground="White"></Button>
+        <Button Content="Take Picture" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Width="100" Height="24" Background="#FF4B2D73" Foreground="White"></Button>
+        <Button Name="saveButton" Content="Save" Grid.Row="16" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Width="100" Height="24" Background="#FF4B2D73" Foreground="White"></Button>
+        <Button Name="cancelButton" Content="Cancel" Grid.Row="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Width="100" Height="24" Background="#FF4B2D73" Foreground="White" Grid.Column="2"/>
+        <Image Name="profilePicture" Source="/PS4-MIS v2.0;component/Resources/PNP-Logo.png" Width="250" Height="250" Grid.Column="2" Grid.RowSpan="8" Margin="10"/>
+    </Grid>
+</Window>

@@ -10,15 +10,14 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PS4_MIS_v2._0.Views
 {
     /// <summary>
-    /// Interaction logic for CriminalRecordsView.xaml
+    /// Interaction logic for EmployeeRecordsView.xaml
     /// </summary>
-    public partial class EmployeeRecordsView : UserControl
+    public partial class EmployeeRecordsView
     {
         public EmployeeRecordsView()
         {

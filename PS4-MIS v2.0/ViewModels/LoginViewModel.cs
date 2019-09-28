@@ -31,7 +31,6 @@ namespace PS4_MIS_v2._0.ViewModels
         {
             if(connection.verifyLogin(_username, _password))
             {
-                MessageBox.Show("Oks");
                 windowManager.ShowWindow(new MainViewModel(), null, null);
                 TryClose();
             }
