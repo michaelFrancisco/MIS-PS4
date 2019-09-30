@@ -2,14 +2,18 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
 {
-    internal class AddCriminalRecordViewModel : Conductor<object>
+    class EditCriminalRecordViewModel : Screen
     {
         private IWindowManager windowManager = new WindowManager();
         private DateTime _birthdate;
@@ -38,13 +42,59 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
         private ImageSource _criminalPictureSource;
         private bool _hasPicture = false;
 
+        private int _selectedCriminalID;
+
+        public EditCriminalRecordViewModel(int selectedCriminalID)
+        {
+            _selectedCriminalID = selectedCriminalID;
+        }
+
         protected override void OnActivate()
         {
-            _birthdateSelectedDate = DateTime.Now.Date;
-            _dateofarrestSelectedDate = DateTime.Now.Date;
-            NotifyOfPropertyChange(() => birthdateSelectedDate);
-            NotifyOfPropertyChange(() => dateofarrestSelectedDate);
+            initializeValues();            
             base.OnActivate();
+        }
+
+        public void initializeValues()
+        {
+            DataTable dt = connection.dbTable("select * from criminalrecords where Criminal_ID =" + _selectedCriminalID + ";");
+            _criminalID = dt.Rows[0][0].ToString();
+            NotifyOfPropertyChange(() => criminalID);
+            _firstname = dt.Rows[0][1].ToString();
+            NotifyOfPropertyChange(() => firstname);
+            _middlename = dt.Rows[0][2].ToString();
+            NotifyOfPropertyChange(() => middlename);
+            _lastname = dt.Rows[0][3].ToString();
+            NotifyOfPropertyChange(() => lastname);
+            _selectedSex = dt.Rows[0][4].ToString();
+            NotifyOfPropertyChange(() => selectedSex);
+            _birthdateSelectedDate = (DateTime)dt.Rows[0][5];
+            NotifyOfPropertyChange(() => birthdateSelectedDate);
+            NotifyOfPropertyChange(() => age);
+            _birthplace = dt.Rows[0][7].ToString();
+            NotifyOfPropertyChange(() => birthplace);
+            _address = dt.Rows[0][8].ToString();
+            NotifyOfPropertyChange(() => address);
+            _crime = dt.Rows[0][9].ToString();
+            NotifyOfPropertyChange(() => crime);
+            _placeofarrest = dt.Rows[0][10].ToString();
+            NotifyOfPropertyChange(() => _placeofarrest);
+            _arrestingofficer = dt.Rows[0][11].ToString();
+            NotifyOfPropertyChange(() => arrestingofficer);
+            _dateofarrestSelectedDate = (DateTime)dt.Rows[0][12];
+            NotifyOfPropertyChange(() => dateofarrestSelectedDate);
+            _eyecolor = dt.Rows[0][13].ToString();
+            NotifyOfPropertyChange(() => eyecolor);
+            _haircolor = dt.Rows[0][14].ToString();
+            NotifyOfPropertyChange(() => haircolor);
+            _remarks = dt.Rows[0][15].ToString();
+            NotifyOfPropertyChange(() => remarks);
+            if (dt.Rows[0][16].ToString() != string.Empty)
+            {
+                ImageSource imgsource = new BitmapImage(new Uri(dt.Rows[0][16].ToString()));
+                _criminalPictureSource = imgsource;
+                NotifyOfPropertyChange(() => criminalPictureSource);
+            }
         }
 
         public void saveButton()
@@ -52,14 +102,12 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
             if (areRequiredFieldsComplete() && _hasPicture)
             {
                 savePicture();
-                connection.dbCommand("INSERT INTO `ps4`.`criminalrecords` (`First_Name`, `Middle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Address`, `Crime`, `Place_of_Arrest`, `Arresting_Officer`, `Date_of_Arrest`, `Eye_Color`, `Hair_Color`, `Remarks`, `Picture`) " +
-                    "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _selectedSex + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _address + "', '" + _crime + "', '" + _placeofarrest + "', '" + _arrestingofficer + "', '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', '" + _eyecolor + "', '" + _haircolor + "', '" + _remarks + "', '" + _savedCriminalPictureFilePath + "');");
+                connection.dbCommand("UPDATE `ps4`.`criminalrecords` SET `First_Name` = '" + _firstname + "', `Middle_Name` = '" + _middlename + "', `Last_Name` = '" + _lastname + "', `Sex` = '" + _selectedSex + "', `Birthdate` = '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', `Age` = '" + _age + "', `Birthplace` = '" + _birthplace + "', `Address` = '" + _address + "', `Crime` = '" + _crime + "', `Place_of_Arrest` = '" + _placeofarrest + "', `Arresting_Officer` = '" + _arrestingofficer + "', `Date_of_Arrest` = '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', `Eye_Color` = '" + _eyecolor + "', `Hair_Color` = '" + _haircolor + "', `Remarks` = '" + _remarks + "', `Picture` = '" + _savedCriminalPictureFilePath + "' WHERE (`Criminal_ID` = '" + _criminalID + "');");
                 TryClose();
             }
             else if (areRequiredFieldsComplete())
             {
-                connection.dbCommand("INSERT INTO `ps4`.`criminalrecords` (`First_Name`, `Middle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Address`, `Crime`, `Place_of_Arrest`, `Arresting_Officer`, `Date_of_Arrest`, `Eye_Color`, `Hair_Color`, `Remarks`, `Picture`) " +
-                    "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _selectedSex + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _address + "', '" + _crime + "', '" + _placeofarrest + "', '" + _arrestingofficer + "', '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', '" + _eyecolor + "', '" + _haircolor + "', '" + _remarks + "', null);");
+                connection.dbCommand("UPDATE `ps4`.`criminalrecords` SET `First_Name` = '" + _firstname + "', `Middle_Name` = '" + _middlename + "', `Last_Name` = '" + _lastname + "', `Sex` = '" + _selectedSex + "', `Birthdate` = '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', `Age` = '" + _age + "', `Birthplace` = '" + _birthplace + "', `Address` = '" + _address + "', `Crime` = '" + _crime + "', `Place_of_Arrest` = '" + _placeofarrest + "', `Arresting_Officer` = '" + _arrestingofficer + "', `Date_of_Arrest` = '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', `Eye_Color` = '" + _eyecolor + "', `Hair_Color` = '" + _haircolor + "', `Remarks` = '" + _remarks + "' WHERE (`Criminal_ID` = '" + _criminalID + "');");
                 TryClose();
             }
             else
@@ -139,14 +187,13 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
             set
             {
                 _birthdateSelectedDate = value;
-                _age = (DateTime.Now.Year - _birthdateSelectedDate.Year).ToString();
                 NotifyOfPropertyChange(() => age);
             }
         }
 
         public string age
         {
-            get { return _age; }
+            get { return (DateTime.Now.Year - _birthdateSelectedDate.Year).ToString(); }
             set
             {
                 _age = value;
@@ -160,7 +207,7 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
             set { _dateofarrestSelectedDate = value; }
         }
 
-         public string criminalID
+        public string criminalID
         {
             get { return _criminalID; }
             set { _criminalID = value; }
@@ -276,7 +323,5 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
             get { return _criminalPicture; }
             set { _criminalPicture = value; }
         }
-
-
     }
 }

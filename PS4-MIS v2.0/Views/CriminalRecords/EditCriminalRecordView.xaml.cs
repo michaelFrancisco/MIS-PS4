@@ -15,14 +15,13 @@ using System.Windows.Shapes;
 namespace PS4_MIS_v2._0.Views.CriminalRecords
 {
     /// <summary>
-    /// Interaction logic for AddCriminalRecordView.xaml
+    /// Interaction logic for EditCriminalRecordView.xaml
     /// </summary>
-    public partial class AddCriminalRecordView : Window
+    public partial class EditCriminalRecordView : Window
     {
-        public AddCriminalRecordView()
+        public EditCriminalRecordView()
         {
             InitializeComponent();
         }
-
     }
 }

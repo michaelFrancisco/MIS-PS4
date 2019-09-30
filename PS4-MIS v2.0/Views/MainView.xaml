@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PS4_MIS_v2._0.Views"
         mc:Ignorable="d"
-        Title="Police Station 4 MIS" Width="1280" Height="720" Background="#FF7686C3" WindowState="Maximized">
+        Title="Police Station 4 MIS" Width="1280" Height="720" Background="#FF7686C3" WindowState="Maximized" FontSize="16">
     <Window.Resources>
         <SolidColorBrush x:Key="buttonColor" Color="#FF29506D"/>
     </Window.Resources>
@@ -14,7 +14,7 @@
             <ColumnDefinition Width="260"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Background="#FF29506D">
+        <StackPanel Grid.Column="0" Background="#FF22256D">
             <Grid Height="115">
                 <Image VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Source="/PS4-MIS v2.0;component/Resources/PNP-Logo.png"/>
             </Grid>
@@ -24,16 +24,16 @@
                 <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="12" x:Name="displayNameTextblock"></TextBlock>
             </StackPanel>
             <StackPanel>
-                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="messagesButton">Messages</Button>
-                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="criminalRecordsButton">Criminal Records</Button>
-                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="wantedPeopleButton">Most Wanted People</Button>
-                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="policeReportsButton">Police Reports</Button>
-                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="stolenVehiclesButton">Stolen Vehicles</Button>
-                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="inventoryButton">Inventory</Button>
-                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="visitorLogbookButton">Visitor Logbook</Button>
-                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="payrollButton">Payroll</Button>
-                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="employeeRecordsButton">Employee Records</Button>
-                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="logoutButton">Logout</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="messagesButton" BorderBrush="#FF002EAA">Messages</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="criminalRecordsButton" BorderBrush="#FF002EAA">Criminal Records</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="wantedPeopleButton" BorderBrush="#FF002EAA">Most Wanted People</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="policeReportsButton" BorderBrush="#FF002EAA">Police Reports</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="stolenVehiclesButton" BorderBrush="#FF002EAA">Stolen Vehicles</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="inventoryButton" BorderBrush="#FF002EAA">Inventory</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="visitorLogbookButton" BorderBrush="#FF002EAA">Visitor Logbook</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="payrollButton" BorderBrush="#FF002EAA">Payroll</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="employeeRecordsButton" BorderBrush="#FF002EAA">Employee Records</Button>
+                <Button Height="40" Background="{x:Null}" Foreground="White" x:Name="logoutButton" BorderBrush="#FF002EAA">Logout</Button>
             </StackPanel>
         </StackPanel>
         <Grid Grid.Column="1">

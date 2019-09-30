@@ -71,9 +71,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="connection.cs" />
+    <Compile Include="Model\connection.cs" />
     <Compile Include="ViewModels\CriminalRecords\AddCriminalRecordViewModel.cs" />
     <Compile Include="ViewModels\CriminalRecords\CriminalRecordsViewModel.cs" />
+    <Compile Include="ViewModels\CriminalRecords\EditCriminalRecordViewModel.cs" />
     <Compile Include="ViewModels\EmployeeRecords\AddEmployeeRecordViewModel.cs" />
     <Compile Include="ViewModels\EmployeeRecords\EmployeeRecordsViewModel.cs" />
     <Compile Include="ViewModels\Inventory\InventoryViewModel.cs" />
@@ -89,6 +90,9 @@
     </Compile>
     <Compile Include="Views\CriminalRecords\CriminalRecordsView.xaml.cs">
       <DependentUpon>CriminalRecordsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CriminalRecords\EditCriminalRecordView.xaml.cs">
+      <DependentUpon>EditCriminalRecordView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EmployeeRecords\AddEmployeeRecordView.xaml.cs">
       <DependentUpon>AddEmployeeRecordView.xaml</DependentUpon>
@@ -158,6 +162,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CriminalRecords\EditCriminalRecordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EmployeeRecords\AddEmployeeRecordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,9 +207,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Placeholder.jpg" />
     <Resource Include="Resources\PNP-Logo.png" />

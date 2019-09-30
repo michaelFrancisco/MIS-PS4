@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace PS4_MIS_v2._0
 {
-    class Bootstrapper : BootstrapperBase   
+    class Bootstrapper : BootstrapperBase
     {
         public Bootstrapper()
         {
