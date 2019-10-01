@@ -21,7 +21,7 @@
             <StackPanel>
                 <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="22">Philippine National Police</TextBlock>
                 <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="22">Police Station 4</TextBlock>
-                <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="12" x:Name="displayNameTextblock"></TextBlock>
+                <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="12" x:Name="display" Text="{Binding displayName}"></TextBlock>
             </StackPanel>
             <StackPanel>
                 <Button Height="40" Background="{Binding messagesBrush}" Foreground="White" x:Name="messagesButton" BorderBrush="#FF002EAA">Messages</Button>
@@ -30,7 +30,6 @@
                 <Button Height="40" Background="{Binding stolenvehicleBrush}" Foreground="White" x:Name="stolenVehiclesButton" BorderBrush="#FF002EAA">Stolen Vehicles</Button>
                 <Button Height="40" Background="{Binding inventoryBrush}" Foreground="White" x:Name="inventoryButton" BorderBrush="#FF002EAA">Inventory</Button>
                 <Button Height="40" Background="{Binding visitorlogbookbrush}" Foreground="White" x:Name="visitorLogbookButton" BorderBrush="#FF002EAA">Visitor Logbook</Button>
-                <Button Height="40" Background="{Binding payrollBrush}" Foreground="White" x:Name="payrollButton" BorderBrush="#FF002EAA">Payroll</Button>
                 <Button Height="40" Background="{Binding employeerecordsBrush}" Foreground="White" x:Name="employeeRecordsButton" BorderBrush="#FF002EAA">Employee Records</Button>
                 <Button Height="40"  Foreground="White" x:Name="logoutButton" BorderBrush="#FF002EAA" Background="{x:Null}">Logout</Button>
             </StackPanel>

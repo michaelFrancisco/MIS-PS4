@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 
 namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
 {
-    class AddEmployeeRecordViewModel : Conductor<object>
+    class EditEmployeeRecordViewModel : Screen
     {
         private string _address;
         private string _age;
@@ -28,9 +28,10 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
         private string _employeeID;
         private string _employeePictureFilePath;
         private string _firstname;
+        private bool _hasAccount = false;
         private bool _hasPicture = false;
-        private bool _isPasswodEnabled = false;
-        private bool _isUsernameEnabled = false;
+        private bool _isPasswodEnabled;
+        private bool _isUsernameEnabled;
         private string _lastname;
         private string _middlename;
         private string _password;
@@ -40,17 +41,24 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
         private string _rankSelectedItem;
         private string _remarks;
         private string _savedEmployeePictureFilePath;
+        private string _selectedEmployeeID;
         private List<string> _sex;
         private string _sexSelectedItem;
         private List<string> _userlevel;
         private string _userlevelSelectedItem;
         private string _username;
         IWindowManager windowManager = new WindowManager();
+        public EditEmployeeRecordViewModel(string selectedEmployeeID)
+        {
+            _selectedEmployeeID = selectedEmployeeID;
+        }
+
         public string address
         {
             get { return _address; }
             set { _address = value; }
         }
+
         public string age
         {
             get { return _age; }
@@ -91,7 +99,6 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
             get { return new List<string> { "Single", "Married", "Divorced", "Separated", "Widowed", "Widowed" }; }
             set { _civilstatus = value; }
         }
-
         public string civilstatusSelectedItem
         {
             get { return _civilstatusSelectedItem; }
@@ -115,7 +122,6 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
             get { return _firstname; }
             set { _firstname = value; }
         }
-
         public bool isPasswordEnabled
         {
             get { return _isPasswodEnabled; }
@@ -133,13 +139,11 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
             get { return _lastname; }
             set { _lastname = value; }
         }
-
         public string middlename
         {
             get { return _middlename; }
             set { _middlename = value; }
         }
-
         public string password
         {
             get { return _password; }
@@ -163,12 +167,12 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
             get { return new List<string> { "Patrolman/Patrolwoman", "Police Corporal", "Police Staff Sergeant", "Police Master Sergeant", "Police Senior Master Sergeant", "Police Chief Master Sergeant", "Police Executive Master Sergeant", "Police Lieutenant", "Police Captain", "Police Major", "Police Lieutenant Colonel", "Police Colonel", "Police Brigadier General", "Police Major General", "Police Lieutenant General", "Police General" }; }
             set { _rank = value; }
         }
-
         public string rankSelectedItem
         {
             get { return _rankSelectedItem; }
             set { _rankSelectedItem = value; }
         }
+
 
         public string remarks
         {
@@ -230,6 +234,7 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
             NotifyOfPropertyChange(() => isUsernameEnabled);
             NotifyOfPropertyChange(() => isPasswordEnabled);
         }
+
         public void changePictureButton()
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -247,26 +252,85 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
                 _hasPicture = true;
             }
         }
+
+        public void initializeValues()
+        {
+            DataTable dt = connection.dbTable("select * from employeerecords where Employee_ID =" + _selectedEmployeeID + ";");
+            _employeeID = dt.Rows[0][0].ToString();
+            NotifyOfPropertyChange(() => employeeID);
+            _firstname = dt.Rows[0][1].ToString();
+            NotifyOfPropertyChange(() => firstname);
+            _middlename = dt.Rows[0][2].ToString();
+            NotifyOfPropertyChange(() => middlename);
+            _lastname = dt.Rows[0][3].ToString();
+            NotifyOfPropertyChange(() => lastname);
+            _sexSelectedItem = dt.Rows[0][4].ToString();
+            NotifyOfPropertyChange(() => sexSelectedItem);
+            _birthdateSelectedDate = (DateTime)dt.Rows[0][5];
+            NotifyOfPropertyChange(() => birthdateSelectedDate);
+            _age = dt.Rows[0][6].ToString();
+            NotifyOfPropertyChange(() => age);
+            _birthplace = dt.Rows[0][7].ToString();
+            NotifyOfPropertyChange(() => birthplace);
+            _civilstatusSelectedItem = dt.Rows[0][8].ToString();
+            NotifyOfPropertyChange(() => civilstatusSelectedItem);
+            _address = dt.Rows[0][9].ToString();
+            NotifyOfPropertyChange(() => address);
+            _department = dt.Rows[0][10].ToString();
+            NotifyOfPropertyChange(() => department);
+            _position = dt.Rows[0][11].ToString();
+            NotifyOfPropertyChange(() => position);
+            _rankSelectedItem = dt.Rows[0][12].ToString();
+            NotifyOfPropertyChange(() => rank);
+            _userlevelSelectedItem = dt.Rows[0][13].ToString();
+            NotifyOfPropertyChange(() => userlevelSelectedItem);
+            _remarks = dt.Rows[0][14].ToString();
+            NotifyOfPropertyChange(() => remarks);
+            if (dt.Rows[0][15].ToString() != string.Empty)
+            {
+                ImageSource imgsource = new BitmapImage(new Uri(dt.Rows[0][15].ToString()));
+                _profilePictureSource = imgsource;
+                NotifyOfPropertyChange(() => profilePictureSource);
+            }
+            dt = connection.dbTable("Select * from users where Employee_ID = " + _selectedEmployeeID + "");
+            if (dt.Rows.Count>0)
+            {
+                _hasAccount = true;
+                _username = dt.Rows[0][1].ToString();
+                _password = dt.Rows[0][1].ToString();
+                _canCreateAccount = true;
+                _isPasswodEnabled = true;
+                _isUsernameEnabled = true;
+                NotifyOfPropertyChange(() => canCreateAccount);
+                NotifyOfPropertyChange(() => username);
+                NotifyOfPropertyChange(() => password);
+                NotifyOfPropertyChange(() => isPasswordEnabled);
+                NotifyOfPropertyChange(() => isUsernameEnabled);
+            }
+        }
         public void saveButton()
         {
-            if (_canCreateAccount)
+            if (_hasAccount && _canCreateAccount)
             {
-                DataTable dt = connection.dbTable("SELECT MAX(Employee_ID) FROM employeerecords;");
-                int nextID = Int32.Parse(dt.Rows[0][0].ToString());
-                nextID++;
-                connection.dbCommand("INSERT INTO `ps4`.`users` (`Employee_ID`, `Username`, `Password`) VALUES ('"+nextID+"', '"+_username+"', '"+_password+"');");
+                connection.dbCommand("UPDATE `ps4`.`users` SET `Username` = '"+_username+"', `Password` = '"+_password+"' WHERE (`Employee_ID` = "+_selectedEmployeeID+");");
+            }
+            else if (!_hasAccount && _canCreateAccount)
+            {
+                connection.dbCommand("INSERT INTO `ps4`.`users` (`Employee_ID`, `Username`, `Password`) VALUES ('"+_selectedEmployeeID+"', '"+_username+"', '"+_password+"');");
+            }
+            else if (_hasAccount && !_canCreateAccount)
+            {
+                connection.dbCommand("DELETE FROM `ps4`.`users` WHERE (`Employee_ID` = '" + _selectedEmployeeID + "');");
             }
             if (areRequiredFieldsComplete() && _hasPicture)
             {
                 savePicture();
-                connection.dbCommand("INSERT INTO `ps4`.`employeerecords` (`First_Name`, `Midle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Civil_Status`, `Address`, `Department`, `Position`, `Rank`, `User_Level`, `Remarks`, `Picture`) " +
-                    "VALUES ('" +_firstname+ "', '" +_middlename+ "', '"+ _lastname +"', '"+ _sexSelectedItem +"', '"+ _birthdateSelectedDate.ToString("yyyy-MM-dd") +"', '"+ _age +"', '"+ _birthplace +"', '"+ _civilstatusSelectedItem +"', '"+ _address +"', '"+ _department +"', '" + _position + "', '" + _rankSelectedItem + "', '" + _userlevelSelectedItem + "', '" + _remarks + "', '" + _savedEmployeePictureFilePath + "');");
+                connection.dbCommand("UPDATE `ps4`.`employeerecords` SET `First_Name` = '"+_firstname+"', `Midle_Name` = '"+_middlename+"', `Last_Name` = '"+_lastname+"', `Sex` = '"+_sexSelectedItem+"', `Birthdate` = '"+_birthdateSelectedDate.ToString("yyyy-MM-dd")+"', `Age` = '"+_age+"', `Birthplace` = '"+_birthplace+"', `Civil_Status` = '"+_civilstatusSelectedItem+"', `Address` = '"+_address+"', `Department` = '"+_department+"', `Position` = '"+_position+"', `Rank` = '"+_rankSelectedItem+"', `User_Level` = '"+_userlevelSelectedItem+"', `Remarks` = '"+_remarks+"', `Picture` = '"+ _savedEmployeePictureFilePath + "' WHERE (`Employee_ID` = '"+_selectedEmployeeID+"');");
                 TryClose();
             }
             else if (areRequiredFieldsComplete())
             {
-                connection.dbCommand("INSERT INTO `ps4`.`employeerecords` (`First_Name`, `Midle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Civil_Status`, `Address`, `Department`, `Position`, `Rank`, `User_Level`, `Remarks`, `Picture`) " +
-                    "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _sexSelectedItem + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _civilstatusSelectedItem + "', '" + _address + "', '" + _department + "', '" + _position + "', '" + _rankSelectedItem + "', '" + _userlevelSelectedItem + "', '" + _remarks + "', null);");
+                connection.dbCommand("UPDATE `ps4`.`employeerecords` SET `First_Name` = '" + _firstname + "', `Midle_Name` = '" + _middlename + "', `Last_Name` = '" + _lastname + "', `Sex` = '" + _sexSelectedItem + "', `Birthdate` = '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', `Age` = '" + _age + "', `Birthplace` = '" + _birthplace + "', `Civil_Status` = '" + _civilstatusSelectedItem + "', `Address` = '" + _address + "', `Department` = '" + _department + "', `Position` = '" + _position + "', `Rank` = '" + _rankSelectedItem + "', `User_Level` = '" + _userlevelSelectedItem + "', `Remarks` = '" + _remarks + "' WHERE (`Employee_ID` = '" + _selectedEmployeeID + "');");
                 TryClose();
             }
             else
@@ -275,14 +339,11 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
             }
         }
 
-
         protected override void OnActivate()
         {
-            _birthdateSelectedDate = DateTime.Now;
-            NotifyOfPropertyChange(() => _birthdateSelectedDate);
+            initializeValues();
             base.OnActivate();
         }
-
         private bool areRequiredFieldsComplete()
         {
             if (
@@ -300,6 +361,8 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
             else
                 return true;
         }
+
+
 
         private String getAppStartPath(string filename, string foldername)
         {

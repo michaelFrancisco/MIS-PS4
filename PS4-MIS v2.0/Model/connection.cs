@@ -45,7 +45,7 @@ namespace PS4_MIS_v2._0
 
         public static bool verifyLogin(string username, string password)
         {
-            DataTable dt = dbTable("select * from users where username='" + username + "' and password = '" + password + "';");
+            DataTable dt = dbTable("select * from users where Username='" + username + "' and Password = '" + password + "';");
             if (dt.Rows.Count > 0)
                 return true;
             else

@@ -33,6 +33,7 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
         private string _firstname;
         private string _haircolor;
         private bool _hasPicture = false;
+        private string _hospital;
         private string _lastname;
         private string _middlename;
         private string _placeofarrest;
@@ -45,6 +46,23 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
         {
             _selectedCriminalID = selectedCriminalID;
         }
+
+        private string _username;
+
+        public string username
+        {
+            get { return _username; }
+            set { _username = value; }
+        }
+
+        private string _password;
+
+        public string password
+        {
+            get { return _password; }
+            set { _password = value; }
+        }
+
 
         public string address
         {
@@ -146,6 +164,12 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
         {
             get { return _haircolor; }
             set { _haircolor = value; }
+        }
+
+        public string hospital
+        {
+            get { return _hospital; }
+            set { _hospital = value; }
         }
 
         public string lastname
@@ -257,18 +281,9 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
                 ImageSource imgsource = new BitmapImage(new Uri(dt.Rows[0][17].ToString()));
                 _criminalPictureSource = imgsource;
                 NotifyOfPropertyChange(() => criminalPictureSource);
+                _hasPicture = true;
             }
         }
-
-        private string _hospital;
-
-        public string hospital
-        {
-            get { return _hospital; }
-            set { _hospital = value; }
-        }
-
-
         public void saveButton()
         {
             if (areRequiredFieldsComplete() && _hasPicture)

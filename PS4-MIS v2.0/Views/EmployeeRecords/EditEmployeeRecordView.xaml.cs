@@ -11,15 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-    
-namespace PS4_MIS_v2._0.Views
+
+namespace PS4_MIS_v2._0.Views.EmployeeRecords
 {
     /// <summary>
-    /// Interaction logic for PayrollView.xaml
+    /// Interaction logic for EditEmployeeRecordView.xaml
     /// </summary>
-    public partial class PayrollView : UserControl
+    public partial class EditEmployeeRecordView : Window
     {
-        public PayrollView()
+        public EditEmployeeRecordView()
         {
             InitializeComponent();
         }

@@ -76,12 +76,11 @@
     <Compile Include="ViewModels\CriminalRecords\CriminalRecordsViewModel.cs" />
     <Compile Include="ViewModels\CriminalRecords\EditCriminalRecordViewModel.cs" />
     <Compile Include="ViewModels\EmployeeRecords\AddEmployeeRecordViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeRecords\EditEmployeeRecordViewModel.cs" />
     <Compile Include="ViewModels\EmployeeRecords\EmployeeRecordsViewModel.cs" />
     <Compile Include="ViewModels\Inventory\InventoryViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\MostWanted\MostWantedViewModel.cs" />
-    <Compile Include="ViewModels\Payroll\PayrollViewModel.cs" />
     <Compile Include="ViewModels\PoliceReports\PoliceReportsViewModel.cs" />
     <Compile Include="ViewModels\StolenVehicles\StolenVehiclesViewModel.cs" />
     <Compile Include="ViewModels\VisitorLogbook\VisitorLogbookViewModel.cs" />
@@ -97,6 +96,9 @@
     <Compile Include="Views\EmployeeRecords\AddEmployeeRecordView.xaml.cs">
       <DependentUpon>AddEmployeeRecordView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EmployeeRecords\EditEmployeeRecordView.xaml.cs">
+      <DependentUpon>EditEmployeeRecordView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EmployeeRecords\EmployeeRecordsView.xaml.cs">
       <DependentUpon>EmployeeRecordsView.xaml</DependentUpon>
     </Compile>
@@ -108,12 +110,6 @@
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MostWanted\MostWantedView.xaml.cs">
-      <DependentUpon>MostWantedView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Payroll\PayrollView.xaml.cs">
-      <DependentUpon>PayrollView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PoliceReports\PoliceReportsView.xaml.cs">
       <DependentUpon>PoliceReportsView.xaml</DependentUpon>
@@ -170,6 +166,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EmployeeRecords\EditEmployeeRecordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EmployeeRecords\EmployeeRecordsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -183,14 +183,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MostWanted\MostWantedView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Payroll\PayrollView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
