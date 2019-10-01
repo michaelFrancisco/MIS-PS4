@@ -8,79 +8,79 @@ using System.Threading.Tasks;
 
 namespace PS4_MIS_v2._0.ViewModels.Blotter
 {
-    class BlotterViewModel
+    class BlotterViewModel : Screen
     {
-        private DataTable _basecriminalRecordsGridItemSource;
-        private string _typeofincident;
-        private string _criminalID;
-        private object _criminalRecordDatagridSelectedItem;
-        private DataTable _criminalRecordsGridItemSource;
-        private string _firstname;
-        private string _lastname;
+        private DataTable _baseBlotterGridSource;
+        private string _typeOfIncident;
+        private string _blotterEntryNo;
+        private object _blotterGridSelectedItem;
+        private DataTable _blotterGridSource;
+        private string _firstName;
+        private string _lastName;
         private string _location;
-        private int _selectedCriminalID;
+        private int _selectedBlotterEntryNo;
         IWindowManager windowManager = new WindowManager();
-        public string typeofincident
+        public string typeOfIncident
         {
-            get { return _typeofincident; }
+            get { return _typeOfIncident; }
             set
             {
-                _typeofincident = value;
-                DataView dv = new DataView(_basecriminalRecordsGridItemSource);
+                _typeOfIncident = value;
+                DataView dv = new DataView(_baseBlotterGridSource);
                 dv.RowFilter = query();
-                _criminalRecordsGridItemSource = dv.ToTable();
-                NotifyOfPropertyChange(() => criminalRecordsGridItemSource);
+                _blotterGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => blotterGridSource);
             }
         }
 
-        public string criminalID
+        public string blotterEntryNo
         {
-            get { return _criminalID; }
+            get { return _blotterEntryNo; }
             set
             {
-                _criminalID = value;
-                DataView dv = new DataView(_basecriminalRecordsGridItemSource);
+                _blotterEntryNo = value;
+                DataView dv = new DataView(_baseBlotterGridSource);
                 dv.RowFilter = query();
-                _criminalRecordsGridItemSource = dv.ToTable();
-                NotifyOfPropertyChange(() => criminalRecordsGridItemSource);
+                _blotterGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => blotterGridSource);
             }
         }
 
-        public object criminalRecordDatagridSelectedItem
+        public object blotterGridSelectedItem
         {
-            get { return _criminalRecordDatagridSelectedItem; }
-            set { _criminalRecordDatagridSelectedItem = value; }
+            get { return _blotterGridSelectedItem; }
+            set { _blotterGridSelectedItem = value; }
         }
 
-        public DataTable criminalRecordsGridItemSource
+        public DataTable blotterGridSource
         {
-            get { return _criminalRecordsGridItemSource; }
-            set { _criminalRecordsGridItemSource = value; }
+            get { return _blotterGridSource; }
+            set { _blotterGridSource = value; }
         }
 
-        public string firstname
+        public string firstName
         {
-            get { return _firstname; }
+            get { return _firstName; }
             set
             {
-                _firstname = value;
-                DataView dv = new DataView(_basecriminalRecordsGridItemSource);
+                _firstName = value;
+                DataView dv = new DataView(_baseBlotterGridSource);
                 dv.RowFilter = query();
-                _criminalRecordsGridItemSource = dv.ToTable();
-                NotifyOfPropertyChange(() => criminalRecordsGridItemSource);
+                _blotterGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => blotterGridSource);
             }
         }
 
-        public string lastname
+        public string lastName
         {
-            get { return _lastname; }
+            get { return _lastName; }
             set
             {
-                _lastname = value;
-                DataView dv = new DataView(_basecriminalRecordsGridItemSource);
+                _lastName = value;
+                DataView dv = new DataView(_baseBlotterGridSource);
                 dv.RowFilter = query();
-                _criminalRecordsGridItemSource = dv.ToTable();
-                NotifyOfPropertyChange(() => criminalRecordsGridItemSource);
+                _blotterGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => blotterGridSource);
             }
         }
 
@@ -90,54 +90,54 @@ namespace PS4_MIS_v2._0.ViewModels.Blotter
             set
             {
                 _location = value;
-                DataView dv = new DataView(_basecriminalRecordsGridItemSource);
+                DataView dv = new DataView(_baseBlotterGridSource);
                 dv.RowFilter = query();
-                _criminalRecordsGridItemSource = dv.ToTable();
-                NotifyOfPropertyChange(() => criminalRecordsGridItemSource);
+                _blotterGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => blotterGridSource);
             }
         }
 
-        public void addCriminalRecordButton()
+        public void newIRFButton()
         {
-            windowManager.ShowWindow(new AddCriminalRecordViewModel(), null, null);
+            windowManager.ShowWindow(new AddNewIRFViewModel(), null, null);
         }
 
         public string query()
         {
             StringBuilder sb = new StringBuilder();
-            if (_firstname != null && _firstname != string.Empty)
+            if (_firstName != null && _firstName != string.Empty)
             {
-                sb.Append("First_Name like '%" + _firstname.Trim() + "%'");
+                sb.Append("First_Name like '%" + _firstName.Trim() + "%'");
             }
 
-            if (_lastname != null && _lastname != string.Empty)
+            if (_lastName != null && _lastName != string.Empty)
             {
                 if (sb.Length > 0)
                 {
                     sb.Append(" and ");
                 }
 
-                sb.Append("Last_Name like '%" + _lastname.Trim() + "%'");
+                sb.Append("Last_Name like '%" + _lastName.Trim() + "%'");
             }
 
-            if (_typeofincident != null && _typeofincident != string.Empty)
+            if (_typeOfIncident != null && _typeOfIncident != string.Empty)
             {
                 if (sb.Length > 0)
                 {
                     sb.Append(" and ");
                 }
 
-                sb.Append("Crime like '%" + _typeofincident.Trim() + "%'");
+                sb.Append("Crime like '%" + _typeOfIncident.Trim() + "%'");
             }
 
-            if (_criminalID != null && _criminalID != string.Empty)
+            if (_blotterEntryNo != null && _blotterEntryNo != string.Empty)
             {
                 if (sb.Length > 0)
                 {
                     sb.Append(" and ");
                 }
 
-                sb.Append("Criminal_ID like '%" + _criminalID.Trim() + "%'");
+                sb.Append("Criminal_ID like '%" + _blotterEntryNo.Trim() + "%'");
             }
 
             if (_location != null && _location != string.Empty)
@@ -154,46 +154,41 @@ namespace PS4_MIS_v2._0.ViewModels.Blotter
 
         public void refreshButton()
         {
-            _criminalRecordsGridItemSource = connection.dbTable("SELECT Criminal_ID, First_Name, Middle_Name, Last_Name, Sex, Birthdate, Age, Birthplace, Address, Crime, Place_of_Arrest, Arresting_Officer, Date_of_Arrest, Eye_Color, Hair_Color, Remarks FROM `ps4`.`criminalrecords`;");
-            _basecriminalRecordsGridItemSource = _criminalRecordsGridItemSource;
-            NotifyOfPropertyChange(() => criminalRecordsGridItemSource);
+            _blotterGridSource = connection.dbTable("SELECT Criminal_ID, First_Name, Middle_Name, Last_Name, Sex, Birthdate, Age, Birthplace, Address, Crime, Place_of_Arrest, Arresting_Officer, Date_of_Arrest, Eye_Color, Hair_Color, Remarks FROM `ps4`.`criminalrecords`;");
+            _baseBlotterGridSource = _blotterGridSource;
+            NotifyOfPropertyChange(() => blotterGridSource);
         }
 
         public void resetButton()
         {
-            _firstname = string.Empty;
-            _lastname = string.Empty;
-            _criminalID = string.Empty;
-            _typeofincident = string.Empty;
+            _firstName = string.Empty;
+            _lastName = string.Empty;
+            _blotterEntryNo = string.Empty;
+            _typeOfIncident = string.Empty;
             _location = string.Empty;
-            _criminalRecordsGridItemSource = connection.dbTable("SELECT Criminal_ID, First_Name, Middle_Name, Last_Name, Sex, Birthdate, Age, Birthplace, Address, Crime, Place_of_Arrest, Arresting_Officer, Date_of_Arrest, Eye_Color, Hair_Color, Remarks FROM `ps4`.`criminalrecords`;");
-            _basecriminalRecordsGridItemSource = _criminalRecordsGridItemSource;
-            NotifyOfPropertyChange(() => firstname);
-            NotifyOfPropertyChange(() => lastname);
-            NotifyOfPropertyChange(() => criminalID);
-            NotifyOfPropertyChange(() => crime);
+            _blotterGridSource = connection.dbTable("SELECT Criminal_ID, First_Name, Middle_Name, Last_Name, Sex, Birthdate, Age, Birthplace, Address, Crime, Place_of_Arrest, Arresting_Officer, Date_of_Arrest, Eye_Color, Hair_Color, Remarks FROM `ps4`.`criminalrecords`;");
+            _baseBlotterGridSource = _blotterGridSource;
+            NotifyOfPropertyChange(() => firstName);
+            NotifyOfPropertyChange(() => lastName);
+            NotifyOfPropertyChange(() => blotterEntryNo);
+            NotifyOfPropertyChange(() => typeOfIncident);
             NotifyOfPropertyChange(() => location);
-            NotifyOfPropertyChange(() => criminalRecordsGridItemSource);
+            NotifyOfPropertyChange(() => blotterGridSource);
         }
 
-        public void showCriminalRecord()
+        public void showIRF()
         {
-            DataRowView dataRowView = (DataRowView)_criminalRecordDatagridSelectedItem;
-            _selectedCriminalID = Convert.ToInt32(dataRowView.Row[0]);
-            windowManager.ShowWindow(new EditCriminalRecordViewModel(_selectedCriminalID), null, null);
+            DataRowView dataRowView = (DataRowView)_blotterGridSelectedItem;
+            _selectedBlotterEntryNo = Convert.ToInt32(dataRowView.Row[0]);
+            windowManager.ShowWindow(new EditIRFViewModel(_selectedBlotterEntryNo), null, null);
         }
 
         protected override void OnActivate()
         {
-            _criminalRecordsGridItemSource = connection.dbTable("SELECT Criminal_ID, First_Name, Middle_Name, Last_Name, Sex, Birthdate, Age, Birthplace, Address, Crime, Place_of_Arrest, Arresting_Officer, Date_of_Arrest, Eye_Color, Hair_Color, Remarks FROM `ps4`.`criminalrecords`;");
-            _basecriminalRecordsGridItemSource = _criminalRecordsGridItemSource;
-            NotifyOfPropertyChange(() => criminalRecordsGridItemSource);
+            _blotterGridSource = connection.dbTable("SELECT Criminal_ID, First_Name, Middle_Name, Last_Name, Sex, Birthdate, Age, Birthplace, Address, Crime, Place_of_Arrest, Arresting_Officer, Date_of_Arrest, Eye_Color, Hair_Color, Remarks FROM `ps4`.`criminalrecords`;");
+            _baseBlotterGridSource = _blotterGridSource;
+            NotifyOfPropertyChange(() => blotterGridSource);
             base.OnActivate();
-        }
-
-        private void NotifyOfPropertyChange(Func<DataTable> p)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -30,16 +30,16 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="*First Name" Foreground="White" FontSize="16" HorizontalAlignment="Right"/>
-            <TextBox x:Name="firstname" Grid.Row="0" Grid.Column="1" FontSize="16" Width="175"/>
+            <TextBox x:Name="firstName" Grid.Row="0" Grid.Column="1" FontSize="16" Width="175"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Blotter Entry No." Foreground="White" FontSize="16" HorizontalAlignment="Right"/>
-            <TextBox x:Name="blotterentryno" Grid.Row="1" Grid.Column="1" FontSize="16" Width="175"/>
+            <TextBox x:Name="blotterEntryNo" Grid.Row="1" Grid.Column="1" FontSize="16" Width="175"/>
             <Label Grid.Row="0" Grid.Column="2" Content="*Last Name" Foreground="White" FontSize="16" HorizontalAlignment="Right"/>
-            <TextBox x:Name="lastname" Grid.Row="0" Grid.Column="3" FontSize="16" Width="175"/>
+            <TextBox x:Name="lastName" Grid.Row="0" Grid.Column="3" FontSize="16" Width="175"/>
             <Label Grid.Row="1" Grid.Column="2" Content="Location" Foreground="White" FontSize="16" HorizontalAlignment="Right"/>
             <TextBox x:Name="location" Grid.Row="1" Grid.Column="3" FontSize="16" Width="175"/>
             <Label Grid.Row="0" Grid.Column="4" Content="Type of Incident" Foreground="White" FontSize="16" HorizontalAlignment="Right"/>
             <Label Grid.Row="1" Grid.Column="5" Content="*of Reporting Person" Foreground="White" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-            <TextBox x:Name="typeofincident" Grid.Row="0" Grid.Column="5" FontSize="16" Width="175"/>
+            <TextBox x:Name="typeOfIncident" Grid.Row="0" Grid.Column="5" FontSize="16" Width="175"/>
             <Button x:Name="refreshButton" Grid.Column="7" Content="Refresh" FontSize="22" HorizontalAlignment="Right" Width="123" Background="#FF4A4991" Foreground="White" VerticalAlignment="Center" Margin="5,0,0,0" BorderBrush="Black"/>
             <Button x:Name="resetButton" Grid.Row="1" Grid.Column="7" Content="Reset" HorizontalAlignment="Right" Width="123" Background="#FF4A4991" Foreground="White" Margin="5,2,0,0" Height="34" FontSize="22" BorderBrush="Black"/>
 
@@ -48,7 +48,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <DataGrid x:Name="criminalRecordsGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,10,-0.6" FontSize="16" MinColumnWidth="149" BorderThickness="0" AlternationCount="2" AlternatingRowBackground="#FF123652" RowBackground="#FF042037" Foreground="White" Background="#FF496D89" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding criminalRecordsGridItemSource}" cal:Message.Attach="[Event MouseDoubleClick] = [Action showCriminalRecord]" CanUserAddRows="False" SelectedItem="{Binding criminalRecordDatagridSelectedItem}" ItemStringFormat="">
+            <DataGrid x:Name="blotterGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,10,-0.6" FontSize="16" MinColumnWidth="149" BorderThickness="0" AlternationCount="2" AlternatingRowBackground="#FF123652" RowBackground="#FF042037" Foreground="White" Background="#FF496D89" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding blotterGridSource}" cal:Message.Attach="[Event MouseDoubleClick] = [Action showIRF]" CanUserAddRows="False" SelectedItem="{Binding blotterGridSelectedItem}" ItemStringFormat="">
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="#FF29506D" />

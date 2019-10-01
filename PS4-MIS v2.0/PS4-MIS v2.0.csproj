@@ -72,7 +72,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\connection.cs" />
+    <Compile Include="ViewModels\Blotter\AddNewIRFViewModel.cs" />
     <Compile Include="ViewModels\Blotter\BlotterViewModel.cs" />
+    <Compile Include="ViewModels\Blotter\EditIRFViewModel.cs" />
     <Compile Include="ViewModels\Bookings\BookingsViewModel.cs" />
     <Compile Include="ViewModels\CriminalRecords\AddCriminalRecordViewModel.cs" />
     <Compile Include="ViewModels\CriminalRecords\CriminalRecordsViewModel.cs" />
