@@ -25,6 +25,8 @@
             </StackPanel>
             <StackPanel>
                 <Button Height="40" Background="{Binding messagesBrush}" Foreground="White" x:Name="messagesButton" BorderBrush="#FF002EAA">Messages</Button>
+                <Button Height="40" Background="{Binding blotterBrush}" Foreground="White" x:Name="blotterButton" BorderBrush="#FF002EAA">Blotter</Button>
+                <Button Height="40" Background="{Binding bookingsBrush}" Foreground="White" x:Name="bookingsButton" BorderBrush="#FF002EAA">Bookings</Button>
                 <Button Height="40" Background="{Binding criminalRecordsBrush}" Foreground="White" x:Name="criminalRecordsButton" BorderBrush="#FF002EAA">Criminal Records</Button>
                 <Button Height="40" Background="{Binding policeReportsBrush}" Foreground="White" x:Name="policeReportsButton" BorderBrush="#FF002EAA">Police Reports</Button>
                 <Button Height="40" Background="{Binding stolenvehicleBrush}" Foreground="White" x:Name="stolenVehiclesButton" BorderBrush="#FF002EAA">Stolen Vehicles</Button>

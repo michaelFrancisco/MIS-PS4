@@ -72,6 +72,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\connection.cs" />
+    <Compile Include="ViewModels\Blotter\BlotterViewModel.cs" />
+    <Compile Include="ViewModels\Bookings\BookingsViewModel.cs" />
     <Compile Include="ViewModels\CriminalRecords\AddCriminalRecordViewModel.cs" />
     <Compile Include="ViewModels\CriminalRecords\CriminalRecordsViewModel.cs" />
     <Compile Include="ViewModels\CriminalRecords\EditCriminalRecordViewModel.cs" />
@@ -85,6 +87,9 @@
     <Compile Include="ViewModels\PoliceReports\PoliceReportsViewModel.cs" />
     <Compile Include="ViewModels\StolenVehicles\StolenVehiclesViewModel.cs" />
     <Compile Include="ViewModels\VisitorLogbook\VisitorLogbookViewModel.cs" />
+    <Compile Include="Views\Blotter\BlotterView.xaml.cs">
+      <DependentUpon>BlotterView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CriminalRecords\AddCriminalRecordView.xaml.cs">
       <DependentUpon>AddCriminalRecordView.xaml</DependentUpon>
     </Compile>
@@ -149,11 +154,16 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\Incident Record Form.pdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Blotter\BlotterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CriminalRecords\AddCriminalRecordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -207,7 +217,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Bookings\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Placeholder.jpg" />
     <Resource Include="Resources\PNP-Logo.png" />
