@@ -3,14 +3,12 @@ using PS4_MIS_v2._0.ViewModels.Inventory;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace PS4_MIS_v2._0.ViewModels
 {
-    class InventoryViewModel : Screen
+    internal class InventoryViewModel : Screen
     {
         private DataTable _baseInuseGridSource;
         private DataTable _baseInventoryGridSource;
@@ -23,35 +21,16 @@ namespace PS4_MIS_v2._0.ViewModels
         private string _inventoryid;
         private string _make;
         private string _model;
+        private string _name;
         private string _selectedInventoryID;
         private string _serial;
-        IWindowManager windowManager = new WindowManager();
+        private IWindowManager windowManager = new WindowManager();
+
         public List<string> category
         {
             get { return new List<string> { "Lethal Weapon", "Ammunition", "Protective Gear", "Radio", "Non-Lethal Weapon", "Office Supplies", "IT Hardware", "Apparel", "Misc" }; }
             set { _category = value; }
         }
-
-        private string _name;
-
-        public string name
-        {
-            get { return _name; }
-            set
-            {
-                _name = value;
-                DataView dv = new DataView(_baseInventoryGridSource);
-                dv.RowFilter = query();
-                _inventoryGridSource = dv.ToTable();
-                NotifyOfPropertyChange(() => inventoryGridSource);
-                dv = new DataView(_baseInuseGridSource);
-                dv.RowFilter = query();
-                _inuseGridSource = dv.ToTable();
-                NotifyOfPropertyChange(() => inuseGridSource);
-            }
-        }
-
-
 
         public string categorySelectedItem
         {
@@ -133,6 +112,23 @@ namespace PS4_MIS_v2._0.ViewModels
             }
         }
 
+        public string name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                DataView dv = new DataView(_baseInventoryGridSource);
+                dv.RowFilter = query();
+                _inventoryGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => inventoryGridSource);
+                dv = new DataView(_baseInuseGridSource);
+                dv.RowFilter = query();
+                _inuseGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => inuseGridSource);
+            }
+        }
+
         public string serial
         {
             get { return _serial; }
@@ -149,12 +145,11 @@ namespace PS4_MIS_v2._0.ViewModels
         public void addItemButton()
         {
             windowManager.ShowWindow(new AddItemViewModel(), null, null);
-
         }
 
         public void dispatchItem()
         {
-
+            windowManager.ShowWindow(new ChooseEmployeeForDispatchViewModel(), null, null);
         }
 
         public string query()
@@ -213,7 +208,7 @@ namespace PS4_MIS_v2._0.ViewModels
                     sb.Append(" and ");
                 }
 
-                sb.Append("Department like '%" + _serial.Trim() + "%'");
+                sb.Append("Serial like '%" + _serial.Trim() + "%'");
             }
 
             if (_name != null && _name != string.Empty)
@@ -227,9 +222,9 @@ namespace PS4_MIS_v2._0.ViewModels
             }
             return sb.ToString();
         }
+
         public void receiveItem()
         {
-
         }
 
         public void refreshButton()
@@ -261,6 +256,7 @@ namespace PS4_MIS_v2._0.ViewModels
             NotifyOfPropertyChange(() => serial);
             NotifyOfPropertyChange(() => inventoryGridSource);
         }
+
         public void showItem()
         {
             try
@@ -274,6 +270,7 @@ namespace PS4_MIS_v2._0.ViewModels
                 MessageBox.Show(ex.Message);
             }
         }
+
         protected override void OnActivate()
         {
             _inventoryGridSource = connection.dbTable("SELECT Inventory_ID, Category,Name, Make, Model, Serial, Quantity, Acquired FROM `ps4`.`inventory` WHERE inUse = 0;");

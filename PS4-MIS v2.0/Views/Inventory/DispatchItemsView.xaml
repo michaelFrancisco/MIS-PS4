@@ -6,25 +6,60 @@
         xmlns:local="clr-namespace:PS4_MIS_v2._0.Views"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="addRecord" Height="720" Width="1020" WindowStyle="ToolWindow" Background="#FF343477" WindowStartupLocation="CenterScreen">
+        Title="addRecord" Height="720" Width="1020" WindowStyle="ToolWindow" Background="#FF343477" WindowStartupLocation="CenterScreen" FontSize="16">
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Background="#FF4A4991">
+        <Grid Background="#FF343477">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="chosenEmployee" Grid.Row="0" FontSize="16" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Height="30" Width="400" Margin="5" IsUndoEnabled="False" IsEnabled="False"/>
+            <Button x:Name="cancelButton" Content="Cancel" Grid.Row="0" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Width="133" Height="30" Background="#FF4B2D73" Foreground="White" BorderBrush="Black"></Button>
+            <Button x:Name="saveButton" Content="Save" Grid.Row="0" Grid.Column="6" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Width="133" Height="30" Background="#FF4B2D73" Foreground="White" BorderBrush="Black" BorderThickness="1"></Button>
+            <DatePicker x:Name="dueback" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Width="133" Height="30" Background="#FF4B2D73" Foreground="Black" SelectedDate="{Binding duebackSelectedDate}"></DatePicker>
+            <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Height="30" Background="{x:Null}" Foreground="White" Content="Due back by:" FontSize="16"/>
+        </Grid>
+        <Grid Grid.Row="1" Height="100" Margin="5,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Name="chooseEmployeeButton" Content="Choose Employee" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Width="150" Height="30" Background="#FF4B2D73" Foreground="White"></Button>
-            <TextBox x:Name="chosenEmployee" Grid.Row="0" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Height="30" Width="400" Margin="5" IsEnabled="False"/>
-            <Button x:Name="cancelButton" Content="Cancel" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Width="133" Height="30" Background="#FF4B2D73" Foreground="White"></Button>
-            <Button x:Name="saveButton" Content="Save" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" Width="133" Height="30" Background="#FF4B2D73" Foreground="White"></Button>
+            <Label Grid.Row="0" Grid.Column="0" Content="Category" Foreground="White" FontSize="16" HorizontalAlignment="Right" Margin="5,0"/>
+            <ComboBox x:Name="category" Grid.Row="0" Grid.Column="1" FontSize="16" Width="175" SelectedItem="{Binding categorySelectedItem}" Margin="5,0"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Inventory ID" Foreground="White" FontSize="16" HorizontalAlignment="Right" Margin="5,0"/>
+            <TextBox x:Name="inventoryid" Grid.Row="1" Grid.Column="1" FontSize="16" Width="175" Margin="5,0"/>
+            <Label Grid.Row="0" Grid.Column="2" Content="Make" Foreground="White" FontSize="16" HorizontalAlignment="Right" Margin="5,0"/>
+            <TextBox x:Name="make" Grid.Row="0" Grid.Column="3" FontSize="16" Width="175" Margin="5,0"/>
+            <Label Grid.Row="1" Grid.Column="2" Content="Serial" Foreground="White" FontSize="16" HorizontalAlignment="Right" Margin="5,0"/>
+            <TextBox x:Name="serial" Grid.Row="1" Grid.Column="3" FontSize="16" Width="175" Margin="5,0"/>
+            <Label Grid.Row="0" Grid.Column="4" Content="Model" Foreground="White" FontSize="16" HorizontalAlignment="Right" Margin="5,0"/>
+            <Label Grid.Row="1" Grid.Column="4" Content="Name" Foreground="White" FontSize="16" HorizontalAlignment="Right" Margin="5,0"/>
+            <TextBox x:Name="model" Grid.Row="0" Grid.Column="5" FontSize="16" Width="175" Margin="5,0"/>
+            <TextBox x:Name="name" Grid.Row="1" Grid.Column="5" FontSize="16" Width="175" Margin="5,0"/>
+            <Button x:Name="resetButton" Grid.Row="1" Grid.Column="7" Content="Reset Filter" HorizontalAlignment="Right" Width="133" Background="#FF4B2D73" Foreground="White" Margin="0,2,0,0" Height="30" FontSize="16" BorderBrush="Black"/>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2" Background="#FF343477">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="54"/>
@@ -33,7 +68,7 @@
             <Label Grid.Row="0" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="400" Content="Headquarters Inventory"/>
             <Label Grid.Row="0" FontSize="16" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Height="30" Width="400" Content="Items to be Dispatched"/>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
@@ -54,7 +89,7 @@
                 <Button x:Name="giveButton" Content=">>" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Width="36" Height="30" Background="#FF4B2D73" Foreground="White"></Button>
                 <Button x:Name="takeButton" Content="&lt;&lt;" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Width="36" Height="30" Background="#FF4B2D73" Foreground="White"></Button>
             </Grid>
-            <DataGrid x:Name="dispatchGrid" HorizontalAlignment="Stretch" Margin="5" FontSize="16" BorderThickness="0" AlternationCount="2" AlternatingRowBackground="#FF123652" RowBackground="#FF042037" Foreground="White" Background="#FF496D89" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding dispatchGridSource}" cal:Message.Attach="[Event MouseDoubleClick] = [Action showItem]" CanUserAddRows="False" SelectedItem="{Binding dispatchGridSelectedItem}" ItemStringFormat="" ColumnWidth="Auto" Grid.Column="2">
+            <DataGrid x:Name="dispatchGrid" HorizontalAlignment="Stretch" Margin="5" FontSize="16" BorderThickness="0" AlternationCount="2" AlternatingRowBackground="#FF123652" RowBackground="#FF042037" Foreground="White" Background="#FF496D89" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding dispatchGridSource}" CanUserAddRows="False" SelectedItem="{Binding dispatchGridSelectedItem}" ItemStringFormat="" ColumnWidth="Auto" Grid.Column="2">
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="#FF29506D" />

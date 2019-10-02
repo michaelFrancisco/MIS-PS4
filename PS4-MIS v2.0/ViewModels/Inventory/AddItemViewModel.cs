@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -122,7 +123,11 @@ namespace PS4_MIS_v2._0.ViewModels.Inventory
 
         public void cancelButton()
         {
-            TryClose();
+            MessageBoxResult dialogResult = MessageBox.Show("Are you sure? Unsaved changes will be lost.", "!", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                TryClose();
+            }
         }
 
         public void changePictureButton()
@@ -148,12 +153,12 @@ namespace PS4_MIS_v2._0.ViewModels.Inventory
             if (areRequiredFieldsComplete() && _hasPicture)
             {
                 savePicture();
-                connection.dbCommand("INSERT INTO `ps4`.`inventory` (`Category`,`Name`, `Make`, `Model`, `Serial`, `Quantity`, `Acquired`, `Remarks`, `Picture`) VALUES ('" + _categorySelectedItem + "'," + _name + ", '" + _make + "', '" + _model + "', '" + _serial + "', " + _quantity + ", '" + _acquiredSelectedDate.ToString("yyyy-MM-dd") + "', '" + _remarks + "', '" + _savedItemPictureFilePath + "');");
+                connection.dbCommand("INSERT INTO `ps4`.`inventory` (`Category`,`Name`, `Make`, `Model`, `Serial`, `Quantity`, `Acquired`, `Remarks`, `Picture`) VALUES ('" + _categorySelectedItem + "','" + _name + "', '" + _make + "', '" + _model + "', '" + _serial + "', " + _quantity + ", '" + _acquiredSelectedDate.ToString("yyyy-MM-dd") + "', '" + _remarks + "', '" + _savedItemPictureFilePath + "');");
                 TryClose();
             }
             else if (areRequiredFieldsComplete())
             {
-                connection.dbCommand("INSERT INTO `ps4`.`inventory` (`Category`,`Name`, `Make`, `Model`, `Serial`, `Quantity`, `Acquired`, `Remarks`, `Picture`) VALUES ('" + _categorySelectedItem + "'," + _name + ", '" + _make + "', '" + _model + "', '" + _serial + "', " + _quantity + ", '" + _acquiredSelectedDate.ToString("yyyy-MM-dd") + "', '" + _remarks + "', null);");
+                connection.dbCommand("INSERT INTO `ps4`.`inventory` (`Category`,`Name`, `Make`, `Model`, `Serial`, `Quantity`, `Acquired`, `Remarks`, `Picture`) VALUES ('" + _categorySelectedItem + "','" + _name + "', '" + _make + "', '" + _model + "', '" + _serial + "', " + _quantity + ", '" + _acquiredSelectedDate.ToString("yyyy-MM-dd") + "', '" + _remarks + "', null);");
                 TryClose();
             }
         }

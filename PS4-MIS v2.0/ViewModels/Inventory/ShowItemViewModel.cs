@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -128,9 +129,12 @@ namespace PS4_MIS_v2._0.ViewModels.Inventory
 
         public void cancelButton()
         {
-            TryClose();
+            MessageBoxResult dialogResult = MessageBox.Show("Are you sure? Unsaved changes will be lost.", "!", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                TryClose();
+            }
         }
-
         public void changePictureButton()
         {
             OpenFileDialog op = new OpenFileDialog();

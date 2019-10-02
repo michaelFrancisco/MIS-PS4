@@ -44,7 +44,7 @@
             <Button x:Name="refreshButton" Grid.Column="7" Content="Refresh" FontSize="22" HorizontalAlignment="Right" Width="123" Background="#FF4A4991" Foreground="White" VerticalAlignment="Center" Margin="5,0" BorderBrush="Black"/>
             <Button x:Name="resetButton" Grid.Row="1" Grid.Column="7" Content="Reset" HorizontalAlignment="Right" Width="123" Background="#FF4A4991" Foreground="White" Margin="5,2,5,0" Height="34" FontSize="22" BorderBrush="Black"/>
         </Grid>
-        <TabControl Grid.Row="1" Background="#FF343477" Margin="5" Grid.RowSpan="2">
+        <TabControl Grid.Row="1" Background="#FF343477" Margin="5,0">
             <TabItem Width="350" Height="50" Background="#FFC9C8E2" Header="Police Headquarters Inventory" FontSize="22">
                 <Grid Grid.Row="1" Margin="5" Width="1020" Grid.RowSpan="2">
                     <Grid.RowDefinitions>
@@ -62,7 +62,6 @@
                             </Style>
                         </DataGrid.Resources>
                     </DataGrid>
-                    <Button x:Name="addItemButton" Background="#FF4A4991" Content="+ Add Item" Foreground="White" FontSize="24" Height="40" Margin="5" VerticalAlignment="Center" BorderBrush="Black" Grid.Row="2"/>
                 </Grid>
             </TabItem>
             <TabItem Width="350" Height="50" Background="#FFC9C8E2" FontSize="22" Header="Items in use">
@@ -81,10 +80,11 @@
                             </Style>
                         </DataGrid.Resources>
                     </DataGrid>
-                    <Button x:Name="dispatchItem" Background="#FF4A4991" Content="Dispatch Items" Foreground="White" FontSize="24" Height="40" Margin="5" VerticalAlignment="Center" BorderBrush="Black" Grid.Row="2" HorizontalAlignment="Right" Width="245"/>
-                    <Button x:Name="receiveItem" Background="#FF4A4991" Content="Receive Items" Foreground="White" FontSize="24" Height="40" Margin="5" VerticalAlignment="Center" BorderBrush="Black" Grid.Row="2" HorizontalAlignment="Left" Width="245"/>
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button x:Name="dispatchItem" Background="#FF4A4991" Content="Dispatch Items" Foreground="White" FontSize="24" Height="40" Margin="5" VerticalAlignment="Center" BorderBrush="Black" Grid.Row="2" HorizontalAlignment="Right" Width="300"/>
+        <Button x:Name="receiveItem" Background="#FF4A4991" Content="Receive Items" Foreground="White" FontSize="24" Height="40" Margin="5" VerticalAlignment="Center" BorderBrush="Black" Grid.Row="2" HorizontalAlignment="Center" Width="300"/>
+        <Button x:Name="addItemButton" Background="#FF4A4991" Content="+ Add Item" Foreground="White" FontSize="24" Height="40" Margin="5" VerticalAlignment="Center" BorderBrush="Black" Grid.Row="2" HorizontalAlignment="Left" Width="300"/>
     </Grid>
 </UserControl>

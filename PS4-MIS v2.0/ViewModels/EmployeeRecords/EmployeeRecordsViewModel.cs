@@ -19,6 +19,7 @@ namespace PS4_MIS_v2._0.ViewModels
         private string _firstname;
         private string _lastname;
         private List<string> _rank;
+        private string _rankSelectedItem;
         private string _selectedEmployeeID;
         IWindowManager windowManager = new WindowManager();
         public string department
@@ -45,23 +46,6 @@ namespace PS4_MIS_v2._0.ViewModels
             get { return _employeeGridSource; }
             set { _employeeGridSource = value; }
         }
-
-        private string _rankSelectedItem;
-
-        public string rankSelectedItem
-        {
-            get { return _rankSelectedItem; }
-            set
-            {
-                _rankSelectedItem = value;
-                DataView dv = new DataView(_baseEmployeeGridItemSource);
-                dv.RowFilter = query();
-                _employeeGridSource = dv.ToTable();
-                NotifyOfPropertyChange(() => employeeGridSource);
-            }
-        }
-
-
         public string employeeID
         {
             get { return _employeeID; }
@@ -107,6 +91,19 @@ namespace PS4_MIS_v2._0.ViewModels
             set
             {
                 _rank = value;
+            }
+        }
+
+        public string rankSelectedItem
+        {
+            get { return _rankSelectedItem; }
+            set
+            {
+                _rankSelectedItem = value;
+                DataView dv = new DataView(_baseEmployeeGridItemSource);
+                dv.RowFilter = query();
+                _employeeGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => employeeGridSource);
             }
         }
         public void addemployeerecordButton()

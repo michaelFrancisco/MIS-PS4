@@ -208,7 +208,11 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
 
         public void cancelButton()
         {
-            TryClose();
+            MessageBoxResult dialogResult = MessageBox.Show("Are you sure? Unsaved changes will be lost.", "!", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                TryClose();
+            }
         }
 
         public void canCreateNo()
