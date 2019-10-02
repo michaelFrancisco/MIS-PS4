@@ -78,7 +78,11 @@
     <Compile Include="ViewModels\EmployeeRecords\AddEmployeeRecordViewModel.cs" />
     <Compile Include="ViewModels\EmployeeRecords\EditEmployeeRecordViewModel.cs" />
     <Compile Include="ViewModels\EmployeeRecords\EmployeeRecordsViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\AddItemViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ChooseEmployeeForDispatchViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\DispatchItemsViewModel.cs" />
     <Compile Include="ViewModels\Inventory\InventoryViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ShowItemViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PoliceReports\PoliceReportsViewModel.cs" />
@@ -102,8 +106,20 @@
     <Compile Include="Views\EmployeeRecords\EmployeeRecordsView.xaml.cs">
       <DependentUpon>EmployeeRecordsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inventory\AddItemView.xaml.cs">
+      <DependentUpon>AddItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ChooseEmployeeForDispatchView.xaml.cs">
+      <DependentUpon>ChooseEmployeeForDispatchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\DispatchItemsView.xaml.cs">
+      <DependentUpon>DispatchItemsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Inventory\InventoryView.xaml.cs">
       <DependentUpon>InventoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ShowItemView.xaml.cs">
+      <DependentUpon>ShowItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -174,7 +190,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Inventory\AddItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\ChooseEmployeeForDispatchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\DispatchItemsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Inventory\InventoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\ShowItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
