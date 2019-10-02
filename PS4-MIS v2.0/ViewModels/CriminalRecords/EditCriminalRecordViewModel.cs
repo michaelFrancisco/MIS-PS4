@@ -281,7 +281,6 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
                 ImageSource imgsource = new BitmapImage(new Uri(dt.Rows[0][17].ToString()));
                 _criminalPictureSource = imgsource;
                 NotifyOfPropertyChange(() => criminalPictureSource);
-                _hasPicture = true;
             }
         }
         public void saveButton()

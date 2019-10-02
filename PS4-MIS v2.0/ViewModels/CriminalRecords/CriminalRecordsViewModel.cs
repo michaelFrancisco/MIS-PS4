@@ -131,7 +131,7 @@ namespace PS4_MIS_v2._0.ViewModels
 
                 sb.Append("Crime like '%" + _crime.Trim() + "%'");
             }
-            try
+            try 
             {
                 if (_criminalID != null && _criminalID != string.Empty)
                 {
@@ -143,7 +143,14 @@ namespace PS4_MIS_v2._0.ViewModels
                     sb.Append("Criminal_ID = " + Int32.Parse(_criminalID) + "");
                 }
             }
-            catch { }
+            catch
+            {
+                try
+                {
+                    sb.Remove(sb.Length - 5, 5);
+                }
+                catch { }
+            }
 
             if (_location != null && _location != string.Empty)
             {
@@ -183,9 +190,13 @@ namespace PS4_MIS_v2._0.ViewModels
 
         public void showCriminalRecord()
         {
-            DataRowView dataRowView = (DataRowView)_criminalRecordDatagridSelectedItem;
-            _selectedCriminalID = Convert.ToInt32(dataRowView.Row[0]);
-            windowManager.ShowWindow(new EditCriminalRecordViewModel(_selectedCriminalID), null, null);
+            try
+            {
+                DataRowView dataRowView = (DataRowView)_criminalRecordDatagridSelectedItem;
+                _selectedCriminalID = Convert.ToInt32(dataRowView.Row[0]);
+                windowManager.ShowWindow(new EditCriminalRecordViewModel(_selectedCriminalID), null, null);
+            }
+            catch { }
         }
 
         protected override void OnActivate()

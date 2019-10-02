@@ -151,10 +151,17 @@ namespace PS4_MIS_v2._0.ViewModels
                         sb.Append(" and ");
                     }
 
-                    sb.Append("Employee_ID = " + Int32.Parse(_employeeID) + "");
+                    sb.Append("Criminal_ID = " + Int32.Parse(_employeeID) + "");
                 }
             }
-            catch { }
+            catch
+            {
+                try
+                {
+                    sb.Remove(sb.Length - 5, 5);
+                }
+                catch { }
+            }
 
             if (_department != null && _department != string.Empty)
             {
@@ -194,9 +201,13 @@ namespace PS4_MIS_v2._0.ViewModels
 
         public void showEmployeeRecord()
         {
-            DataRowView dataRowView = (DataRowView)_employeeGridSelectedItem;
-            _selectedEmployeeID = dataRowView.Row[0].ToString();
-            windowManager.ShowWindow(new EditEmployeeRecordViewModel(_selectedEmployeeID), null, null);
+            try
+            {
+                DataRowView dataRowView = (DataRowView)_employeeGridSelectedItem;
+                _selectedEmployeeID = dataRowView.Row[0].ToString();
+                windowManager.ShowWindow(new EditEmployeeRecordViewModel(_selectedEmployeeID), null, null);
+            }
+            catch { }
         }
 
         protected override void OnActivate()
