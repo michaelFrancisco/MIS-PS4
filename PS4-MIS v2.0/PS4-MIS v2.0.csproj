@@ -82,6 +82,7 @@
     <Compile Include="ViewModels\Inventory\ChooseEmployeeForDispatchViewModel.cs" />
     <Compile Include="ViewModels\Inventory\DispatchItemsViewModel.cs" />
     <Compile Include="ViewModels\Inventory\InventoryViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ReceiveItemsViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ShowItemViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -117,6 +118,9 @@
     </Compile>
     <Compile Include="Views\Inventory\InventoryView.xaml.cs">
       <DependentUpon>InventoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ReceiveItemsView.xaml.cs">
+      <DependentUpon>ReceiveItemsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventory\ShowItemView.xaml.cs">
       <DependentUpon>ShowItemView.xaml</DependentUpon>
@@ -203,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Inventory\InventoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\ReceiveItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

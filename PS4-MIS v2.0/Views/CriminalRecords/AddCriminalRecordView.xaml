@@ -80,7 +80,7 @@
         <Label Grid.Row="10" FontSize="16" Foreground="White" Content="Remarks" HorizontalAlignment="Right" Margin="5" Grid.Column="2"/>
         <Label Grid.Row="9" FontSize="16" Foreground="White" Content="Hospital" HorizontalAlignment="Right" Margin="5" Grid.Column="2"/>
         <TextBox x:Name="hospital" Grid.Row="9" Grid.Column="3" Margin="5" Width="200"/>
-        <TextBox x:Name="remarks" Grid.Row="10" Grid.Column="3" Grid.RowSpan="4" Margin="5" Width="200"></TextBox>
+        <TextBox x:Name="remarks" Grid.Row="10" Grid.Column="3" Grid.RowSpan="4" Margin="5" Width="200" TextWrapping="Wrap"></TextBox>
         <Label Grid.Row="15" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5">*Required</Label>
     </Grid>
 </Window>

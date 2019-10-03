@@ -1,21 +1,19 @@
 ﻿using Caliburn.Micro;
-using PS4_MIS_v2._0.ViewModels.Inventory;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Windows;
 
-namespace PS4_MIS_v2._0.ViewModels
+namespace PS4_MIS_v2._0.ViewModels.Inventory
 {
-    internal class InventoryViewModel : Screen
+    internal class ReceiveItemsViewModel : Screen
     {
-        private DataTable _baseInuseGridSource;
         private DataTable _baseInventoryGridSource;
         private List<string> _category;
         private string _categorySelectedItem;
-        private object _inuseGridSelectedItem;
-        private DataTable _inuseGridSource;
+        private object _dispatchGridSelectedItem;
+        private DataTable _dispatchGridSource;
         private object _inventoryGridSelectedItem;
         private DataTable _inventoryGridSource;
         private string _inventoryid;
@@ -25,6 +23,7 @@ namespace PS4_MIS_v2._0.ViewModels
         private string _selectedInventoryID;
         private string _serial;
         private IWindowManager windowManager = new WindowManager();
+
 
         public List<string> category
         {
@@ -45,16 +44,16 @@ namespace PS4_MIS_v2._0.ViewModels
             }
         }
 
-        public object inuseGridSelectedItem
+        public object dispatchGridSelectedItem
         {
-            get { return _inuseGridSelectedItem; }
-            set { _inuseGridSelectedItem = value; }
+            get { return _dispatchGridSelectedItem; }
+            set { _dispatchGridSelectedItem = value; }
         }
 
-        public DataTable inuseGridSource
+        public DataTable dispatchGridSource
         {
-            get { return _inuseGridSource; }
-            set { _inuseGridSource = value; }
+            get { return _dispatchGridSource; }
+            set { _dispatchGridSource = value; }
         }
 
         public object inventoryGridSelectedItem
@@ -79,10 +78,6 @@ namespace PS4_MIS_v2._0.ViewModels
                 dv.RowFilter = query();
                 _inventoryGridSource = dv.ToTable();
                 NotifyOfPropertyChange(() => inventoryGridSource);
-                dv = new DataView(_baseInuseGridSource);
-                dv.RowFilter = query();
-                _inuseGridSource = dv.ToTable();
-                NotifyOfPropertyChange(() => inuseGridSource);
             }
         }
 
@@ -122,10 +117,6 @@ namespace PS4_MIS_v2._0.ViewModels
                 dv.RowFilter = query();
                 _inventoryGridSource = dv.ToTable();
                 NotifyOfPropertyChange(() => inventoryGridSource);
-                dv = new DataView(_baseInuseGridSource);
-                dv.RowFilter = query();
-                _inuseGridSource = dv.ToTable();
-                NotifyOfPropertyChange(() => inuseGridSource);
             }
         }
 
@@ -142,14 +133,35 @@ namespace PS4_MIS_v2._0.ViewModels
             }
         }
 
-        public void addItemButton()
+        public void cancelButton()
         {
-            windowManager.ShowWindow(new AddItemViewModel(), null, null);
+            MessageBoxResult dialogResult = MessageBox.Show("Are you sure? Unsaved changes will be lost.", "!", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                TryClose();
+            }
         }
 
-        public void dispatchItem()
+        public void giveButton()
         {
-            windowManager.ShowWindow(new ChooseEmployeeForDispatchViewModel(), null, null);
+            try
+            {
+                DataRowView dataRowView = (DataRowView)_inventoryGridSelectedItem;
+                _dispatchGridSource.Rows.Add(dataRowView.Row[0], dataRowView.Row[1], dataRowView.Row[2], dataRowView.Row[3], dataRowView.Row[4], dataRowView.Row[5], dataRowView.Row[6]);
+                _inventoryGridSource.Rows.Remove(dataRowView.Row);
+                NotifyOfPropertyChange(() => dispatchGridSource);
+                NotifyOfPropertyChange(() => inventoryGridSource);
+            }
+            catch { }
+        }
+
+        public void initializeDataTables()
+        {
+            _inventoryGridSource = connection.dbTable("SELECT Inventory_ID, Category,Name, Make, Model, Serial, Quantity, Acquired FROM `ps4`.`inventory` WHERE null;");
+            _baseInventoryGridSource = _inventoryGridSource;
+            _dispatchGridSource = connection.dbTable("SELECT Inventory_ID, Category,Name, Make, Model, Serial, Quantity, Acquired FROM `ps4`.`inventory` WHERE inUse = 1;");
+            NotifyOfPropertyChange(() => dispatchGridSource);
+            NotifyOfPropertyChange(() => inventoryGridSource);
         }
 
         public string query()
@@ -223,21 +235,6 @@ namespace PS4_MIS_v2._0.ViewModels
             return sb.ToString();
         }
 
-        public void receiveItem()
-        {
-            windowManager.ShowWindow(new ReceiveItemsViewModel(), null, null);
-        }
-
-        public void refreshButton()
-        {
-            _inventoryGridSource = connection.dbTable("SELECT Inventory_ID, Category,Name, Make, Model, Serial, Quantity, Acquired FROM `ps4`.`inventory` WHERE inUse = 0;");
-            _baseInventoryGridSource = _inventoryGridSource;
-            NotifyOfPropertyChange(() => inventoryGridSource);
-            _inuseGridSource = connection.dbTable("SELECT inventory.Inventory_ID, inventory.Name, employeerecords.Rank, employeerecords.First_Name, employeerecords.Last_Name, inventory.Date_Out, inventory.Due_back FROM inventory JOIN employeerecords ON inventory.Employee_ID = employeerecords.Employee_ID WHERE inventory.inUse = 1;");
-            _baseInuseGridSource = _inuseGridSource;
-            NotifyOfPropertyChange(() => inuseGridSource);
-        }
-
         public void resetButton()
         {
             _categorySelectedItem = string.Empty;
@@ -245,41 +242,39 @@ namespace PS4_MIS_v2._0.ViewModels
             _make = string.Empty;
             _model = string.Empty;
             _serial = string.Empty;
-            _inventoryGridSource = connection.dbTable("SELECT Inventory_ID, Category,Name, Make, Model, Serial, Quantity, Acquired FROM `ps4`.`inventory` WHERE inUse = 0;");
-            _baseInventoryGridSource = _inventoryGridSource;
-            _inuseGridSource = connection.dbTable("SELECT inventory.Inventory_ID, inventory.Name, employeerecords.Rank, employeerecords.First_Name, employeerecords.Last_Name, inventory.Date_Out, inventory.Due_back FROM inventory JOIN employeerecords ON inventory.Employee_ID = employeerecords.Employee_ID WHERE inventory.inUse = 1;");
-            _baseInuseGridSource = _inuseGridSource;
-            NotifyOfPropertyChange(() => inuseGridSource);
+            _name = string.Empty;
+            _inventoryGridSource = _baseInventoryGridSource;
             NotifyOfPropertyChange(() => categorySelectedItem);
             NotifyOfPropertyChange(() => inventoryid);
             NotifyOfPropertyChange(() => make);
             NotifyOfPropertyChange(() => model);
             NotifyOfPropertyChange(() => serial);
+            NotifyOfPropertyChange(() => name);
             NotifyOfPropertyChange(() => inventoryGridSource);
         }
 
-        public void showItem()
+        public void saveButton()
         {
-            try
+            int j = _inventoryGridSource.Rows.Count;
+            for (int i = 0; i < j; i++)
             {
-                DataRowView dataRowView = (DataRowView)_inventoryGridSelectedItem;
-                _selectedInventoryID = dataRowView.Row[0].ToString();
-                windowManager.ShowWindow(new ShowItemViewModel(_selectedInventoryID), null, null);
+                connection.dbCommand("UPDATE `ps4`.`inventory` SET `inUse` = '0', `Date_Out` = null, `Due_Back` = null, `Employee_ID` = null WHERE(`Inventory_ID` = " + _inventoryGridSource.Rows[i][0].ToString() + ")");
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            TryClose();
+        }
+
+        public void takeButton()
+        {
+            DataRowView dataRowView = (DataRowView)_dispatchGridSelectedItem;
+            _inventoryGridSource.Rows.Add(dataRowView.Row[0], dataRowView.Row[1], dataRowView.Row[2], dataRowView.Row[3], dataRowView.Row[4], dataRowView.Row[5], dataRowView.Row[6]);
+            _dispatchGridSource.Rows.Remove(dataRowView.Row);
+            NotifyOfPropertyChange(() => dispatchGridSource);
+            NotifyOfPropertyChange(() => inventoryGridSource);
         }
 
         protected override void OnActivate()
         {
-            _inventoryGridSource = connection.dbTable("SELECT Inventory_ID, Category,Name, Make, Model, Serial, Quantity, Acquired FROM `ps4`.`inventory` WHERE inUse = 0;");
-            _baseInventoryGridSource = _inventoryGridSource;
-            NotifyOfPropertyChange(() => inventoryGridSource);
-            _inuseGridSource = connection.dbTable("SELECT inventory.Inventory_ID, inventory.Name, employeerecords.Rank, employeerecords.First_Name, employeerecords.Last_Name, inventory.Date_Out, inventory.Due_back FROM inventory JOIN employeerecords ON inventory.Employee_ID = employeerecords.Employee_ID WHERE inventory.inUse = 1;");
-            _baseInuseGridSource = _inuseGridSource;
-            NotifyOfPropertyChange(() => inuseGridSource);
+            initializeDataTables();
             base.OnActivate();
         }
     }
