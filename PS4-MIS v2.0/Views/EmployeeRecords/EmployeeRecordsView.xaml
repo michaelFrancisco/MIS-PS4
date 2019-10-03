@@ -7,8 +7,8 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:local="clr-namespace:PS4_MIS_v2._0.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1020" Background="#FF343477">
-    <Grid>
+             d:DesignHeight="720" d:DesignWidth="1020" Background="#FF343477" FontFamily="Roboto" FontSize="16">
+    <Grid Background="#FF071E3D">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition />
@@ -32,22 +32,22 @@
             <Label Grid.Row="0" Grid.Column="0" Content="Rank" Foreground="White" FontSize="16" HorizontalAlignment="Right"/>
             <ComboBox x:Name="rank" Grid.Row="0" Grid.Column="1" FontSize="16" Width="175" SelectedItem="{Binding rankSelectedItem}"/>
             <Label Grid.Row="1" Grid.Column="0" Content="Employee ID" Foreground="White" FontSize="16" HorizontalAlignment="Right"/>
-            <TextBox x:Name="employeeID" Grid.Row="1" Grid.Column="1" FontSize="16" Width="175"/>
+            <TextBox x:Name="employeeID" Grid.Row="1" Grid.Column="1" FontSize="16" Width="175" Background="#FFDEECFF"/>
             <Label Grid.Row="0" Grid.Column="2" Content="First Name" Foreground="White" FontSize="16" HorizontalAlignment="Right"/>
-            <TextBox x:Name="firstname" Grid.Row="0" Grid.Column="3" FontSize="16" Width="175"/>
+            <TextBox x:Name="firstname" Grid.Row="0" Grid.Column="3" FontSize="16" Width="175" Background="#FFDEECFF"/>
             <Label Grid.Row="1" Grid.Column="2" Content="Department" Foreground="White" FontSize="16" HorizontalAlignment="Right"/>
-            <TextBox x:Name="department" Grid.Row="1" Grid.Column="3" FontSize="16" Width="175"/>
+            <TextBox x:Name="department" Grid.Row="1" Grid.Column="3" FontSize="16" Width="175" Background="#FFDEECFF"/>
             <Label Grid.Row="0" Grid.Column="4" Content="Last Name" Foreground="White" FontSize="16" HorizontalAlignment="Right"/>
-            <TextBox x:Name="lastname" Grid.Row="0" Grid.Column="5" FontSize="16" Width="175"/>
-            <Button x:Name="refreshButton" Grid.Column="7" Content="Refresh" FontSize="22" HorizontalAlignment="Right" Width="123" Background="#FF4A4991" Foreground="White" VerticalAlignment="Center" Margin="5,0,0,0" BorderBrush="Black"/>
-            <Button x:Name="resetButton" Grid.Row="1" Grid.Column="7" Content="Reset" HorizontalAlignment="Right" Width="123" Background="#FF4A4991" Foreground="White" Margin="5,2,0,0" Height="34" FontSize="22" BorderBrush="Black"/>
+            <TextBox x:Name="lastname" Grid.Row="0" Grid.Column="5" FontSize="16" Width="175" Background="#FFDEECFF"/>
+            <Button x:Name="refreshButton" Grid.Column="7" Content="Refresh" FontSize="22" HorizontalAlignment="Right" Width="123" Background="#FF1F4287" Foreground="White" VerticalAlignment="Center" Margin="5,0,0,0" BorderBrush="#FF1F4287"/>
+            <Button x:Name="resetButton" Grid.Row="1" Grid.Column="7" Content="Reset" HorizontalAlignment="Right" Width="123" Background="#FF1F4287" Foreground="White" Margin="5,2,0,0" Height="34" FontSize="22" BorderBrush="#FF1F4287"/>
 
         </Grid>
         <Grid Grid.Row="1" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <DataGrid x:Name="employeeGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,10,-0.6" FontSize="16" MinColumnWidth="149" BorderThickness="0" AlternationCount="2" AlternatingRowBackground="#FF123652" RowBackground="#FF042037" Foreground="White" Background="#FF496D89" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding employeeGridSource}" cal:Message.Attach="[Event MouseDoubleClick] = [Action showEmployeeRecord]" CanUserAddRows="False" SelectedItem="{Binding employeeGridSelectedItem}" ItemStringFormat="">
+            <DataGrid x:Name="employeeGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,10,-0.6" FontSize="16" MinColumnWidth="149" BorderThickness="0" AlternationCount="2" AlternatingRowBackground="#FF071e3d" RowBackground="#FF1f4287" Foreground="White" Background="#FF071e3d" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding employeeGridSource}" cal:Message.Attach="[Event MouseDoubleClick] = [Action showEmployeeRecord]" CanUserAddRows="False" SelectedItem="{Binding employeeGridSelectedItem}" ItemStringFormat="">
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="#FF29506D" />
@@ -56,7 +56,7 @@
             </DataGrid>
         </Grid>
         <Grid Grid.Row="2" Margin="10,5">
-            <Button x:Name="addemployeerecordButton" Background="#FF4A4991" Content="+ Employee Record" Foreground="White" FontSize="24" Height="40" Margin="0,0,-0.4,-0.4" VerticalAlignment="Top" BorderBrush="Black"/>
+            <Button x:Name="addemployeerecordButton" Background="#FF1F4287" Content="+ Employee Record" Foreground="White" FontSize="24" Height="40" Margin="0,0,-0.4,-0.4" VerticalAlignment="Top" BorderBrush="#FF1F4287"/>
         </Grid>
     </Grid>
 </UserControl>

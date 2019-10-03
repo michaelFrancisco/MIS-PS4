@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PS4_MIS_v2._0.Views"
         mc:Ignorable="d"
-        Title="Login" Width="1280" Height="720" Background="#FF2D308E" WindowState="Maximized" FontSize="22">
+        Title="Login" Width="1280" Height="720" WindowState="Maximized" FontSize="16" Background="#FF071E3D" FontFamily="Roboto">
     <Grid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="1">
             <Grid.RowDefinitions>
@@ -20,9 +20,9 @@
             </Grid.ColumnDefinitions>
             <Label Content="Password" HorizontalAlignment="Right" Margin="1" VerticalAlignment="Center" Foreground="White" RenderTransformOrigin="0.577,0.115" Grid.Row="2"/>
             <Label Content="Username" HorizontalAlignment="Right" Margin="1" VerticalAlignment="Center" Foreground="White" Grid.Row="1"/>
-            <TextBox x:Name="username" HorizontalAlignment="Left" Height="30" Margin="1" TextWrapping="Wrap" Width="200" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="password" HorizontalAlignment="Left" Margin="1" Width="200" Height="30" Grid.Column="1" Grid.Row="2" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"/>
-            <Button x:Name="login" Content="Login" Margin="303,1,296,1" Grid.Row="3" Grid.ColumnSpan="2" Background="White" Foreground="#FF002EA4"/>
+            <TextBox x:Name="username" HorizontalAlignment="Left" Height="30" Margin="1" TextWrapping="Wrap" Width="200" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" BorderBrush="#FF1F4287"/>
+            <TextBox x:Name="password" HorizontalAlignment="Left" Margin="1" Width="200" Height="30" Grid.Column="1" Grid.Row="2" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" BorderBrush="#FF1F4287"/>
+            <Button x:Name="login" Content="Login" Margin="308,1,309,1" Grid.Row="3" Grid.ColumnSpan="2" Background="#FF1F4287" Foreground="White" BorderBrush="#FF1F4287"/>
             <Image Source="/PS4-MIS v2.0;component/Resources/PNP-Logo.png" Width="900" Grid.ColumnSpan="2" Margin="1"/>
         </Grid>
     </Grid>

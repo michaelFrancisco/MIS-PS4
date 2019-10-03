@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PS4_MIS_v2._0.Views"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="addRecord" Height="450" Width="650" WindowStyle="ToolWindow" Background="#FF343477" WindowStartupLocation="CenterScreen">
+        Title="addRecord" Height="450" Width="650" WindowStyle="ToolWindow" Background="#FF071E3D" WindowStartupLocation="CenterScreen" FontFamily="Roboto" FontSize="16">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -37,20 +37,20 @@
         <Label Grid.Row="2" FontSize="16" Foreground="White" Content="Name" HorizontalAlignment="Right"/>
         <TextBox x:Name="inventoryid" Grid.Row="0" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" IsEnabled="False"/>
         <ComboBox x:Name="category" Grid.Row="1" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" SelectedItem="{Binding categorySelectedItem}"/>
-        <TextBox x:Name="name" Grid.Row="2" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="make" Grid.Row="3" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="model" Grid.Row="4" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="serial" Grid.Row="5" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="quantity" Grid.Row="6" Grid.Column="1" FontSize="16" Width="200" IsEnabled="{Binding quantityEnabled}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <TextBox x:Name="name" Grid.Row="2" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="make" Grid.Row="3" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="model" Grid.Row="4" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="serial" Grid.Row="5" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="quantity" Grid.Row="6" Grid.Column="1" FontSize="16" Width="200" IsEnabled="{Binding quantityEnabled}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Background="#FFDEECFF"/>
         <DatePicker x:Name="acquired" Grid.Row="7" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" SelectedDate="{Binding acquiredSelectedDate}"/>
         <Label Grid.Row="8" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right"/>
         <Label Grid.Row="9" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right"/>
         <Label Grid.Row="10" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right"/>
-        <TextBox x:Name="remarks" Grid.Row="8" Grid.Column="1" Grid.RowSpan="4" Margin="10" TextWrapping="Wrap"></TextBox>
+        <TextBox x:Name="remarks" Grid.Row="8" Grid.Column="1" Grid.RowSpan="4" Margin="10" TextWrapping="Wrap" Background="#FFDEECFF"></TextBox>
         <Label Grid.Row="8" FontSize="16" Foreground="White" Content="Remarks" HorizontalAlignment="Right" Margin="10,0,0,0"/>
-        <Button Name="changePictureButton" Content="Change Picture" Grid.Row="8" Grid.Column="2" Margin="0" Width="100" Height="24" Background="#FF4B2D73" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Name="saveButton" Content="Save" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Width="100" Height="24" Background="#FF4B2D73" Foreground="White"></Button>
-        <Button Name="cancelButton" Content="Cancel" Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Width="100" Height="24" Background="#FF4B2D73" Foreground="White" Grid.Column="2"/>
+        <Button Name="changePictureButton" Content="Change Picture" Grid.Row="8" Grid.Column="2" Margin="0" Width="150" Height="24" Background="#FF1F4287" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#FF1F4287"/>
+        <Button Name="saveButton" Content="Save" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Width="100" Height="24" Background="#FF1F4287" Foreground="White" BorderBrush="#FF1F4287"></Button>
+        <Button Name="cancelButton" Content="Cancel" Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Width="100" Height="24" Background="#FF1F4287" Foreground="White" Grid.Column="2" BorderBrush="#FF1F4287"/>
         <Image Name="itemPicture" Source="{Binding itemPictureSource}" Width="250" Height="250" Grid.Column="2" Grid.RowSpan="8" Margin="10"/>
     </Grid>
 </Window>

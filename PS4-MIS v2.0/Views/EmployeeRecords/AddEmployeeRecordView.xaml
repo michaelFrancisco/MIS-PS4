@@ -7,7 +7,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="addRecord" Height="650" Width="650
-" WindowStyle="ToolWindow" Background="#FF343477">
+" WindowStyle="ToolWindow" Background="#FF071E3D" WindowStartupLocation="CenterScreen" FontFamily="Roboto" FontSize="16">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -43,15 +43,15 @@
         <Label Grid.Row="6" FontSize="16" Foreground="White" Content="Birthplace" HorizontalAlignment="Right"/>
         <Label Grid.Row="7" FontSize="16" Foreground="White" Content="Civil Status" HorizontalAlignment="Right"/>
         <Label Grid.Row="8" FontSize="16" Foreground="White" Content="Address" HorizontalAlignment="Right"/>
-        <TextBox x:Name="firstname" Grid.Row="0" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="middlename" Grid.Row="1" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="lastname" Grid.Row="2" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <TextBox x:Name="firstname" Grid.Row="0" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="middlename" Grid.Row="1" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="lastname" Grid.Row="2" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Background="#FFDEECFF"/>
         <ComboBox x:Name="sex" Grid.Row="3" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" SelectedItem="{Binding sexSelectedItem}"/>
         <DatePicker x:Name="birthdate" Grid.Row="4" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" SelectedDate="{Binding birthdateSelectedDate}"/>
         <TextBox x:Name="age" Grid.Row="5" Grid.Column="1" FontSize="16" Width="200" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="birthplace" Grid.Row="6" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+        <TextBox x:Name="birthplace" Grid.Row="6" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Background="#FFDEECFF"/>
         <ComboBox x:Name="civilstatus" Grid.Row="7" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" SelectedItem="{Binding civilstatusSelectedItem}"/>
-        <TextBox x:Name="address" Grid.Row="8" Grid.Column="1" FontSize="16" Width="200" Grid.RowSpan="3" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="5" />
+        <TextBox x:Name="address" Grid.Row="8" Grid.Column="1" FontSize="16" Width="200" Grid.RowSpan="3" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="5" Background="#FFDEECFF" />
         <Label Grid.Row="11" FontSize="16" Foreground="White" Content="Department" HorizontalAlignment="Right"/>
         <Label Grid.Row="12" FontSize="16" Foreground="White" Content="Position" HorizontalAlignment="Right"/>
         <Label Grid.Row="14" FontSize="16" Foreground="White" Content="Rank" HorizontalAlignment="Right"/>
@@ -60,21 +60,21 @@
         <Label Grid.Row="8" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right"/>
         <Label Grid.Row="9" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right"/>
         <Label Grid.Row="10" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right"/>
-        <TextBox x:Name="department" Grid.Row="11" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-        <TextBox x:Name="username" Grid.Row="9" Grid.Column="2" FontSize="16" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" IsEnabled="{Binding isUsernameEnabled}"/>
-        <TextBox x:Name="password" Grid.Row="10" Grid.Column="2" FontSize="16" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontFamily="Segoe MDL2 Assets" Height="23" IsEnabled="{Binding isPasswordEnabled}"/>
-        <TextBox x:Name="position" Grid.Row="12" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
-        <ComboBox x:Name="rank" Grid.Row="14" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" SelectedItem="{Binding rankSelectedItem}"/>
+        <TextBox x:Name="department" Grid.Row="11" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="username" Grid.Row="9" Grid.Column="2" FontSize="16" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" IsEnabled="{Binding isUsernameEnabled}" Background="#FFDEECFF"/>
+        <TextBox x:Name="password" Grid.Row="10" Grid.Column="2" FontSize="16" Width="200" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontFamily="Segoe MDL2 Assets" Height="23" IsEnabled="{Binding isPasswordEnabled}" Background="#FFDEECFF"/>
+        <TextBox x:Name="position" Grid.Row="12" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Background="#FFDEECFF"/>
+        <ComboBox x:Name="rank" Grid.Row="14" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" SelectedItem="{Binding rankSelectedItem}" Background="#FFDEECFF"/>
         <TextBox x:Name="employeeID" Grid.Row="15" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" IsEnabled="False" Text="N/A"/>
         <ComboBox x:Name="userlevel" Grid.Row="16" Grid.Column="1" FontSize="16" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" SelectedItem="{Binding userlevelSelectedItem}"/>
-        <TextBox x:Name="remarks" Grid.Row="12" Grid.Column="2" Grid.RowSpan="4" Margin="10" TextWrapping="Wrap"></TextBox>
+        <TextBox x:Name="remarks" Grid.Row="12" Grid.Column="2" Grid.RowSpan="4" Margin="10" TextWrapping="Wrap" Background="#FFDEECFF"></TextBox>
         <Label Grid.Row="11" Grid.Column="2" FontSize="16" Foreground="White" Content="Remarks" HorizontalAlignment="Left" Margin="10,0,0,0"/>
         <Label Grid.Row="9" Grid.Column="2" FontSize="16" Foreground="White" Content="Username" HorizontalAlignment="Left" Margin="10,0,0,0"/>
         <Label Grid.Row="10" Grid.Column="2" FontSize="16" Foreground="White" Content="Password" HorizontalAlignment="Left" Margin="10,0,0,0"/>
         <CheckBox Grid.Row="8" Grid.Column="2" FontSize="16" Foreground="White" Content="Create Account for System" HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center" IsChecked="{Binding canCreateAccount}" cal:Message.Attach="[Event Checked] = [Action canCreateYes]; [Event Unchecked] = [Action canCreateNo]" />
-        <Button Name="changePictureButton" Content="Change Picture" Grid.Row="7" Grid.Column="2" Margin="0" Width="100" Height="24" Background="#FF4B2D73" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button Name="saveButton" Content="Save" Grid.Row="16" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Width="100" Height="24" Background="#FF4B2D73" Foreground="White"></Button>
-        <Button Name="cancelButton" Content="Cancel" Grid.Row="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Width="100" Height="24" Background="#FF4B2D73" Foreground="White" Grid.Column="2"/>
+        <Button Name="changePictureButton" Content="Change Picture" Grid.Row="7" Grid.Column="2" Margin="0" Width="150" Height="24" Background="#FF1F4287" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#FF1F4287"/>
+        <Button Name="saveButton" Content="Save" Grid.Row="16" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Width="100" Height="24" Background="#FF1F4287" Foreground="White" BorderBrush="#FF1F4287"></Button>
+        <Button Name="cancelButton" Content="Cancel" Grid.Row="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Width="100" Height="24" Background="#FF1F4287" Foreground="White" Grid.Column="2" BorderBrush="#FF1F4287"/>
         <Image Name="profilePicture" Source="{Binding profilePictureSource}" Width="250" Height="250" Grid.Column="2" Grid.RowSpan="7" Margin="10"/>
     </Grid>
 </Window>

@@ -6,7 +6,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:local="clr-namespace:PS4_MIS_v2._0.Views"
         mc:Ignorable="d"
-        Title="addRecord" Height="720" Width="750" WindowStyle="ToolWindow" Background="#FF343477" WindowStartupLocation="CenterScreen">
+        Title="addRecord" Height="720" Width="750" WindowStyle="ToolWindow" Background="#FF071E3D" WindowStartupLocation="CenterScreen" FontFamily="Roboto" FontSize="16">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -48,14 +48,14 @@
         <Label Grid.Row="7" FontSize="16" Foreground="White" Content="Birthplace" HorizontalAlignment="Right" Margin="5"/>
         <Label Grid.Row="8" FontSize="16" Foreground="White" Content="Address" HorizontalAlignment="Right" Margin="5"/>
         <TextBox x:Name="criminalID" Grid.Row="0" Grid.Column="1" FontSize="16" Width="200" Margin="5" IsEnabled="False" Text="N/A"/>
-        <TextBox x:Name="firstname" Grid.Row="1" Grid.Column="1" FontSize="16" Width="200" Margin="5"/>
-        <TextBox x:Name="middlename" Grid.Row="2" Grid.Column="1" FontSize="16" Width="200" Margin="5"/>
-        <TextBox x:Name="lastname" Grid.Row="3" Grid.Column="1" FontSize="16" Width="200" Margin="5"/>
-        <ComboBox x:Name="sex" Grid.Row="4" Grid.Column="1" FontSize="16" Width="200" Margin="5" SelectedItem="{Binding selectedSex}"/>
+        <TextBox x:Name="firstname" Grid.Row="1" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="middlename" Grid.Row="2" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="lastname" Grid.Row="3" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <ComboBox x:Name="sex" Grid.Row="4" Grid.Column="1" FontSize="16" Width="200" Margin="5" SelectedItem="{Binding selectedSex}" Background="#FFDEECFF" BorderBrush="#FFDEECFF"/>
         <DatePicker x:Name="birthdate" Grid.Row="5" Grid.Column="1" FontSize="16" Width="200" Margin="5" SelectedDate="{Binding birthdateSelectedDate}"/>
         <TextBox x:Name="age" Grid.Row="6" Grid.Column="1" FontSize="16" Width="200" Margin="5" IsEnabled="False"/>
-        <TextBox x:Name="birthplace" Grid.Row="7" Grid.Column="1" FontSize="16" Width="200" Margin="5"/>
-        <TextBox x:Name="address" Grid.Row="8" Grid.Column="1" FontSize="16" Width="200" Grid.RowSpan="3" TextWrapping="Wrap" Margin="5" />
+        <TextBox x:Name="birthplace" Grid.Row="7" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="address" Grid.Row="8" Grid.Column="1" FontSize="16" Width="200" Grid.RowSpan="3" TextWrapping="Wrap" Margin="5" Background="#FFDEECFF" />
         <!--2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222-->
         <Label Grid.Row="11" FontSize="16" Foreground="White" Content="Crime*" HorizontalAlignment="Right" Margin="5"/>
         <Label Grid.Row="12" FontSize="16" Foreground="White" Content="Place of arrest*" HorizontalAlignment="Right" Margin="5"/>
@@ -66,21 +66,21 @@
         <Label Grid.Row="8" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right" Margin="5"/>
         <Label Grid.Row="9" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right" Margin="5"/>
         <Label Grid.Row="10" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right" Margin="5"/>
-        <TextBox x:Name="crime" Grid.Row="11" Grid.Column="1" FontSize="16" Width="200" Margin="5"/>
-        <TextBox x:Name="placeofarrest" Grid.Row="12" Grid.Column="1" FontSize="16" Width="200" Margin="5"/>
-        <TextBox x:Name="arrestingofficer" Grid.Row="13" Grid.Column="1" FontSize="16" Width="200" Margin="5"/>
+        <TextBox x:Name="crime" Grid.Row="11" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="placeofarrest" Grid.Row="12" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="arrestingofficer" Grid.Row="13" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
         <DatePicker x:Name="dateofarrest" Grid.Row="14" Grid.Column="1" FontSize="16" Width="200" Margin="5" SelectedDate="{Binding dateofarrestSelectedDate}" />
-        <TextBox x:Name="eyecolor" Grid.Row="7" Grid.Column="3" FontSize="16" Width="200" Margin="5"/>
-        <TextBox x:Name="haircolor" Grid.Row="8" Grid.Column="3" FontSize="16" Width="200" Margin="5"/>
+        <TextBox x:Name="eyecolor" Grid.Row="7" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="haircolor" Grid.Row="8" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
         <!--33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333-->
         <Image x:Name="criminalpictureImage" Grid.Column="3" Width="250" Height="250" Grid.RowSpan="6" Margin="5" Grid.ColumnSpan="2" Source="{Binding criminalPictureSource}"/>
-        <Button x:Name="changePictureButton" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" Margin="5" Width="100" Background="#FF4A4991" Foreground="#FFFFF6F6" BorderBrush="Black">Change Picture</Button>
-        <Button x:Name="cancelButton" Grid.Row="14" Grid.Column="3" HorizontalAlignment="Left" Width="100" Margin="5" Content="Cancel" Background="#FF4A4991" Foreground="#FFFFF6F6" BorderBrush="Black"/>
-        <Button x:Name="saveButton" Grid.Row="14" Grid.Column="3" HorizontalAlignment="Right" Width="100" Margin="5" Content="Save" Background="#FF4A4991" Foreground="#FFFFF6F6" BorderBrush="Black"/>
+        <Button x:Name="changePictureButton" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" Margin="5" Width="150" Background="#FF1F4287" Foreground="#FFFFF6F6" BorderBrush="#FF1F4287">Change Picture</Button>
+        <Button x:Name="cancelButton" Grid.Row="14" Grid.Column="3" HorizontalAlignment="Left" Width="100" Margin="5" Content="Cancel" Background="#FF1F4287" Foreground="#FFFFF6F6" BorderBrush="#FF1F4287"/>
+        <Button x:Name="saveButton" Grid.Row="14" Grid.Column="3" HorizontalAlignment="Right" Width="100" Margin="5" Content="Save" Background="#FF1F4287" Foreground="#FFFFF6F6" BorderBrush="#FF1F4287"/>
         <Label Grid.Row="10" FontSize="16" Foreground="White" Content="Remarks" HorizontalAlignment="Right" Margin="5" Grid.Column="2"/>
         <Label Grid.Row="9" FontSize="16" Foreground="White" Content="Hospital" HorizontalAlignment="Right" Margin="5" Grid.Column="2"/>
-        <TextBox x:Name="hospital" Grid.Row="9" Grid.Column="3" Margin="5" Width="200"/>
-        <TextBox x:Name="remarks" Grid.Row="10" Grid.Column="3" Grid.RowSpan="4" Margin="5" Width="200" TextWrapping="Wrap"></TextBox>
+        <TextBox x:Name="hospital" Grid.Row="9" Grid.Column="3" Margin="5" Width="200" Background="#FFDEECFF"/>
+        <TextBox x:Name="remarks" Grid.Row="10" Grid.Column="3" Grid.RowSpan="4" Margin="5" Width="200" TextWrapping="Wrap" Background="#FFDEECFF"></TextBox>
         <Label Grid.Row="15" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5">*Required</Label>
     </Grid>
 </Window>

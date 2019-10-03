@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PS4_MIS_v2._0.Views"
         mc:Ignorable="d"
-        Title="Police Station 4 MIS" Width="1280" Height="720" Background="#FF7686C3" WindowState="Maximized" FontSize="16">
+        Title="Police Station 4 MIS" Width="1280" Height="720" Background="#FF071E3D" WindowState="Maximized" FontSize="16" FontFamily="Roboto" Foreground="White">
     <Window.Resources>
         <SolidColorBrush x:Key="buttonColor" Color="#FF29506D"/>
     </Window.Resources>
@@ -14,7 +14,7 @@
             <ColumnDefinition Width="260"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Background="#FF22256D">
+        <StackPanel Grid.Column="0" Background="#FF071E3D" Margin="0">
             <Grid Height="115">
                 <Image VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Source="/PS4-MIS v2.0;component/Resources/PNP-Logo.png"/>
             </Grid>
@@ -24,18 +24,18 @@
                 <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="12" x:Name="display" Text="{Binding displayName}"></TextBlock>
             </StackPanel>
             <StackPanel>
-                <Button Height="40" Background="{Binding messagesBrush}" Foreground="White" x:Name="messagesButton" BorderBrush="#FF002EAA">Messages</Button>
-                <Button Height="40" Background="{Binding criminalRecordsBrush}" Foreground="White" x:Name="criminalRecordsButton" BorderBrush="#FF002EAA">Criminal Records</Button>
-                <Button Height="40" Background="{Binding policeReportsBrush}" Foreground="White" x:Name="policeReportsButton" BorderBrush="#FF002EAA">Police Reports</Button>
-                <Button Height="40" Background="{Binding stolenvehicleBrush}" Foreground="White" x:Name="stolenVehiclesButton" BorderBrush="#FF002EAA">Stolen Vehicles</Button>
-                <Button Height="40" Background="{Binding inventoryBrush}" Foreground="White" x:Name="inventoryButton" BorderBrush="#FF002EAA">Inventory</Button>
-                <Button Height="40" Background="{Binding visitorlogbookbrush}" Foreground="White" x:Name="visitorLogbookButton" BorderBrush="#FF002EAA">Visitor Logbook</Button>
-                <Button Height="40" Background="{Binding employeerecordsBrush}" Foreground="White" x:Name="employeeRecordsButton" BorderBrush="#FF002EAA">Employee Records</Button>
-                <Button Height="40"  Foreground="White" x:Name="logoutButton" BorderBrush="#FF002EAA" Background="{x:Null}">Logout</Button>
+                <Button Height="40" Background="{Binding messagesBrush}" Foreground="White" x:Name="messagesButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" VerticalContentAlignment="Center" Content="Messages"/>
+                <Button Height="40" Background="{Binding criminalRecordsBrush}" Foreground="White" x:Name="criminalRecordsButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" Content="Criminal Records"/>
+                <Button Height="40" Background="{Binding policeReportsBrush}" Foreground="White" x:Name="policeReportsButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5">Police Reports</Button>
+                <Button Height="40" Background="{Binding stolenvehicleBrush}" Foreground="White" x:Name="stolenVehiclesButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5">Stolen Vehicles</Button>
+                <Button Height="40" Background="{Binding inventoryBrush}" Foreground="White" x:Name="inventoryButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5">Inventory</Button>
+                <Button Height="40" Background="{Binding visitorlogbookbrush}" Foreground="White" x:Name="visitorLogbookButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5">Visitor Logbook</Button>
+                <Button Height="40" Background="{Binding employeerecordsBrush}" Foreground="White" x:Name="employeeRecordsButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5">Employee Records</Button>
+                <Button Height="40"  Foreground="White" x:Name="logoutButton" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5">Logout</Button>
             </StackPanel>
         </StackPanel>
         <Grid Grid.Column="1">
-            <ContentControl x:Name="ActiveItem"/>
+            <ContentControl x:Name="ActiveItem" Foreground="{x:Null}" Background="#FF071E3D"/>
         </Grid>
     </Grid>
 </Window>
