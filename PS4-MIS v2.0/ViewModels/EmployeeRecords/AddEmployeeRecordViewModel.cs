@@ -1,20 +1,16 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Win32;
-using PS4_MIS_v2._0.Properties;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
 {
-    class AddEmployeeRecordViewModel : Conductor<object>
+    internal class AddEmployeeRecordViewModel : Conductor<object>
     {
         private string _address;
         private string _age;
@@ -45,12 +41,14 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
         private List<string> _userlevel;
         private string _userlevelSelectedItem;
         private string _username;
-        IWindowManager windowManager = new WindowManager();
+        private IWindowManager windowManager = new WindowManager();
+
         public string address
         {
             get { return _address; }
             set { _address = value; }
         }
+
         public string age
         {
             get { return _age; }
@@ -88,7 +86,7 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
 
         public List<string> civilstatus
         {
-            get { return new List<string> { "Single", "Married", "Divorced", "Separated", "Widowed", "Widowed" }; }
+            get { return new List<string> { "Single", "Married", "Widowed" }; }
             set { _civilstatus = value; }
         }
 
@@ -234,6 +232,7 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
             NotifyOfPropertyChange(() => isUsernameEnabled);
             NotifyOfPropertyChange(() => isPasswordEnabled);
         }
+
         public void changePictureButton()
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -251,6 +250,7 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
                 _hasPicture = true;
             }
         }
+
         public void saveButton()
         {
             if (_canCreateAccount)
@@ -258,13 +258,13 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
                 DataTable dt = connection.dbTable("SELECT MAX(Employee_ID) FROM employeerecords;");
                 int nextID = Int32.Parse(dt.Rows[0][0].ToString());
                 nextID++;
-                connection.dbCommand("INSERT INTO `ps4`.`users` (`Employee_ID`, `Username`, `Password`) VALUES ('"+nextID+"', '"+_username+"', '"+_password+"');");
+                connection.dbCommand("INSERT INTO `ps4`.`users` (`Employee_ID`, `Username`, `Password`) VALUES ('" + nextID + "', '" + _username + "', '" + _password + "');");
             }
             if (areRequiredFieldsComplete() && _hasPicture)
             {
                 savePicture();
                 connection.dbCommand("INSERT INTO `ps4`.`employeerecords` (`First_Name`, `Midle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Civil_Status`, `Address`, `Department`, `Position`, `Rank`, `User_Level`, `Remarks`, `Picture`) " +
-                    "VALUES ('" +_firstname+ "', '" +_middlename+ "', '"+ _lastname +"', '"+ _sexSelectedItem +"', '"+ _birthdateSelectedDate.ToString("yyyy-MM-dd") +"', '"+ _age +"', '"+ _birthplace +"', '"+ _civilstatusSelectedItem +"', '"+ _address +"', '"+ _department +"', '" + _position + "', '" + _rankSelectedItem + "', '" + _userlevelSelectedItem + "', '" + _remarks + "', '" + _savedEmployeePictureFilePath + "');");
+                    "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _sexSelectedItem + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _civilstatusSelectedItem + "', '" + _address + "', '" + _department + "', '" + _position + "', '" + _rankSelectedItem + "', '" + _userlevelSelectedItem + "', '" + _remarks + "', '" + _savedEmployeePictureFilePath + "');");
                 TryClose();
             }
             else if (areRequiredFieldsComplete())
@@ -278,7 +278,6 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
                 MessageBox.Show("Please fill out all required fields");
             }
         }
-
 
         protected override void OnActivate()
         {
@@ -296,7 +295,6 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
                 _sexSelectedItem == string.Empty ||
                 _age == string.Empty ||
                 _department == string.Empty ||
-                _position == string.Empty ||
                 _rankSelectedItem == string.Empty ||
                 _userlevelSelectedItem == string.Empty
                 )

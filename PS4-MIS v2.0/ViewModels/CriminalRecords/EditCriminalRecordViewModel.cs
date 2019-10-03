@@ -263,7 +263,7 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
             _crime = dt.Rows[0][9].ToString();
             NotifyOfPropertyChange(() => crime);
             _placeofarrest = dt.Rows[0][10].ToString();
-            NotifyOfPropertyChange(() => _placeofarrest);
+            NotifyOfPropertyChange(() => placeofarrest);
             _arrestingofficer = dt.Rows[0][11].ToString();
             NotifyOfPropertyChange(() => arrestingofficer);
             _dateofarrestSelectedDate = (DateTime)dt.Rows[0][12];
