@@ -1,0 +1,70 @@
+﻿<Window x:Class="PS4_MIS_v2._0.Views.StolenVehicles.AddVehicleView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:local="clr-namespace:PS4_MIS_v2._0.Views"
+        mc:Ignorable="d"
+        Title="addRecord" Height="600" Width="750" WindowStyle="ToolWindow" Background="#FF071E3D" WindowStartupLocation="CenterScreen" FontFamily="Roboto" FontSize="16">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111-->
+        <Label Grid.Row="0" FontSize="16" Foreground="White" Content="Vehicle ID" HorizontalAlignment="Right" Margin="5"/>
+        <Label Grid.Row="1" FontSize="16" Foreground="White" Content="Type" HorizontalAlignment="Right" Margin="5"/>
+        <Label Grid.Row="2" FontSize="16" Foreground="White" Content="Plate No." HorizontalAlignment="Right" Margin="5"/>
+        <Label Grid.Row="3" FontSize="16" Foreground="White" Content="Chassis No." HorizontalAlignment="Right" Margin="5"/>
+        <Label Grid.Row="4" FontSize="16" Foreground="White" Content="Make" HorizontalAlignment="Right" Margin="5"/>
+        <Label Grid.Row="5" FontSize="16" Foreground="White" Content="Model" HorizontalAlignment="Right" Margin="5"/>
+        <Label Grid.Row="6" FontSize="16" Foreground="White" Content="Color" HorizontalAlignment="Right" Margin="5"/>
+        <Label Grid.Row="7" FontSize="16" Foreground="White" Content="Owner" HorizontalAlignment="Right" Margin="5"/>
+        <Label Grid.Row="8" FontSize="16" Foreground="White" Content="Suspect" HorizontalAlignment="Right" Margin="5"/>
+        <TextBox x:Name="vehicleid" Grid.Row="0" Grid.Column="1" FontSize="16" Width="200" Margin="5" IsEnabled="False" Text="N/A"/>
+        <ComboBox x:Name="type" Grid.Row="1" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" SelectedItem="{Binding typeSelectedItem}"/>
+        <TextBox x:Name="plateno" Grid.Row="2" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="chassisno" Grid.Row="3" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="make" Grid.Row="4" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" BorderBrush="#FFDEECFF"/>
+        <TextBox x:Name="model" Grid.Row="5" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="color" Grid.Row="6" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="owner" Grid.Row="7" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <TextBox x:Name="suspect" Grid.Row="8" Grid.Column="1" FontSize="16" Width="200" TextWrapping="Wrap" Margin="5" Background="#FFDEECFF" />
+        <!--2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222-->
+        <Label Grid.Row="9" FontSize="16" Foreground="White" Content="Date Stolen" HorizontalAlignment="Right" Margin="5"/>
+        <Label Grid.Row="10" FontSize="16" Foreground="White" Content="Location Stolen" HorizontalAlignment="Right" Margin="5"/>
+        <Label Grid.Row="8" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right" Margin="5"/>
+        <Label Grid.Row="9" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right" Margin="5"/>
+        <Label Grid.Row="10" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right" Margin="5"/>
+        <DatePicker x:Name="datestolen" Grid.Row="9" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" SelectedDate="{Binding datestolenSelectedDate}"/>
+        <TextBox x:Name="locationstolen" Grid.Row="10" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF"/>
+        <!--33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333-->
+        <Image x:Name="vehiclepictureImage" Grid.Column="3" Width="250" Height="250" Grid.RowSpan="6" Margin="5" Grid.ColumnSpan="2" Source="{Binding vehiclePictureSource}"/>
+        <Button x:Name="changePictureButton" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" Margin="5" Width="150" Background="#FF1F4287" Foreground="#FFFFF6F6" BorderBrush="#FF1F4287">Change Picture</Button>
+        <Button x:Name="cancelButton" Grid.Row="11" Grid.Column="3" HorizontalAlignment="Left" Width="100" Margin="5" Content="Cancel" Background="#FF1F4287" Foreground="#FFFFF6F6" BorderBrush="#FF1F4287"/>
+        <Button x:Name="saveButton" Grid.Row="11" Grid.Column="3" HorizontalAlignment="Right" Width="100" Margin="5" Content="Save" Background="#FF1F4287" Foreground="#FFFFF6F6" BorderBrush="#FF1F4287"/>
+        <Label Grid.Row="7" FontSize="16" Foreground="White" Content="Remarks" HorizontalAlignment="Right" Margin="5" Grid.Column="2"/>
+        <TextBox x:Name="remarks" Grid.Row="7" Grid.Column="3" Grid.RowSpan="4" Margin="5" Width="200" TextWrapping="Wrap" Background="#FFDEECFF"></TextBox>
+        <Label Grid.Row="11" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5">*Required</Label>
+    </Grid>
+</Window>

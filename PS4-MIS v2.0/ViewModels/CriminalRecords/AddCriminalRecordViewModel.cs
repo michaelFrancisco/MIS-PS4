@@ -37,6 +37,7 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
         private string _selectedSex;
         private List<string> _sex;
         private IWindowManager windowManager = new WindowManager();
+
         public string address
         {
             get { return _address; }
@@ -52,6 +53,7 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
                 NotifyOfPropertyChange(() => age);
             }
         }
+
         public string arrestingofficer
         {
             get { return _arrestingofficer; }
@@ -144,6 +146,7 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
             get { return _hospital; }
             set { _hospital = value; }
         }
+
         public string lastname
         {
             get { return _lastname; }
@@ -218,13 +221,13 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
             {
                 savePicture();
                 connection.dbCommand("INSERT INTO `ps4`.`criminalrecords` (`First_Name`, `Middle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Address`, `Crime`, `Place_of_Arrest`, `Arresting_Officer`, `Date_of_Arrest`, `Eye_Color`, `Hair_Color`, `Remarks`, `Picture`, `Hospital`) " +
-                    "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _selectedSex + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _address + "', '" + _crime + "', '" + _placeofarrest + "', '" + _arrestingofficer + "', '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', '" + _eyecolor + "', '" + _haircolor + "', '" + _remarks + "', '" + _savedCriminalPictureFilePath + "', '" +_hospital+ "');");
+                    "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _selectedSex + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _address + "', '" + _crime + "', '" + _placeofarrest + "', '" + _arrestingofficer + "', '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', '" + _eyecolor + "', '" + _haircolor + "', '" + _remarks + "', '" + _savedCriminalPictureFilePath + "', '" + _hospital + "');");
                 TryClose();
             }
             else if (areRequiredFieldsComplete())
             {
                 connection.dbCommand("INSERT INTO `ps4`.`criminalrecords` (`First_Name`, `Middle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Address`, `Crime`, `Place_of_Arrest`, `Arresting_Officer`, `Date_of_Arrest`, `Eye_Color`, `Hair_Color`, `Remarks`, `Picture`, `Hospital`) " +
-                    "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _selectedSex + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _address + "', '" + _crime + "', '" + _placeofarrest + "', '" + _arrestingofficer + "', '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', '" + _eyecolor + "', '" + _haircolor + "', '" + _remarks + "', null, '" +_hospital+ "');");
+                    "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _selectedSex + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _address + "', '" + _crime + "', '" + _placeofarrest + "', '" + _arrestingofficer + "', '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', '" + _eyecolor + "', '" + _haircolor + "', '" + _remarks + "', null, '" + _hospital + "');");
                 TryClose();
             }
             else
@@ -241,6 +244,7 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
             NotifyOfPropertyChange(() => dateofarrestSelectedDate);
             base.OnActivate();
         }
+
         private static String getAppStartPath(string filename, string foldername)
         {
             String appStartPath = System.AppDomain.CurrentDomain.BaseDirectory;
