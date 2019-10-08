@@ -99,6 +99,8 @@
     <Compile Include="ViewModels\Messages\ShowMessageViewModel.cs" />
     <Compile Include="ViewModels\Notifications\NotificationsViewModel.cs" />
     <Compile Include="ViewModels\Notifications\ShowNotificationViewModel.cs" />
+    <Compile Include="ViewModels\PoliceReports\AddIRFViewModel.cs" />
+    <Compile Include="ViewModels\PoliceReports\EditIRFViewModel.cs" />
     <Compile Include="ViewModels\PoliceReports\PoliceReportsViewModel.cs" />
     <Compile Include="ViewModels\StolenVehicles\AddVehicleViewModel.cs" />
     <Compile Include="ViewModels\StolenVehicles\EditVehicleViewModel.cs" />
@@ -160,6 +162,12 @@
     </Compile>
     <Compile Include="Views\Notifications\ShowNotificationView.xaml.cs">
       <DependentUpon>ShowNotificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PoliceReports\AddIRFView.xaml.cs">
+      <DependentUpon>AddIRFView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PoliceReports\EditIRFView.xaml.cs">
+      <DependentUpon>EditIRFView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PoliceReports\PoliceReportsView.xaml.cs">
       <DependentUpon>PoliceReportsView.xaml</DependentUpon>
@@ -279,6 +287,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Notifications\ShowNotificationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PoliceReports\AddIRFView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PoliceReports\EditIRFView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
