@@ -1,17 +1,18 @@
 ﻿using Caliburn.Micro;
-using PS4_MIS_v2._0.ViewModels.EmployeeRecords;
+using PS4_MIS_v2._0.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
-namespace PS4_MIS_v2._0.ViewModels
+namespace PS4_MIS_v2._0.ViewModels.Messages
 {
-    class EmployeeRecordsViewModel : Screen
+    internal class SendNewMessageViewModel : Screen
     {
         private DataTable _baseEmployeeGridItemSource;
+        private DataTable _baseRecipientsGridSource;
+        private string _body;
         private string _department;
         private object _employeeGridSelectedItem;
         private DataTable _employeeGridSource;
@@ -20,8 +21,18 @@ namespace PS4_MIS_v2._0.ViewModels
         private string _lastname;
         private List<string> _rank;
         private string _rankSelectedItem;
+        private object _recipientsGridSelectedItem;
+        private DataTable _recipientsGridSource;
         private string _selectedEmployeeID;
-        IWindowManager windowManager = new WindowManager();
+        private string _subject;
+        private IWindowManager windowManager = new WindowManager();
+
+        public string body
+        {
+            get { return _body; }
+            set { _body = value; }
+        }
+
         public string department
         {
             get { return _department; }
@@ -46,6 +57,7 @@ namespace PS4_MIS_v2._0.ViewModels
             get { return _employeeGridSource; }
             set { _employeeGridSource = value; }
         }
+
         public string employeeID
         {
             get { return _employeeID; }
@@ -106,9 +118,45 @@ namespace PS4_MIS_v2._0.ViewModels
                 NotifyOfPropertyChange(() => employeeGridSource);
             }
         }
-        public void addemployeerecordButton()
+
+        public object recipientsGridSelectedItem
         {
-            windowManager.ShowWindow(new AddEmployeeRecordViewModel(), null, null);
+            get { return _recipientsGridSelectedItem; }
+            set { _recipientsGridSelectedItem = value; }
+        }
+
+        public DataTable recipientsGridSource
+        {
+            get { return _recipientsGridSource; }
+            set { _recipientsGridSource = value; }
+        }
+
+        public string subject
+        {
+            get { return _subject; }
+            set { _subject = value; }
+        }
+
+        public void addButton()
+        {
+            try
+            {
+                DataRowView dataRowView = (DataRowView)_employeeGridSelectedItem;
+                _recipientsGridSource.Rows.Add(dataRowView.Row[0], dataRowView.Row[1], dataRowView.Row[2], dataRowView.Row[3], dataRowView.Row[4], dataRowView.Row[5], dataRowView.Row[6], dataRowView.Row[7], dataRowView.Row[8], dataRowView.Row[9], dataRowView.Row[10], dataRowView.Row[11], dataRowView.Row[12], dataRowView.Row[13]);
+                _employeeGridSource.Rows.Remove(dataRowView.Row);
+                NotifyOfPropertyChange(() => recipientsGridSource);
+                NotifyOfPropertyChange(() => employeeGridSource);
+            }
+            catch { }
+        }
+
+        public void cancelButton()
+        {
+            MessageBoxResult dialogResult = MessageBox.Show("Are you sure? Unsaved changes will be lost.", "!", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                TryClose();
+            }
         }
 
         public string query()
@@ -196,13 +244,25 @@ namespace PS4_MIS_v2._0.ViewModels
             NotifyOfPropertyChange(() => employeeGridSource);
         }
 
-        public void showEmployeeRecord()
+        public void sendmessageButton()
+        {
+            int j = _recipientsGridSource.Rows.Count;
+            for (int i = 0; i < j; i++)
+            {
+                connection.dbCommand("INSERT INTO `ps4`.`messages` (`Sender`, `Receiver`, `Subject`, `Body`, `isAcknowledged`) VALUES ('" + currentUser.EmployeeID + "', '" + _recipientsGridSource.Rows[i][0].ToString() + "', '" + _subject + "', '" + _body + "', '0');");
+            }
+            TryClose();
+        }
+
+        public void subtractButton()
         {
             try
             {
-                DataRowView dataRowView = (DataRowView)_employeeGridSelectedItem;
-                _selectedEmployeeID = dataRowView.Row[0].ToString();
-                windowManager.ShowWindow(new EditEmployeeRecordViewModel(_selectedEmployeeID), null, null);
+                DataRowView dataRowView = (DataRowView)_recipientsGridSelectedItem;
+                _employeeGridSource.Rows.Add(dataRowView.Row[0], dataRowView.Row[1], dataRowView.Row[2], dataRowView.Row[3], dataRowView.Row[4], dataRowView.Row[5], dataRowView.Row[6], dataRowView.Row[7], dataRowView.Row[8], dataRowView.Row[9], dataRowView.Row[10], dataRowView.Row[11], dataRowView.Row[12], dataRowView.Row[13]);
+                _recipientsGridSource.Rows.Remove(dataRowView.Row);
+                NotifyOfPropertyChange(() => recipientsGridSource);
+                NotifyOfPropertyChange(() => employeeGridSource);
             }
             catch { }
         }
@@ -210,8 +270,10 @@ namespace PS4_MIS_v2._0.ViewModels
         protected override void OnActivate()
         {
             _employeeGridSource = connection.dbTable("SELECT Employee_ID, Rank, First_Name, Midle_Name, Last_Name, Department, Sex, Birthdate, Age, Birthplace, Civil_Status, Address, Position, User_Level FROM `ps4`.`employeerecords`;");
+            _recipientsGridSource = connection.dbTable("SELECT Employee_ID, Rank, First_Name, Midle_Name, Last_Name, Department, Sex, Birthdate, Age, Birthplace, Civil_Status, Address, Position, User_Level FROM `ps4`.`employeerecords` where null;");
             _baseEmployeeGridItemSource = _employeeGridSource;
             NotifyOfPropertyChange(() => employeeGridSource);
+            NotifyOfPropertyChange(() => recipientsGridSource);
             base.OnActivate();
         }
     }

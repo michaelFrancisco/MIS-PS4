@@ -79,6 +79,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\connection.cs" />
+    <Compile Include="Model\currentUser.cs" />
     <Compile Include="ViewModels\CriminalRecords\AddCriminalRecordViewModel.cs" />
     <Compile Include="ViewModels\CriminalRecords\CriminalRecordsViewModel.cs" />
     <Compile Include="ViewModels\CriminalRecords\EditCriminalRecordViewModel.cs" />
@@ -93,6 +94,11 @@
     <Compile Include="ViewModels\Inventory\ShowItemViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Messages\MessagesViewModel.cs" />
+    <Compile Include="ViewModels\Messages\SendNewMessageViewModel.cs" />
+    <Compile Include="ViewModels\Messages\ShowMessageViewModel.cs" />
+    <Compile Include="ViewModels\Notifications\NotificationsViewModel.cs" />
+    <Compile Include="ViewModels\Notifications\ShowNotificationViewModel.cs" />
     <Compile Include="ViewModels\PoliceReports\PoliceReportsViewModel.cs" />
     <Compile Include="ViewModels\StolenVehicles\AddVehicleViewModel.cs" />
     <Compile Include="ViewModels\StolenVehicles\EditVehicleViewModel.cs" />
@@ -142,6 +148,18 @@
     </Compile>
     <Compile Include="Views\Messages\MessagesView.xaml.cs">
       <DependentUpon>MessagesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Messages\SendNewMessageView.xaml.cs">
+      <DependentUpon>SendNewMessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Messages\ShowMessageView.xaml.cs">
+      <DependentUpon>ShowMessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Notifications\NotificationsView.xaml.cs">
+      <DependentUpon>NotificationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Notifications\ShowNotificationView.xaml.cs">
+      <DependentUpon>ShowNotificationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PoliceReports\PoliceReportsView.xaml.cs">
       <DependentUpon>PoliceReportsView.xaml</DependentUpon>
@@ -245,6 +263,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Messages\MessagesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Messages\SendNewMessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Messages\ShowMessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Notifications\NotificationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Notifications\ShowNotificationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
