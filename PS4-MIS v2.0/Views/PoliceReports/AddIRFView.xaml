@@ -6,7 +6,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:local="clr-namespace:PS4_MIS_v2._0.Views"
         mc:Ignorable="d"
-        Title="addRecord" Height="775" Width="775" WindowStyle="ToolWindow" Background="#FF071E3D" WindowStartupLocation="CenterScreen" FontFamily="Roboto" FontSize="16">
+        Title="addRecord" Height="850" Width="775" WindowStyle="ToolWindow" Background="#FF071E3D" WindowStartupLocation="CenterScreen" FontFamily="Roboto" FontSize="16">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -149,9 +149,108 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Suspect Data" FontSize="22">
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <ComboBox x:Name="Suspect_civilstatus" Grid.Row="7" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" SelectedItem="{Binding civilstatusSelectedItem}" />
+                    <ComboBox x:Name="Suspect_sex" Grid.Row="6" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" SelectedItem="{Binding sexSelectedItem}" />
+                    <DatePicker x:Name="Suspect_dateofbirth" Grid.Row="8" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" SelectedDate="{Binding dateofbirthSelectedDate}" />
+                    <Label FontSize="16" Foreground="White" Content="Family Name" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Column="2" FontSize="16" Foreground="White" Content="Current Address" HorizontalAlignment="Center" Margin="5" Grid.ColumnSpan="2" VerticalAlignment="Center" />
+                    <Label Grid.Column="2" FontSize="16" Foreground="White" Content="House Number" HorizontalAlignment="Right" Margin="5" Grid.Row="1" />
+                    <Label Grid.Row="1" FontSize="16" Foreground="White" Content="First Name" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="10" FontSize="16" Foreground="White" Content="Place of Birth" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="10" FontSize="16" Foreground="White" Content="Town" HorizontalAlignment="Right" Margin="5" Grid.Column="2" />
+                    <Label Grid.Row="10" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="11" FontSize="16" Foreground="White" Content="Home Phone" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="11" FontSize="16" Foreground="White" Content="Province" HorizontalAlignment="Right" Margin="5" Grid.Column="2" />
+                    <Label Grid.Row="12" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Mobile Phone"/>
+                    <Label Grid.Row="13" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Highest Education"/>
+                    <Label Grid.Row="13" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="ID Card Presented" Grid.Column="2"/>
+                    <Label Grid.Row="14" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Email Address" Grid.Column="2"/>
+                    <Label Grid.Row="14" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Occupation"/>
+                    <Label Grid.Row="2" FontSize="16" Foreground="White" Content="Middle Name" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="2" Grid.Column="2" FontSize="16" Foreground="White" Content="Village" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="3" FontSize="16" Foreground="White" Content="Barangay" HorizontalAlignment="Right" Margin="5" Grid.Column="2" />
+                    <Label Grid.Row="3" FontSize="16" Foreground="White" Content="Qualifier" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="4" FontSize="16" Foreground="White" Content="Nickname" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="4" FontSize="16" Foreground="White" Content="Town" HorizontalAlignment="Right" Margin="5" Grid.Column="2" />
+                    <Label Grid.Row="5" FontSize="16" Foreground="White" Content="Citizenship" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="5" FontSize="16" Foreground="White" Content="Province" HorizontalAlignment="Right" Margin="5" Grid.Column="2" />
+                    <Label Grid.Row="6" FontSize="16" Foreground="White" Content="Other Address" HorizontalAlignment="Center" Margin="5" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" />
+                    <Label Grid.Row="6" FontSize="16" Foreground="White" Content="Sex" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="7" FontSize="16" Foreground="White" Content="Civil Status" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="7" FontSize="16" Foreground="White" Content="House Number" HorizontalAlignment="Right" Margin="5" Grid.Column="2" />
+                    <Label Grid.Row="8" FontSize="16" Foreground="White" Content="Date of Birth" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="8" FontSize="16" Foreground="White" Content="Village" HorizontalAlignment="Right" Margin="5" Grid.Column="2" />
+                    <Label Grid.Row="8" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="9" FontSize="16" Foreground="White" Content="Age" HorizontalAlignment="Right" Margin="5" />
+                    <Label Grid.Row="9" FontSize="16" Foreground="White" Content="Barangay" HorizontalAlignment="Right" Margin="5" Grid.Column="2" />
+                    <Label Grid.Row="9" Grid.Column="2" FontSize="16" Foreground="White" Content="" HorizontalAlignment="Right" Margin="5" />
+                    <TextBox x:Name="Suspect_age" Grid.Row="9" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_barangay" Grid.Row="3" Grid.Column="3" Margin="5" Width="200" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_citizenship" Grid.Row="5" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" BorderBrush="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_emailaddress" Grid.Row="14" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_familyname" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_firstname" Grid.Row="1" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_highestedu" Grid.Row="13" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_homephone" Grid.Row="11" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" BorderBrush="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_housenumber" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" Grid.Row="1" />
+                    <TextBox x:Name="Suspect_idcardpresented" Grid.Row="13" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_middlename" Grid.Row="2" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_mobilephone" Grid.Row="12" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_nickname" Grid.Row="4" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" BorderBrush="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_occupation" Grid.Row="14" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_otherbarangay" Grid.Row="9" Grid.Column="3" Margin="5" Width="200" TextWrapping="Wrap" Background="#FFDEECFF"/>
+                    <TextBox x:Name="Suspect_otherhousenumber" Grid.Row="7" Grid.Column="3" Margin="5" Width="200" TextWrapping="Wrap" Background="#FFDEECFF"/>
+                    <TextBox x:Name="Suspect_otherprovince" Grid.Row="11" Grid.Column="3" Margin="5" Width="200" TextWrapping="Wrap" Background="#FFDEECFF"/>
+                    <TextBox x:Name="Suspect_othertown" Grid.Row="10" Grid.Column="3" Margin="5" Width="200" TextWrapping="Wrap" Background="#FFDEECFF"/>
+                    <TextBox x:Name="Suspect_othervillage" Grid.Row="8" Grid.Column="3" Margin="5" Width="200" TextWrapping="Wrap" Background="#FFDEECFF"/>
+                    <TextBox x:Name="Suspect_placeofbirth" Grid.Row="10" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_province" Grid.Row="5" Grid.Column="3" Margin="5" Width="200" TextWrapping="Wrap" Background="#FFDEECFF"/>
+                    <TextBox x:Name="Suspect_qualifier" Grid.Row="3" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" BorderBrush="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_town" Grid.Row="4" Grid.Column="3" Margin="5" Width="200" TextWrapping="Wrap" Background="#FFDEECFF"/>
+                    <TextBox x:Name="Suspect_village" Grid.Row="2" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <Label Grid.Row="16" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Relation to victim" Grid.Column="2"/>
+                    <Label Grid.Row="16" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Work Address"/>
+                    <TextBox x:Name="Suspect_relationtovictim" Grid.Row="16" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_workaddress" Grid.Row="16" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <Label Grid.Row="17" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Unit Assignment" Grid.Column="2"/>
+                    <Label Grid.Row="17" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="AFP/PNP Rank"/>
+                    <TextBox x:Name="Suspect_unitassignment" Grid.Row="17" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_rank" Grid.Row="17" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                </Grid>
             </TabItem>
         </TabControl>
         <Button x:Name="cancelButton" HorizontalAlignment="Left" Width="206" Margin="5" Content="Cancel" Background="#FF1F4287" Foreground="#FFFFF6F6" BorderBrush="#FF1F4287" Grid.Row="1" />
+        <Button x:Name="saveasPDFButton" HorizontalAlignment="Center" Width="206" Margin="5" Content="Save as PDF" Background="#FF1F4287" Foreground="#FFFFF6F6" BorderBrush="#FF1F4287" Grid.Row="1" />
         <Button x:Name="saveButton" HorizontalAlignment="Right" Width="206" Margin="5" Content="Save" Background="#FF1F4287" Foreground="#FFFFF6F6" BorderBrush="#FF1F4287" Grid.Row="1" />
     </Grid>
 </Window>

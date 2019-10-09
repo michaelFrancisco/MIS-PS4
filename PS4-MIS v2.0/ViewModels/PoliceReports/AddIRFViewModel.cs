@@ -349,13 +349,27 @@ namespace PS4_MIS_v2._0.ViewModels.PoliceReports
 
         public void cancelButton()
         {
-            filloutPDF();
+            MessageBoxResult dialogResult = MessageBox.Show("Are you sure? Unsaved changes will be lost.", "!", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                TryClose();
+            }
+        }
+
+        public void saveasPDFButton()
+        {
+            MessageBoxResult dialogResult = MessageBox.Show("Save IRF "+_blotterentrynumber+" to desktop as PDF?", "!", MessageBoxButton.YesNo);
+            if (dialogResult == MessageBoxResult.Yes)
+            {
+                filloutPDF();
+            }
         }
 
         public void saveButton()
         {
             connection.dbCommand("INSERT INTO `ps4`.`irf` (`Blotter_Entry_Number`, `Type_Of_Incident`, `DateTime_Reported`, `DateTime_of_Incident`, `Recorded_By`, `Place_Of_Incident`, `Station_Phone_Number`, `DO_Mobile`, `Chief_Mobile`) VALUES ('" + _blotterentrynumber + "', '" + _typeofincident + "', '" + datetimereported() + "', '" + datetimeincident() + "', '" + currentUser.EmployeeID + "', '" + _placeofincident + "', '" + _stationnumber + "', '" + _deskofficermobile + "', '" + _stationchiefmobile + "');");
             connection.dbCommand("INSERT INTO `ps4`.`irfa` (`Blotter_Entry_Number`, `Family_Name`, `First_Name`, `Middle_Name`, `Qualifier`, `Nickname`, `Citizenship`, `Sex`, `Civil_Status`, `Date_of_Birth`, `Age`, `Place_of_Birth`, `Home_Phone`, `Mobile_Phone`, `House_Number`, `Vilage`, `Barangay`, `Town`, `Province`, `Other_House_Number`, `Other_Village`, `Other_Barangay`, `Other_Town`, `Other_Province`, `Highest_Educational_Attainment`, `Occupation`, `ID_Card_Presented`, `Email_Address`) VALUES ('" + _blotterentrynumber + "', '" + _familyname + "', '" + _firstname + "', '" + _middlename + "', '" + _qualifier + "', '" + _nickname + "', '" + _citizenship + "', '" + _sexSelectedItem + "', '" + _civilstatusSelectedItem + "', '" + _dateofbirthSelectedDate + "', '" + _age + "', '" + _placeofbirth + "', '" + _homephone + "', '" + _mobilephone + "', '" + _housenumber + "', '" + _village + "', '" + _barangay + "', '" + _town + "', '" + _province + "', '" + _otherhousenumber + "', '" + _othervillage + "', '" + _otherbarangay + "', '" + _othertown + "', '" + _otherprovince + "', '" + _highestedu + "', '" + _occupation + "', '" + _idcardpresented + "', '" + _emailaddress + "');");
+            TryClose();
         }
 
         private void filloutPDF()
