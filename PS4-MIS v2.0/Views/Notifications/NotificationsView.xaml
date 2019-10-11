@@ -46,13 +46,26 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <DataGrid x:Name="messagesGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,0,10,-0.6" FontSize="16" MinColumnWidth="149" BorderThickness="0" AlternationCount="2" AlternatingRowBackground="#FF071e3d" RowBackground="#FF1f4287" Foreground="White" Background="#FF071e3d" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding messagesGridSource}" cal:Message.Attach="[Event MouseDoubleClick] = [Action showMessage]" CanUserAddRows="False" SelectedItem="{Binding messagesGridSelectedItem}" ItemStringFormat="">
+            <TabControl>
+                <TabItem FontSize="30" Header="Unread">
+            <DataGrid x:Name="unreadGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" FontSize="16" MinColumnWidth="149" BorderThickness="0" AlternationCount="2" AlternatingRowBackground="#FF071e3d" RowBackground="#FF1f4287" Foreground="White" Background="#FF071e3d" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding unreadGridSource}" cal:Message.Attach="[Event MouseDoubleClick] = [Action showUnreadMessage]" CanUserAddRows="False" SelectedItem="{Binding unreadGridSelectedItem}" ItemStringFormat="">
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="#FF29506D" />
                     </Style>
                 </DataGrid.Resources>
             </DataGrid>
+                </TabItem>
+                <TabItem FontSize="30" Header="Read">
+                    <DataGrid x:Name="readGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" FontSize="16" MinColumnWidth="149" BorderThickness="0" AlternationCount="2" AlternatingRowBackground="#FF071e3d" RowBackground="#FF1f4287" Foreground="White" Background="#FF071e3d" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding readGridSource}" cal:Message.Attach="[Event MouseDoubleClick] = [Action showReadMessage]" CanUserAddRows="False" SelectedItem="{Binding readGridSelectedItem}" ItemStringFormat="">
+                        <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="#FF29506D" />
+                            </Style>
+                        </DataGrid.Resources>
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
         </Grid>
     </Grid>
     </UserControl>

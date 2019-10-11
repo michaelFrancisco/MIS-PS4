@@ -1,63 +1,41 @@
 ﻿using Caliburn.Micro;
 using PS4_MIS_v2._0.Model;
-using PS4_MIS_v2._0.ViewModels.EmployeeRecords;
-using PS4_MIS_v2._0.ViewModels.Messages;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
 namespace PS4_MIS_v2._0.ViewModels.Notifications
 {
-    class NotificationsViewModel : Screen
+    internal class NotificationsViewModel : Screen
     {
-        private DataTable _baseMessagesGridItemSource;
+        private DataTable _baseReadGridItemSource;
+        private DataTable _baseUnreadGridItemSource;
         private string _body;
-        private object _messagesGridSelectedItem;
-        private DataTable _messagesGridSource;
-        private string _subject;
         private string _firstname;
         private string _lastname;
         private List<string> _rank;
         private string _rankSelectedItem;
+        private object _readGridSelectedItem;
+        private DataTable _readGridSource;
         private string _selectedMessageID;
+        private string _subject;
+        private object _unreadGridSelectedItem;
+        private DataTable _unreadGridSource;
         private IWindowManager windowManager = new WindowManager();
-
         public string body
         {
             get { return _body; }
             set
             {
-                _body = value;
-                DataView dv = new DataView(_baseMessagesGridItemSource);
-                dv.RowFilter = query();
-                _messagesGridSource = dv.ToTable();
-                NotifyOfPropertyChange(() => messagesGridSource);
-            }
-        }
-
-        public object messagesGridSelectedItem
-        {
-            get { return _messagesGridSelectedItem; }
-            set { _messagesGridSelectedItem = value; }
-        }
-
-        public DataTable messagesGridSource
-        {
-            get { return _messagesGridSource; }
-            set { _messagesGridSource = value; }
-        }
-
-        public string subject
-        {
-            get { return _subject; }
-            set
-            {
                 _subject = value;
-                DataView dv = new DataView(_baseMessagesGridItemSource);
+                DataView dv = new DataView(_baseUnreadGridItemSource);
                 dv.RowFilter = query();
-                _messagesGridSource = dv.ToTable();
-                NotifyOfPropertyChange(() => messagesGridSource);
+                _unreadGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => unreadGridSource);
+                dv = new DataView(_baseReadGridItemSource);
+                dv.RowFilter = query();
+                _unreadGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => readGridSource);
             }
         }
 
@@ -66,11 +44,15 @@ namespace PS4_MIS_v2._0.ViewModels.Notifications
             get { return _firstname; }
             set
             {
-                _firstname = value;
-                DataView dv = new DataView(_baseMessagesGridItemSource);
+                _subject = value;
+                DataView dv = new DataView(_baseUnreadGridItemSource);
                 dv.RowFilter = query();
-                _messagesGridSource = dv.ToTable();
-                NotifyOfPropertyChange(() => messagesGridSource);
+                _unreadGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => unreadGridSource);
+                dv = new DataView(_baseReadGridItemSource);
+                dv.RowFilter = query();
+                _unreadGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => readGridSource);
             }
         }
 
@@ -79,11 +61,15 @@ namespace PS4_MIS_v2._0.ViewModels.Notifications
             get { return _lastname; }
             set
             {
-                _lastname = value;
-                DataView dv = new DataView(_baseMessagesGridItemSource);
+                _subject = value;
+                DataView dv = new DataView(_baseUnreadGridItemSource);
                 dv.RowFilter = query();
-                _messagesGridSource = dv.ToTable();
-                NotifyOfPropertyChange(() => messagesGridSource);
+                _unreadGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => unreadGridSource);
+                dv = new DataView(_baseReadGridItemSource);
+                dv.RowFilter = query();
+                _unreadGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => readGridSource);
             }
         }
 
@@ -101,14 +87,58 @@ namespace PS4_MIS_v2._0.ViewModels.Notifications
             get { return _rankSelectedItem; }
             set
             {
-                _rankSelectedItem = value;
-                DataView dv = new DataView(_baseMessagesGridItemSource);
+                _subject = value;
+                DataView dv = new DataView(_baseUnreadGridItemSource);
                 dv.RowFilter = query();
-                _messagesGridSource = dv.ToTable();
-                NotifyOfPropertyChange(() => messagesGridSource);
+                _unreadGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => unreadGridSource);
+                dv = new DataView(_baseReadGridItemSource);
+                dv.RowFilter = query();
+                _unreadGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => readGridSource);
             }
         }
 
+        public object readGridSelectedItem
+        {
+            get { return _readGridSelectedItem; }
+            set { _readGridSelectedItem = value; }
+        }
+
+        public DataTable readGridSource
+        {
+            get { return _readGridSource; }
+            set { _readGridSource = value; }
+        }
+
+        public string subject
+        {
+            get { return _subject; }
+            set
+            {
+                _subject = value;
+                DataView dv = new DataView(_baseUnreadGridItemSource);
+                dv.RowFilter = query();
+                _unreadGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => unreadGridSource);
+                dv = new DataView(_baseReadGridItemSource);
+                dv.RowFilter = query();
+                _unreadGridSource = dv.ToTable();
+                NotifyOfPropertyChange(() => readGridSource);
+            }
+        }
+
+        public object unreadGridSelectedItem
+        {
+            get { return _unreadGridSelectedItem; }
+            set { _unreadGridSelectedItem = value; }
+        }
+
+        public DataTable unreadGridSource
+        {
+            get { return _unreadGridSource; }
+            set { _unreadGridSource = value; }
+        }
         public string query()
         {
             StringBuilder sb = new StringBuilder();
@@ -172,9 +202,12 @@ namespace PS4_MIS_v2._0.ViewModels.Notifications
 
         public void refreshButton()
         {
-            _messagesGridSource = connection.dbTable("select `messages`.`Message_ID`,`messages`.`Subject`,`messages`.`Body`,`employeerecords`.`Rank`, `employeerecords`.`First_Name`, `employeerecords`.`Last_Name`, `employeerecords`.`Department` from messages INNER JOIN employeerecords on `messages`.`Sender` = `employeerecords`.`Employee_ID` where `messages`.`Receiver` = " + currentUser.EmployeeID + " AND isAcknowledged = 0;");
-            _baseMessagesGridItemSource = _messagesGridSource;
-            NotifyOfPropertyChange(() => messagesGridSource);
+            _unreadGridSource = connection.dbTable("select `messages`.`Message_ID`,`messages`.`Subject`,`messages`.`Body`,`employeerecords`.`Rank`, `employeerecords`.`First_Name`, `employeerecords`.`Last_Name`, `employeerecords`.`Department` from messages INNER JOIN employeerecords on `messages`.`Sender` = `employeerecords`.`Employee_ID` where `messages`.`Receiver` = " + currentUser.EmployeeID + " AND isAcknowledged = 0;");
+            _baseUnreadGridItemSource = _unreadGridSource;
+            NotifyOfPropertyChange(() => unreadGridSource);
+            _readGridSource = connection.dbTable("select `messages`.`Message_ID`,`messages`.`Subject`,`messages`.`Body`,`employeerecords`.`Rank`, `employeerecords`.`First_Name`, `employeerecords`.`Last_Name`, `employeerecords`.`Department` from messages INNER JOIN employeerecords on `messages`.`Sender` = `employeerecords`.`Employee_ID` where `messages`.`Receiver` = " + currentUser.EmployeeID + " AND isAcknowledged = 1;");
+            _baseReadGridItemSource = _readGridSource;
+            NotifyOfPropertyChange(() => readGridSource);
         }
 
         public void resetButton()
@@ -184,21 +217,29 @@ namespace PS4_MIS_v2._0.ViewModels.Notifications
             _subject = string.Empty;
             _lastname = string.Empty;
             _body = string.Empty;
-            _messagesGridSource = connection.dbTable("select `messages`.`Message_ID`,`messages`.`Subject`,`messages`.`Body`,`employeerecords`.`Rank`, `employeerecords`.`First_Name`, `employeerecords`.`Last_Name`, `employeerecords`.`Department` from messages INNER JOIN employeerecords on `messages`.`Sender` = `employeerecords`.`Employee_ID` where `messages`.`Receiver` = " + currentUser.EmployeeID + " AND isAcknowledged = 0;");
-            _baseMessagesGridItemSource = _messagesGridSource;
-            NotifyOfPropertyChange(() => rankSelectedItem);
-            NotifyOfPropertyChange(() => firstname);
-            NotifyOfPropertyChange(() => subject);
-            NotifyOfPropertyChange(() => lastname);
-            NotifyOfPropertyChange(() => body);
-            NotifyOfPropertyChange(() => messagesGridSource);
+            _unreadGridSource = connection.dbTable("select `messages`.`Message_ID`,`messages`.`Subject`,`messages`.`Body`,`employeerecords`.`Rank`, `employeerecords`.`First_Name`, `employeerecords`.`Last_Name`, `employeerecords`.`Department` from messages INNER JOIN employeerecords on `messages`.`Sender` = `employeerecords`.`Employee_ID` where `messages`.`Receiver` = " + currentUser.EmployeeID + " AND isAcknowledged = 0;");
+            _baseUnreadGridItemSource = _unreadGridSource;
+            _readGridSource = connection.dbTable("select `messages`.`Message_ID`,`messages`.`Subject`,`messages`.`Body`,`employeerecords`.`Rank`, `employeerecords`.`First_Name`, `employeerecords`.`Last_Name`, `employeerecords`.`Department` from messages INNER JOIN employeerecords on `messages`.`Sender` = `employeerecords`.`Employee_ID` where `messages`.`Receiver` = " + currentUser.EmployeeID + " AND isAcknowledged = 1;");
+            _baseReadGridItemSource = _readGridSource;
+            NotifyOfPropertyChange(null);
         }
 
-        public void showMessage()
+        public void showReadMessage()
         {
             try
             {
-                DataRowView dataRowView = (DataRowView)_messagesGridSelectedItem;
+                DataRowView dataRowView = (DataRowView)_readGridSelectedItem;
+                _selectedMessageID = dataRowView.Row[0].ToString();
+                windowManager.ShowWindow(new ShowNotificationViewModel(_selectedMessageID), null, null);
+            }
+            catch { }
+        }
+
+        public void showUnreadMessage()
+        {
+            try
+            {
+                DataRowView dataRowView = (DataRowView)_unreadGridSelectedItem;
                 _selectedMessageID = dataRowView.Row[0].ToString();
                 windowManager.ShowWindow(new ShowNotificationViewModel(_selectedMessageID), null, null);
             }
@@ -207,9 +248,12 @@ namespace PS4_MIS_v2._0.ViewModels.Notifications
 
         protected override void OnActivate()
         {
-            _messagesGridSource = connection.dbTable("select `messages`.`Message_ID`,`messages`.`Subject`,`messages`.`Body`,`employeerecords`.`Rank`, `employeerecords`.`First_Name`, `employeerecords`.`Last_Name`, `employeerecords`.`Department` from messages INNER JOIN employeerecords on `messages`.`Sender` = `employeerecords`.`Employee_ID` where `messages`.`Receiver` = "+currentUser.EmployeeID+" AND isAcknowledged = 0;");
-            _baseMessagesGridItemSource = _messagesGridSource;
-            NotifyOfPropertyChange(() => messagesGridSource);
+            _unreadGridSource = connection.dbTable("select `messages`.`Message_ID`,`messages`.`Subject`,`messages`.`Body`,`employeerecords`.`Rank`, `employeerecords`.`First_Name`, `employeerecords`.`Last_Name`, `employeerecords`.`Department` from messages INNER JOIN employeerecords on `messages`.`Sender` = `employeerecords`.`Employee_ID` where `messages`.`Receiver` = " + currentUser.EmployeeID + " AND isAcknowledged = 0;");
+            _baseUnreadGridItemSource = _unreadGridSource;
+            NotifyOfPropertyChange(() => unreadGridSource);
+            _readGridSource = connection.dbTable("select `messages`.`Message_ID`,`messages`.`Subject`,`messages`.`Body`,`employeerecords`.`Rank`, `employeerecords`.`First_Name`, `employeerecords`.`Last_Name`, `employeerecords`.`Department` from messages INNER JOIN employeerecords on `messages`.`Sender` = `employeerecords`.`Employee_ID` where `messages`.`Receiver` = " + currentUser.EmployeeID + " AND isAcknowledged = 1;");
+            _baseReadGridItemSource = _readGridSource;
+            NotifyOfPropertyChange(() => readGridSource);
             base.OnActivate();
         }
     }

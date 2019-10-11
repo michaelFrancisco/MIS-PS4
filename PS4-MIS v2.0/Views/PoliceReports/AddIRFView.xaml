@@ -196,6 +196,10 @@
                     <Label Grid.Row="13" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="ID Card Presented" Grid.Column="2"/>
                     <Label Grid.Row="14" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Email Address" Grid.Column="2"/>
                     <Label Grid.Row="14" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Occupation"/>
+                    <Label Grid.Row="16" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Relation to victim" Grid.Column="2"/>
+                    <Label Grid.Row="16" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Work Address"/>
+                    <Label Grid.Row="17" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="AFP/PNP Rank"/>
+                    <Label Grid.Row="17" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Unit Assignment" Grid.Column="2"/>
                     <Label Grid.Row="2" FontSize="16" Foreground="White" Content="Middle Name" HorizontalAlignment="Right" Margin="5" />
                     <Label Grid.Row="2" Grid.Column="2" FontSize="16" Foreground="White" Content="Village" HorizontalAlignment="Right" Margin="5" />
                     <Label Grid.Row="3" FontSize="16" Foreground="White" Content="Barangay" HorizontalAlignment="Right" Margin="5" Grid.Column="2" />
@@ -236,16 +240,12 @@
                     <TextBox x:Name="Suspect_placeofbirth" Grid.Row="10" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
                     <TextBox x:Name="Suspect_province" Grid.Row="5" Grid.Column="3" Margin="5" Width="200" TextWrapping="Wrap" Background="#FFDEECFF"/>
                     <TextBox x:Name="Suspect_qualifier" Grid.Row="3" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" BorderBrush="#FFDEECFF" />
-                    <TextBox x:Name="Suspect_town" Grid.Row="4" Grid.Column="3" Margin="5" Width="200" TextWrapping="Wrap" Background="#FFDEECFF"/>
-                    <TextBox x:Name="Suspect_village" Grid.Row="2" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
-                    <Label Grid.Row="16" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Relation to victim" Grid.Column="2"/>
-                    <Label Grid.Row="16" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Work Address"/>
-                    <TextBox x:Name="Suspect_relationtovictim" Grid.Row="16" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
-                    <TextBox x:Name="Suspect_workaddress" Grid.Row="16" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
-                    <Label Grid.Row="17" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="Unit Assignment" Grid.Column="2"/>
-                    <Label Grid.Row="17" Background="{x:Null}" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" FontSize="16" Content="AFP/PNP Rank"/>
-                    <TextBox x:Name="Suspect_unitassignment" Grid.Row="17" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
                     <TextBox x:Name="Suspect_rank" Grid.Row="17" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_relationtovictim" Grid.Row="16" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_town" Grid.Row="4" Grid.Column="3" Margin="5" Width="200" TextWrapping="Wrap" Background="#FFDEECFF"/>
+                    <TextBox x:Name="Suspect_unitassignment" Grid.Row="17" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_village" Grid.Row="2" Grid.Column="3" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
+                    <TextBox x:Name="Suspect_workaddress" Grid.Row="16" Grid.Column="1" FontSize="16" Width="200" Margin="5" Background="#FFDEECFF" />
                 </Grid>
             </TabItem>
         </TabControl>
