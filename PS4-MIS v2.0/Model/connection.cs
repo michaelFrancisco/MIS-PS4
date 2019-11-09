@@ -18,15 +18,15 @@ namespace PS4_MIS_v2._0
 
         public static DataTable dbTable(string query)
         {
-            OdbcConnection dbConnection = new OdbcConnection("DSN=BEAR");
-            dbConnection.Open();
-            OdbcCommand dbCommand = dbConnection.CreateCommand();
-            dbCommand.CommandText = query;
-            OdbcDataReader DbReader = dbCommand.ExecuteReader();
-            DataTable dt = new DataTable();
-            dt.Load(DbReader);
-            dbConnection.Close();
-            return dt;
+                OdbcConnection dbConnection = new OdbcConnection("DSN=BEAR");
+                dbConnection.Open();
+                OdbcCommand dbCommand = dbConnection.CreateCommand();
+                dbCommand.CommandText = query;
+                OdbcDataReader DbReader = dbCommand.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(DbReader);
+                dbConnection.Close();
+                return dt;
         }
 
         public static bool verifyLogin(string username, string password)
