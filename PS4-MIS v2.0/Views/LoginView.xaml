@@ -22,7 +22,7 @@
             <Label Content="Username" HorizontalAlignment="Right" Margin="1" VerticalAlignment="Center" Foreground="White" Grid.Row="1"/>
             <TextBox x:Name="username" HorizontalAlignment="Left" Height="30" Margin="1" TextWrapping="Wrap" Width="200" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" BorderBrush="#FF1F4287"/>
             <TextBox x:Name="password" HorizontalAlignment="Left" Margin="1" Width="200" Height="30" Grid.Column="1" Grid.Row="2" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" BorderBrush="#FF1F4287"/>
-            <Button x:Name="login" Content="Login" Margin="308,1,309,1" Grid.Row="3" Grid.ColumnSpan="2" Background="#FF1F4287" Foreground="White" BorderBrush="#FF1F4287"/>
+            <Button x:Name="login" Content="Login" Margin="308,1,309,1" Grid.Row="3" Grid.ColumnSpan="2" Background="#FF1F4287" Foreground="White" BorderBrush="#FF1F4287" IsDefault="True"/>
             <Image Source="/PS4-MIS v2.0;component/Resources/PNP-Logo.png" Width="900" Grid.ColumnSpan="2" Margin="1"/>
         </Grid>
     </Grid>

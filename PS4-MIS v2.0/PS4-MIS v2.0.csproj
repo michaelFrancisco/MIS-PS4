@@ -169,9 +169,6 @@
     <Compile Include="Views\PoliceReports\EditIRFView.xaml.cs">
       <DependentUpon>EditIRFView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PoliceReports\NewIRFView.xaml.cs">
-      <DependentUpon>NewIRFView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\PoliceReports\PoliceReportsView.xaml.cs">
       <DependentUpon>PoliceReportsView.xaml</DependentUpon>
     </Compile>
@@ -298,10 +295,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PoliceReports\EditIRFView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PoliceReports\NewIRFView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
