@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using PS4_MIS_v2._0.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -259,6 +260,7 @@ namespace PS4_MIS_v2._0.ViewModels.Inventory
             for (int i = 0; i < j; i++)
             {
                 connection.dbCommand("UPDATE `ps4`.`inventory` SET `inUse` = '0', `Date_Out` = null, `Due_Back` = null, `Employee_ID` = null WHERE(`Inventory_ID` = " + _inventoryGridSource.Rows[i][0].ToString() + ")");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Inventory','" + _inventoryGridSource.Rows[i][0].ToString() + "', '" + currentUser.EmployeeID + "', 'Item " + _inventoryGridSource.Rows[i][0].ToString() + " was received')");
             }
             TryClose();
         }

@@ -1,7 +1,9 @@
 ﻿using Caliburn.Micro;
 using PS4_MIS_v2._0.Model;
+using PS4_MIS_v2._0.ViewModels.Dashboard;
 using PS4_MIS_v2._0.ViewModels.Messages;
 using PS4_MIS_v2._0.ViewModels.Notifications;
+using PS4_MIS_v2._0.ViewModels.SystemLogs;
 using System.Data;
 using System.Windows.Media;
 
@@ -11,6 +13,8 @@ namespace PS4_MIS_v2._0.ViewModels
     {
         private Brush _criminalRecordsBrush;
         private double _criminalrecordsHeight;
+        private Brush _dashboardBrush;
+        private double _dashboardHeight;
         private string _displayName;
         private Brush _employeerecordsBrush;
         private double _employeerecordsHeight;
@@ -19,25 +23,46 @@ namespace PS4_MIS_v2._0.ViewModels
         private Brush _messagesBrush;
         private double _messagesHeight;
         private double _notificationsHeight;
+        private string _notificationsText;
         private Brush _policeReportsBrush;
         private double _policereportsHeight;
         private Brush _stolenvehicleBrush;
         private double _stolenvehiclesHeight;
+        private Brush _systemlogsBrush;
+        private double _systemlogsHeight;
         private Brush _visitorlogbookbrush;
         private double _visitorlogbookHeight;
         private Brush notificationsBrush;
         private IWindowManager windowManager = new WindowManager();
+
+        public Brush _notificationsBrush
+        {
+            get { return notificationsBrush; }
+            set { notificationsBrush = value; }
+        }
+
         public Brush criminalRecordsBrush
         {
             get { return _criminalRecordsBrush; }
             set { _criminalRecordsBrush = value; }
         }
 
-
         public double criminalrecordsHeight
         {
             get { return _criminalrecordsHeight; }
             set { _criminalrecordsHeight = value; }
+        }
+
+        public Brush dashboardBrush
+        {
+            get { return _dashboardBrush; }
+            set { _dashboardBrush = value; }
+        }
+
+        public double dashboardHeight
+        {
+            get { return _dashboardHeight; }
+            set { _dashboardHeight = value; }
         }
 
         public string displayName
@@ -88,11 +113,16 @@ namespace PS4_MIS_v2._0.ViewModels
             set { _notificationsHeight = value; }
         }
 
-        public Brush _notificationsBrush
+        public string notificationsText
         {
-            get { return notificationsBrush; }
-            set { notificationsBrush = value; }
+            get
+            {
+                DataTable dt = connection.dbTable("Select * from messages where Receiver = " + currentUser.EmployeeID + " AND isAcknowledged = 0");
+                return "Notifications(" + dt.Rows.Count.ToString() + ")";
+            }
+            set { _notificationsText = value; }
         }
+
         public Brush policeReportsBrush
         {
             get { return _policeReportsBrush; }
@@ -117,6 +147,18 @@ namespace PS4_MIS_v2._0.ViewModels
             set { _stolenvehiclesHeight = value; }
         }
 
+        public Brush systemlogsBrush
+        {
+            get { return _systemlogsBrush; }
+            set { _systemlogsBrush = value; }
+        }
+
+        public double systemlogsHeight
+        {
+            get { return _systemlogsHeight; }
+            set { _systemlogsHeight = value; }
+        }
+
         public Brush visitorlogbookbrush
         {
             get { return _visitorlogbookbrush; }
@@ -132,19 +174,15 @@ namespace PS4_MIS_v2._0.ViewModels
         public void clearColors()
         {
             _criminalRecordsBrush = null;
-            NotifyOfPropertyChange(null);//() => criminalRecordsBrush);
             _employeerecordsBrush = null;
-            NotifyOfPropertyChange(null);//() => employeerecordsBrush);
             _inventoryBrush = null;
-            NotifyOfPropertyChange(null);//() => inventoryBrush);
             _messagesBrush = null;
-            NotifyOfPropertyChange(null);//() => messagesBrush);
             _stolenvehicleBrush = null;
-            NotifyOfPropertyChange(null);//() => stolenvehicleBrush);
             _visitorlogbookbrush = null;
-            NotifyOfPropertyChange(null);//() => visitorlogbookbrush);
             _policeReportsBrush = null;
-            NotifyOfPropertyChange(null);//() => policeReportsBrush);
+            _dashboardBrush = null;
+            _systemlogsBrush = null;
+            NotifyOfPropertyChange(null);
         }
 
         public void criminalRecordsButton()
@@ -153,6 +191,14 @@ namespace PS4_MIS_v2._0.ViewModels
             clearColors();
             _criminalRecordsBrush = new SolidColorBrush(Colors.DarkBlue);
             NotifyOfPropertyChange(null);//() => criminalRecordsBrush);
+        }
+
+        public void dashboardButton()
+        {
+            ActivateItem(new DashboardViewModel());
+            clearColors();
+            _dashboardBrush = new SolidColorBrush(Colors.DarkBlue);
+            NotifyOfPropertyChange(null);
         }
 
         public void employeeRecordsButton()
@@ -209,25 +255,20 @@ namespace PS4_MIS_v2._0.ViewModels
             NotifyOfPropertyChange(null);//() => stolenvehicleBrush);
         }
 
+        public void systemlogsButton()
+        {
+            ActivateItem(new SystemLogsViewModel());
+            clearColors();
+            _systemlogsBrush = new SolidColorBrush(Colors.DarkBlue);
+            NotifyOfPropertyChange(null);
+        }
+
         public void visitorLogbookButton()
         {
             clearColors();
             _visitorlogbookbrush = new SolidColorBrush(Colors.DarkBlue);
             NotifyOfPropertyChange(null);//() => visitorlogbookbrush);
         }
-
-        private string _notificationsText;
-
-        public string notificationsText
-        {
-            get
-            {
-                DataTable dt = connection.dbTable("Select * from messages where Receiver = " + currentUser.EmployeeID + " AND isAcknowledged = 0");
-                return "Notifications(" + dt.Rows.Count.ToString() + ")";
-            }
-            set { _notificationsText = value; }
-        }
-
 
         protected override void OnActivate()
         {
@@ -244,8 +285,11 @@ namespace PS4_MIS_v2._0.ViewModels
                     _inventoryHeight = 40;
                     _visitorlogbookHeight = 0;
                     _employeerecordsHeight = 0;
+                    _systemlogsHeight = 0;
+                    _dashboardHeight = 0;
                     NotifyOfPropertyChange(null);
                     break;
+
                 case "Jailer":
                     _notificationsHeight = 40;
                     _messagesHeight = 0;
@@ -255,8 +299,11 @@ namespace PS4_MIS_v2._0.ViewModels
                     _inventoryHeight = 0;
                     _visitorlogbookHeight = 40;
                     _employeerecordsHeight = 0;
+                    _systemlogsHeight = 0;
+                    _dashboardHeight = 0;
                     NotifyOfPropertyChange(null);
                     break;
+
                 case "Desk Officer":
                     _notificationsHeight = 40;
                     _messagesHeight = 0;
@@ -266,8 +313,11 @@ namespace PS4_MIS_v2._0.ViewModels
                     _inventoryHeight = 0;
                     _visitorlogbookHeight = 0;
                     _employeerecordsHeight = 0;
+                    _systemlogsHeight = 0;
+                    _dashboardHeight = 0;
                     NotifyOfPropertyChange(null);
                     break;
+
                 case "Administrator":
                     _notificationsHeight = 40;
                     _messagesHeight = 40;
@@ -277,6 +327,8 @@ namespace PS4_MIS_v2._0.ViewModels
                     _inventoryHeight = 40;
                     _visitorlogbookHeight = 40;
                     _employeerecordsHeight = 40;
+                    _systemlogsHeight = 40;
+                    _dashboardHeight = 40;
                     NotifyOfPropertyChange(null);
                     break;
             }

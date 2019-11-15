@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Win32;
+using PS4_MIS_v2._0.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -216,11 +217,13 @@ namespace PS4_MIS_v2._0.ViewModels.StolenVehicles
             {
                 savePicture();
                 connection.dbCommand("UPDATE `ps4`.`stolenvehicles` SET `Type` = '" + _typeSelectedItem + "', `Plate_No` = '" + _plateno + "', `Chassis_No` = '" + _chassisno + "', `Make` = '" + _make + "', `Model` = '" + _model + "', `Color` = '" + _color + "', `Owner` = '" + _owner + "', `Suspect` = '" + _suspect + "', `Date_Stolen` = '" + _datestolenSelectedDate + "', `Location_Stolen` = '" + _locationstolen + "', `Remarks` = '" + _remarks + "', `Picture` = '" + _savedVehiclePictureFilePath + "' WHERE (`Vehicle_ID` = '" + _selectedVehicleID + "');");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Vehicle','" + _vehicleid + "', '" + currentUser.EmployeeID + "', 'Edited Stolen Vehicle Record " + _vehicleid + "')");
                 TryClose();
             }
             else if (areRequiredFieldsComplete())
             {
                 connection.dbCommand("UPDATE `ps4`.`stolenvehicles` SET `Type` = '" + _typeSelectedItem + "', `Plate_No` = '" + _plateno + "', `Chassis_No` = '" + _chassisno + "', `Make` = '" + _make + "', `Model` = '" + _model + "', `Color` = '" + _color + "', `Owner` = '" + _owner + "', `Suspect` = '" + _suspect + "', `Date_Stolen` = '" + _datestolenSelectedDate + "', `Location_Stolen` = '" + _locationstolen + "', `Remarks` = '" + _remarks + "' WHERE (`Vehicle_ID` = '" + _selectedVehicleID + "');");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Vehicle','" + _vehicleid + "', '" + currentUser.EmployeeID + "', 'Edited Stolen Vehicle Record " + _vehicleid + "')");
                 TryClose();
             }
             else

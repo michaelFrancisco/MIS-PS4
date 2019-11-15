@@ -4,13 +4,14 @@ using PdfSharp.Pdf.IO;
 using PS4_MIS_v2._0.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows;
 
 namespace PS4_MIS_v2._0.ViewModels.PoliceReports
 {
     internal class AddIRFViewModel : Screen
     {
-        public string[] _itemsArray = new string[124];
+        public string[] _itemsArray = new string[126];
         private string _a1;
         private string _a10;
         private string _a11;
@@ -971,16 +972,25 @@ namespace PS4_MIS_v2._0.ViewModels.PoliceReports
 
         public void saveButton()
         {
-            connection.dbCommand("INSERT INTO `ps4`.`irf` (`Blotter_Entry_Number`, `Type_Of_Incident`, `DateTime_Reported`, `DateTime_of_Incident`, `Recorded_By`, `Place_Of_Incident`, `Station_Phone_Number`, `DO_Mobile`, `Chief_Mobile`, `Narrative`)" +
-                "VALUES ('" + _z1 + "', '" + _z2 + "', '" + datetimereported() + "', '" + datetimeincident() + "', '" + currentUser.EmployeeID + "', '" + _z11 + "', '" + _z12 + "', '" + _z13 + "', '" + _z14 + "', '" + _d1 + "');");
-            connection.dbCommand("INSERT INTO `ps4`.`irfa` (`Blotter_Entry_Number`, `Family_Name`, `First_Name`, `Middle_Name`, `Qualifier`, `Nickname`, `Citizenship`, `Sex`, `Civil_Status`, `Date_of_Birth`, `Age`, `Place_of_Birth`, `Home_Phone`, `Mobile_Phone`, `House_Number`, `Vilage`, `Barangay`, `Town`, `Province`, `Other_House_Number`, `Other_Village`, `Other_Barangay`, `Other_Town`, `Other_Province`, `Highest_Educational_Attainment`, `Occupation`, `ID_Card_Presented`, `Email_Address`) " +
-                "VALUES ('" + _z1 + "', '" + _a1 + "', '" + _a2 + "', '" + _a3 + "', '" + _a4 + "', '" + _a5 + "', '" + _a6 + "', '" + _a7si + "', '" + _a8si + "', '" + _a9sd.ToString("yyyy-MM-dd") + "', '" + _a10 + "', '" + _a11 + "', '" + _a12 + "', '" + _a14 + "', '" + _a17 + "', '" + _a18 + "', '" + _a19 + "', '" + _a20 + "', '" + _a21 + "', '" + _a22 + "', '" + _a23 + "', '" + _a24 + "', '" + _a25 + "', '" + _a26 + "', '" + _a15 + "', '" + _a16 + "', '" + _a27 + "', '" + _a28 + "');");
-            connection.dbCommand("INSERT INTO `ps4`.`irfb` (`Blotter_Entry_Number`, `Family_Name`, `First_Name`, `Middle_Name`, `Qualifier`, `Nickname`, `Citizenship`, `Sex`, `Civil_Status`, `Date_of_Birth`, `Age`, `Place_of_Birth`, `Home_Phone`, `Mobile_Phone`, `House_Number`, `Vilage`, `Barangay`, `Town`, `Province`, `Other_House_Number`, `Other_Village`, `Other_Barangay`, `Other_Town`, `Other_Province`, `Highest_Educational_Attainment`, `Work_Address`, `Relation_To_Victim`, `Email_Address`, `Rank`, `Unit_Assignment`, `Group_Affiliation`, `Previous_Criminal_Record`, `Status_Of_Previous_Case`, `Height`, `Weight`, `Color_Of_Eyes`, `Description_Of_Eyes`, `Color_Of_Hair`, `Description_Of_Hair`, `Under_The_Influence`) " +
-                "VALUES ('" + _z1 + "', '" + _b1 + "', '" + _b2 + "', '" + _b3 + "', '" + _b4 + "', '" + _b5 + "', '" + _b6 + "', '" + _b7si + "', '" + _b8si + "', '" + _b9sd.ToString("yyyy-MM-dd") + "', '" + _b10 + "', '" + _b11 + "', '" + _b12 + "', '" + _b13 + "', '" + _b22 + "', '" + _b23 + "', '" + _b24 + "', '" + _b25 + "', '" + _b26 + "', '" + _b27 + "', '" + _b28 + "', '" + _b29 + "', '" + _b30 + "', '" + _b31 + "', '" + _b14 + "', '" + _b16 + "', '" + _b40 + "', '" + _b32 + "', '" + _b33 + "', '" + _b34 + "', '" + _b35 + "', '" + _b18si + "', '" + _b36 + "', '" + _b19 + "', '" + _b37 + "', '" + _b20 + "', '" + _b38 + "', '" + _b21 + "', '" + _b39 + "', '');");
-            connection.dbCommand("INSERT INTO `ps4`.`irfc` (`Blotter_Entry_Number`, `Family_Name`, `First_Name`, `Middle_Name`, `Qualifier`, `Nickname`, `Citizenship`, `Sex`, `Civil_Status`, `Date_Of_Birth`, `Age`, `Place_Of_Birth`, `Home_Phone`, `Mobile_Phone`, `House_Number`, `Village`, `Barangay`, `Town`, `Province`, `Other_House_Number`, `Other_Village`, `Other_Barangay`, `Other_Town`, `Other_Province`, `Highest_Educational_Attainment`, `Occupation`, `Work_Address`, `Email_Address`) " +
-                "VALUES ('" + _z1 + "', '" + _c1 + "', '" + _c2 + "', '" + _c3 + "', '" + _c4 + "', '" + _c5 + "', '" + _c6 + "', '" + _c7si + "', '" + _c8si + "', '" + _c9sd.ToString("yyyy-MM-dd") + "', '" + _c10 + "', '" + _c11 + "', '" + _c12 + "', '" + _c13 + "', '" + _c17 + "', '" + _c18 + "', '" + _c19 + "', '" + _c20 + "', '" + _c21 + "', '" + _c22 + "', '" + _c23 + "', '" + _c24 + "', '" + _c25 + "', '" + _c26 + "', '" + _c14 + "', '" + _c15 + "', '" + _c16 + "', '" + _c28 + "');");
-            connection.dbCommand("INSERT INTO `ps4`.`irfd` (`Name_Of_Guardian`, `Guardian_Address`, `Home_Phone`, `Mobile_Phone`, `Diversion_Mechanism`, `Features`) VALUES ('" + _e1 + "', '" + _e2 + "', '" + _e3 + "', '" + _e4 + "', '" + _e5 + "', '" + _e6 + "');");
-            TryClose();
+            DataTable dt = connection.dbTable("select * from irf where Blotter_Entry_Number = '" + _z1 + "';");
+            if (dt.Rows.Count == 0)
+            {
+                connection.dbCommand("INSERT INTO `ps4`.`irf` (`Blotter_Entry_Number`, `Type_Of_Incident`, `DateTime_Reported`, `DateTime_of_Incident`, `Recorded_By`, `Place_Of_Incident`, `Station_Phone_Number`, `DO_Mobile`, `Chief_Mobile`, `Narrative`)" +
+                        "VALUES ('" + _z1 + "', '" + _z2 + "', '" + datetimereported() + "', '" + datetimeincident() + "', '" + currentUser.EmployeeID + "', '" + _z11 + "', '" + _z12 + "', '" + _z13 + "', '" + _z14 + "', '" + _d1 + "');");
+                connection.dbCommand("INSERT INTO `ps4`.`irfa` (`Blotter_Entry_Number`, `Family_Name`, `First_Name`, `Middle_Name`, `Qualifier`, `Nickname`, `Citizenship`, `Sex`, `Civil_Status`, `Date_of_Birth`, `Age`, `Place_of_Birth`, `Home_Phone`, `Mobile_Phone`, `House_Number`, `Vilage`, `Barangay`, `Town`, `Province`, `Other_House_Number`, `Other_Village`, `Other_Barangay`, `Other_Town`, `Other_Province`, `Highest_Educational_Attainment`, `Occupation`, `ID_Card_Presented`, `Email_Address`) " +
+                    "VALUES ('" + _z1 + "', '" + _a1 + "', '" + _a2 + "', '" + _a3 + "', '" + _a4 + "', '" + _a5 + "', '" + _a6 + "', '" + _a7si + "', '" + _a8si + "', '" + _a9sd.ToString("yyyy-MM-dd") + "', '" + _a10 + "', '" + _a11 + "', '" + _a12 + "', '" + _a14 + "', '" + _a17 + "', '" + _a18 + "', '" + _a19 + "', '" + _a20 + "', '" + _a21 + "', '" + _a22 + "', '" + _a23 + "', '" + _a24 + "', '" + _a25 + "', '" + _a26 + "', '" + _a15 + "', '" + _a16 + "', '" + _a27 + "', '" + _a28 + "');");
+                connection.dbCommand("INSERT INTO `ps4`.`irfb` (`Blotter_Entry_Number`, `Family_Name`, `First_Name`, `Middle_Name`, `Qualifier`, `Nickname`, `Citizenship`, `Sex`, `Civil_Status`, `Date_of_Birth`, `Age`, `Place_of_Birth`, `Home_Phone`, `Mobile_Phone`, `House_Number`, `Vilage`, `Barangay`, `Town`, `Province`, `Other_House_Number`, `Other_Village`, `Other_Barangay`, `Other_Town`, `Other_Province`, `Highest_Educational_Attainment`, `Work_Address`, `Relation_To_Victim`, `Email_Address`, `Rank`, `Unit_Assignment`, `Group_Affiliation`, `Previous_Criminal_Record`, `Status_Of_Previous_Case`, `Height`, `Weight`, `Color_Of_Eyes`, `Description_Of_Eyes`, `Color_Of_Hair`, `Description_Of_Hair`, `Under_The_Influence`) " +
+                    "VALUES ('" + _z1 + "', '" + _b1 + "', '" + _b2 + "', '" + _b3 + "', '" + _b4 + "', '" + _b5 + "', '" + _b6 + "', '" + _b7si + "', '" + _b8si + "', '" + _b9sd.ToString("yyyy-MM-dd") + "', '" + _b10 + "', '" + _b11 + "', '" + _b12 + "', '" + _b13 + "', '" + _b22 + "', '" + _b23 + "', '" + _b24 + "', '" + _b25 + "', '" + _b26 + "', '" + _b27 + "', '" + _b28 + "', '" + _b29 + "', '" + _b30 + "', '" + _b31 + "', '" + _b14 + "', '" + _b16 + "', '" + _b40 + "', '" + _b32 + "', '" + _b33 + "', '" + _b34 + "', '" + _b35 + "', '" + _b18si + "', '" + _b36 + "', '" + _b19 + "', '" + _b37 + "', '" + _b20 + "', '" + _b38 + "', '" + _b21 + "', '" + _b39 + "', '');");
+                connection.dbCommand("INSERT INTO `ps4`.`irfc` (`Blotter_Entry_Number`, `Family_Name`, `First_Name`, `Middle_Name`, `Qualifier`, `Nickname`, `Citizenship`, `Sex`, `Civil_Status`, `Date_Of_Birth`, `Age`, `Place_Of_Birth`, `Home_Phone`, `Mobile_Phone`, `House_Number`, `Village`, `Barangay`, `Town`, `Province`, `Other_House_Number`, `Other_Village`, `Other_Barangay`, `Other_Town`, `Other_Province`, `Highest_Educational_Attainment`, `Occupation`, `Work_Address`, `Email_Address`) " +
+                    "VALUES ('" + _z1 + "', '" + _c1 + "', '" + _c2 + "', '" + _c3 + "', '" + _c4 + "', '" + _c5 + "', '" + _c6 + "', '" + _c7si + "', '" + _c8si + "', '" + _c9sd.ToString("yyyy-MM-dd") + "', '" + _c10 + "', '" + _c11 + "', '" + _c12 + "', '" + _c13 + "', '" + _c17 + "', '" + _c18 + "', '" + _c19 + "', '" + _c20 + "', '" + _c21 + "', '" + _c22 + "', '" + _c23 + "', '" + _c24 + "', '" + _c25 + "', '" + _c26 + "', '" + _c14 + "', '" + _c15 + "', '" + _c16 + "', '" + _c28 + "');");
+                connection.dbCommand("INSERT INTO `ps4`.`irfd` (`Name_Of_Guardian`, `Guardian_Address`, `Home_Phone`, `Mobile_Phone`, `Diversion_Mechanism`, `Features`) VALUES ('" + _e1 + "', '" + _e2 + "', '" + _e3 + "', '" + _e4 + "', '" + _e5 + "', '" + _e6 + "');");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('IRF','" + _z1 + "', '" + currentUser.EmployeeID + "', 'Created IRF " + _z1 + "')");
+                TryClose();
+            }
+            else
+            {
+                MessageBox.Show("Blotter entry number " + _z1 + " already exists");
+            }
         }
 
         private static String getAppStartPath(string filename)
@@ -1131,14 +1141,14 @@ namespace PS4_MIS_v2._0.ViewModels.PoliceReports
             _itemsArray[120] = _d1;
             _itemsArray[121] = "Novaliches Police Station 4";
             _itemsArray[122] = _z12;
-            _itemsArray[123] = "PLTCOL ROSSEL I CEJAS";
+            _itemsArray[123] = "PLTCOL CEJAS";
         }
 
         private void filloutPDF()
         {
             filloutItemsArray();
             PdfDocument pd = PdfReader.Open(getAppStartPath("IRF.pdf"), PdfDocumentOpenMode.Modify);
-            for (int i = 0; i < pd.AcroForm.Fields.Count; i++)
+            for (int i = 0; i < 126; i++)
             {
                 pd.AcroForm.Fields[i].Value = new PdfString(_itemsArray[i]);
             }

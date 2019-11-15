@@ -1,7 +1,9 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Win32;
+using PS4_MIS_v2._0.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;
@@ -19,7 +21,7 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
         private DateTime _birthdate;
         private DateTime _birthdateSelectedDate;
         private string _birthplace;
-        private string _crime;
+        private List<string> _crime;
         private string _criminalID;
         private string _criminalPicture = null;
         private ImageSource _criminalPictureSource;
@@ -87,11 +89,20 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
             set { _birthplace = value; }
         }
 
-        public string crime
+        public List<string> crime
         {
-            get { return _crime; }
+            get { return new List<string> { "Assault", "Battery", "Kidnapping", "Homicide", "Rape", "Larceny", "Robbery", "Burglary", "Arson", "Forgery", "Drunk Driving"}; }
             set { _crime = value; }
         }
+
+        private string _selectedCrime;
+
+        public string selectedCrime
+        {
+            get { return _selectedCrime; }
+            set { _selectedCrime = value; }
+        }
+
 
         public string criminalID
         {
@@ -221,19 +232,23 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
             {
                 savePicture();
                 connection.dbCommand("INSERT INTO `ps4`.`criminalrecords` (`First_Name`, `Middle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Address`, `Crime`, `Place_of_Arrest`, `Arresting_Officer`, `Date_of_Arrest`, `Eye_Color`, `Hair_Color`, `Remarks`, `Picture`, `Hospital`) " +
-                    "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _selectedSex + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _address + "', '" + _crime + "', '" + _placeofarrest + "', '" + _arrestingofficer + "', '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', '" + _eyecolor + "', '" + _haircolor + "', '" + _remarks + "', '" + _savedCriminalPictureFilePath + "', '" + _hospital + "');");
+                    "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _selectedSex + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _address + "', '" + _selectedCrime + "', '" + _placeofarrest + "', '" + _arrestingofficer + "', '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', '" + _eyecolor + "', '" + _haircolor + "', '" + _remarks + "', '" + _savedCriminalPictureFilePath + "', '" + _hospital + "');");
+                DataTable dt = connection.dbTable("select MAX(Criminal_ID) from criminalrecords");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Criminal Record','" + dt.Rows[0][0].ToString() + "', '" + currentUser.EmployeeID + "', 'Created Criminal Record " + dt.Rows[0][0].ToString() + "')");
                 TryClose();
             }
             else if (areRequiredFieldsComplete())
             {
                 connection.dbCommand("INSERT INTO `ps4`.`criminalrecords` (`First_Name`, `Middle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Address`, `Crime`, `Place_of_Arrest`, `Arresting_Officer`, `Date_of_Arrest`, `Eye_Color`, `Hair_Color`, `Remarks`, `Picture`, `Hospital`) " +
-                    "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _selectedSex + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _address + "', '" + _crime + "', '" + _placeofarrest + "', '" + _arrestingofficer + "', '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', '" + _eyecolor + "', '" + _haircolor + "', '" + _remarks + "', null, '" + _hospital + "');");
-                TryClose();
+                    "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _selectedSex + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _address + "', '" + _selectedCrime + "', '" + _placeofarrest + "', '" + _arrestingofficer + "', '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', '" + _eyecolor + "', '" + _haircolor + "', '" + _remarks + "', null, '" + _hospital + "');");
+                DataTable dt = connection.dbTable("select MAX(Criminal_ID) from criminalrecords");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Criminal Record','" + dt.Rows[0][0].ToString() + "', '" + currentUser.EmployeeID + "', 'Created Criminal Record " + dt.Rows[0][0].ToString() + "')");
             }
             else
             {
                 MessageBox.Show("Please fill out all required fields");
             }
+
         }
 
         protected override void OnActivate()
@@ -269,7 +284,7 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
                 _middlename == string.Empty ||
                 _lastname == string.Empty ||
                 _selectedSex == string.Empty ||
-                _crime == string.Empty ||
+                _selectedCrime == string.Empty ||
                 _placeofarrest == string.Empty ||
                 _arrestingofficer == string.Empty ||
                 _selectedSex == string.Empty

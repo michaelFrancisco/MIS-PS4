@@ -143,7 +143,7 @@ namespace PS4_MIS_v2._0.ViewModels
 
         public void refreshButton()
         {
-            _irfGridItemSource = connection.dbTable("SELECT `irf`.`IRF_ID`, `irf`.`Blotter_Entry_Number`, `irf`.`Type_Of_Incident`, `irf`.`Recorded_By`,`irfa`.`First_Name`, `irfa`.`Family_Name` from irf inner join irfa on `irf`.`Blotter_Entry_Number` = `irfa`.`Blotter_Entry_Number`;");
+            _irfGridItemSource = connection.dbTable("SELECT IRF_ID, Blotter_Entry_Number, Type_Of_Incident, DateTime_Reported, DateTime_of_Incident, Recorded_By FROM `ps4`.`irf`;");
             _baseIRFGridItemSource = _irfGridItemSource;
             NotifyOfPropertyChange(() => irfGridItemSource);
         }
@@ -153,7 +153,7 @@ namespace PS4_MIS_v2._0.ViewModels
             _firstname = string.Empty;
             _blotterentryno = string.Empty;
             _lastname = string.Empty;
-            _irfGridItemSource = connection.dbTable("SELECT `irf`.`IRF_ID`, `irf`.`Blotter_Entry_Number`, `irf`.`Type_Of_Incident`, `irf`.`Recorded_By`,`irfa`.`First_Name`, `irfa`.`Family_Name` from irf inner join irfa on `irf`.`Blotter_Entry_Number` = `irfa`.`Blotter_Entry_Number`;");
+            _irfGridItemSource = connection.dbTable("SELECT IRF_ID, Blotter_Entry_Number, Type_Of_Incident, DateTime_Reported, DateTime_of_Incident, Recorded_By FROM `ps4`.`irf`;");
             _baseIRFGridItemSource = _irfGridItemSource;
             NotifyOfPropertyChange(null);
         }
@@ -171,7 +171,7 @@ namespace PS4_MIS_v2._0.ViewModels
 
         protected override void OnActivate()
         {
-            _irfGridItemSource = connection.dbTable("SELECT `irf`.`IRF_ID`, `irf`.`Blotter_Entry_Number`, `irf`.`Type_Of_Incident`, `irf`.`Recorded_By`,`irfa`.`First_Name`, `irfa`.`Family_Name` from irf inner join irfa on `irf`.`Blotter_Entry_Number` = `irfa`.`Blotter_Entry_Number`;");
+            _irfGridItemSource = connection.dbTable("SELECT IRF_ID, Blotter_Entry_Number, Type_Of_Incident, DateTime_Reported, DateTime_of_Incident, Recorded_By FROM `ps4`.`irf`;");
             _baseIRFGridItemSource = _irfGridItemSource;
             NotifyOfPropertyChange(() => irfGridItemSource);
             base.OnActivate();

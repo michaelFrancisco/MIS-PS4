@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Win32;
+using PS4_MIS_v2._0.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -265,18 +266,23 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
                 savePicture();
                 connection.dbCommand("INSERT INTO `ps4`.`employeerecords` (`First_Name`, `Midle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Civil_Status`, `Address`, `Department`, `Position`, `Rank`, `User_Level`, `Remarks`, `Picture`) " +
                     "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _sexSelectedItem + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _civilstatusSelectedItem + "', '" + _address + "', '" + _department + "', '" + _position + "', '" + _rankSelectedItem + "', '" + _userlevelSelectedItem + "', '" + _remarks + "', '" + _savedEmployeePictureFilePath + "');");
+                DataTable dt2 = connection.dbTable("select MAX(Employee_ID) from employeerecords");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Employee Record','" + dt2.Rows[0][0].ToString() + "', '" + currentUser.EmployeeID + "', 'Created Employee Record " + dt2.Rows[0][0].ToString() + "')");
                 TryClose();
             }
             else if (areRequiredFieldsComplete())
             {
                 connection.dbCommand("INSERT INTO `ps4`.`employeerecords` (`First_Name`, `Midle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Civil_Status`, `Address`, `Department`, `Position`, `Rank`, `User_Level`, `Remarks`, `Picture`) " +
                     "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _sexSelectedItem + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _civilstatusSelectedItem + "', '" + _address + "', '" + _department + "', '" + _position + "', '" + _rankSelectedItem + "', '" + _userlevelSelectedItem + "', '" + _remarks + "', null);");
+                DataTable dt2 = connection.dbTable("select MAX(Employee_ID) from employeerecords");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Employee Record','" + dt2.Rows[0][0].ToString() + "', '" + currentUser.EmployeeID + "', 'Created Employee Record " + dt2.Rows[0][0].ToString() + "')");
                 TryClose();
             }
             else
             {
                 MessageBox.Show("Please fill out all required fields");
             }
+
         }
 
         protected override void OnActivate()

@@ -1,7 +1,9 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Win32;
+using PS4_MIS_v2._0.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;
@@ -167,11 +169,15 @@ namespace PS4_MIS_v2._0.ViewModels.StolenVehicles
             {
                 savePicture();
                 connection.dbCommand("INSERT INTO `ps4`.`stolenvehicles` (`Type`, `Plate_No`, `Chassis_No`, `Make`, `Model`, `Color`, `Date_Stolen`, `Location_Stolen`, `Suspect`, `Owner`, `Remarks`, `Picture`) VALUES ('" + _typeSelectedItem + "', '" + _plateno + "', '" + _chassisno + "', '" + _make + "', '" + _model + "', '" + _color + "', '" + _datestolenSelectedDate + "', '" + _locationstolen + "', '" + _suspect + "', '" + _owner + "', '" + _remarks + "', '" + _savedVehiclePictureFilePath + "');");
+                DataTable dt = connection.dbTable("select MAX(Vehicle_ID) from stolenvehicles");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Vehicle','" + dt.Rows[0][0].ToString() + "', '" + currentUser.EmployeeID + "', 'Created Stolen Vehicle Record " + dt.Rows[0][0].ToString() + "')");
                 TryClose();
             }
             else if (areRequiredFieldsComplete())
             {
                 connection.dbCommand("INSERT INTO `ps4`.`stolenvehicles` (`Type`, `Plate_No`, `Chassis_No`, `Make`, `Model`, `Color`, `Date_Stolen`, `Location_Stolen`, `Suspect`, `Owner`, `Remarks`, `Picture`) VALUES ('" + _typeSelectedItem + "', '" + _plateno + "', '" + _chassisno + "', '" + _make + "', '" + _model + "', '" + _color + "', '" + _datestolenSelectedDate + "', '" + _locationstolen + "', '" + _suspect + "', '" + _owner + "', '" + _remarks + "', null);");
+                DataTable dt = connection.dbTable("select MAX(Vehicle_ID) from stolenvehicles");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Vehicle','" + dt.Rows[0][0].ToString() + "', '" + currentUser.EmployeeID + "', 'Created Stolen Vehicle Record " + dt.Rows[0][0].ToString() + "')");
                 TryClose();
             }
             else

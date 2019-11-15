@@ -1,7 +1,9 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Win32;
+using PS4_MIS_v2._0.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Windows;
 using System.Windows.Media;
@@ -154,11 +156,15 @@ namespace PS4_MIS_v2._0.ViewModels.Inventory
             {
                 savePicture();
                 connection.dbCommand("INSERT INTO `ps4`.`inventory` (`Category`,`Name`, `Make`, `Model`, `Serial`, `Quantity`, `Acquired`, `Remarks`, `Picture`) VALUES ('" + _categorySelectedItem + "','" + _name + "', '" + _make + "', '" + _model + "', '" + _serial + "', " + _quantity + ", '" + _acquiredSelectedDate.ToString("yyyy-MM-dd") + "', '" + _remarks + "', '" + _savedItemPictureFilePath + "');");
+                DataTable dt = connection.dbTable("select MAX(Inventory_ID) from inventory");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Inventory','" + dt.Rows[0][0].ToString() + "', '" + currentUser.EmployeeID + "', 'Created Inventory Item " + dt.Rows[0][0].ToString() + "')");
                 TryClose();
             }
             else if (areRequiredFieldsComplete())
             {
                 connection.dbCommand("INSERT INTO `ps4`.`inventory` (`Category`,`Name`, `Make`, `Model`, `Serial`, `Quantity`, `Acquired`, `Remarks`, `Picture`) VALUES ('" + _categorySelectedItem + "','" + _name + "', '" + _make + "', '" + _model + "', '" + _serial + "', " + _quantity + ", '" + _acquiredSelectedDate.ToString("yyyy-MM-dd") + "', '" + _remarks + "', null);");
+                DataTable dt = connection.dbTable("select MAX(Inventory_ID) from inventory");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Inventory','" + dt.Rows[0][0].ToString() + "', '" + currentUser.EmployeeID + "', 'Created Inventory Item " + dt.Rows[0][0].ToString() + "')");
                 TryClose();
             }
         }

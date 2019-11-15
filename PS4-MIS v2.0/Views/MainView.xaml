@@ -24,6 +24,7 @@
                 <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="12" x:Name="display" Text="{Binding displayName}"></TextBlock>
             </StackPanel>
             <StackPanel>
+                <Button Height="{Binding dashboardHeight}" Background="{Binding dashboardBrush}" Foreground="White" x:Name="dashboardButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" VerticalContentAlignment="Center" Content="Dashboard"/>
                 <Button Height="{Binding notificationsHeight}" Background="{Binding notificationsBrush}" Foreground="White" x:Name="notificationsButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" VerticalContentAlignment="Center" Content="{Binding notificationsText}"/>
                 <Button Height="{Binding messagesHeight}" Background="{Binding messagesBrush}" Foreground="White" x:Name="messagesButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" VerticalContentAlignment="Center" Content="Messages"/>
                 <Button Background="{Binding criminalRecordsBrush}" Foreground="White" x:Name="criminalRecordsButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" Content="Criminal Records" Height="{Binding criminalrecordsHeight}"/>
@@ -32,6 +33,7 @@
                 <Button Height="{Binding inventoryHeight}" Background="{Binding inventoryBrush}" Foreground="White" x:Name="inventoryButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5">Inventory</Button>
                 <Button Height="{Binding visitorlogbookHeight}" Background="{Binding visitorlogbookbrush}" Foreground="White" x:Name="visitorLogbookButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5">Visitor Logbook</Button>
                 <Button Background="{Binding employeerecordsBrush}" Foreground="White" x:Name="employeeRecordsButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" Height="{Binding employeerecordsHeight}">Employee Records</Button>
+                <Button Background="{Binding systemlogsBrush}" Foreground="White" x:Name="systemlogsButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" Height="{Binding systemlogsHeight}">System Logs</Button>
                 <Button  Foreground="White" x:Name="logoutButton" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5">Logout</Button>
             </StackPanel>
         </StackPanel>

@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Win32;
+using PS4_MIS_v2._0.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Media.Imaging;
 
 namespace PS4_MIS_v2._0.ViewModels.Inventory
 {
-    class ShowItemViewModel : Screen
+    internal class ShowItemViewModel : Screen
     {
         private bool _hasPicture = false;
         private bool _quantityEnabled;
@@ -34,6 +35,7 @@ namespace PS4_MIS_v2._0.ViewModels.Inventory
         {
             _selectedInventoryID = selectedInventoryID;
         }
+
         public DateTime acquired
         {
             get { return _acquired; }
@@ -135,6 +137,7 @@ namespace PS4_MIS_v2._0.ViewModels.Inventory
                 TryClose();
             }
         }
+
         public void changePictureButton()
         {
             OpenFileDialog op = new OpenFileDialog();
@@ -158,12 +161,14 @@ namespace PS4_MIS_v2._0.ViewModels.Inventory
             if (areRequiredFieldsComplete() && _hasPicture)
             {
                 savePicture();
-                connection.dbCommand("UPDATE `ps4`.`inventory` SET `Category` = '"+_categorySelectedItem+"', `Name` = '"+_name+"', `Make` = '"+_make+"', `Model` = '"+_model+"', `Serial` = '"+_serial+"', `Quantity` = "+_quantity+", `Acquired` = '"+_acquiredSelectedDate.ToString("yyyy-MM-dd")+"', `Remarks` = '"+_remarks+"', `Picture` = '"+_savedItemPictureFilePath+"' WHERE (`Inventory_ID` = "+_selectedInventoryID+");");
+                connection.dbCommand("UPDATE `ps4`.`inventory` SET `Category` = '" + _categorySelectedItem + "', `Name` = '" + _name + "', `Make` = '" + _make + "', `Model` = '" + _model + "', `Serial` = '" + _serial + "', `Quantity` = " + _quantity + ", `Acquired` = '" + _acquiredSelectedDate.ToString("yyyy-MM-dd") + "', `Remarks` = '" + _remarks + "', `Picture` = '" + _savedItemPictureFilePath + "' WHERE (`Inventory_ID` = " + _selectedInventoryID + ");");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Inventory','" + _inventoryid + "', '" + currentUser.EmployeeID + "', 'Edited Inventory Item " + _inventoryid + "')");
                 TryClose();
             }
             else if (areRequiredFieldsComplete())
             {
                 connection.dbCommand("UPDATE `ps4`.`inventory` SET `Category` = '" + _categorySelectedItem + "', `Name` = '" + _name + "', `Make` = '" + _make + "', `Model` = '" + _model + "', `Serial` = '" + _serial + "', `Quantity` = " + _quantity + ", `Acquired` = '" + _acquiredSelectedDate.ToString("yyyy-MM-dd") + "', `Remarks` = '" + _remarks + "' WHERE (`Inventory_ID` = " + _selectedInventoryID + ");");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Inventory','" + _inventoryid + "', '" + currentUser.EmployeeID + "', 'Edited Inventory Item " + _inventoryid + "')");
                 TryClose();
             }
         }

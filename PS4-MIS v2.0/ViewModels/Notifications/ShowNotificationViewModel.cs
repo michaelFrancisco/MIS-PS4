@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using PS4_MIS_v2._0.Model;
 using System.Data;
 
 namespace PS4_MIS_v2._0.ViewModels.Notifications
@@ -28,6 +29,7 @@ namespace PS4_MIS_v2._0.ViewModels.Notifications
         public void ok()
         {
             connection.dbCommand("UPDATE `ps4`.`messages` SET `isAcknowledged` = '1' WHERE (`Message_ID` = '" + _selectedMessageID + "');");
+            connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Message','" + _selectedMessageID + "', '" + currentUser.EmployeeID + "', 'Acknowledged Message " + _selectedMessageID + "')");
             TryClose();
         }
 

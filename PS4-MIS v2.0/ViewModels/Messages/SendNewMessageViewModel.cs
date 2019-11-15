@@ -250,6 +250,8 @@ namespace PS4_MIS_v2._0.ViewModels.Messages
             for (int i = 0; i < j; i++)
             {
                 connection.dbCommand("INSERT INTO `ps4`.`messages` (`Sender`, `Receiver`, `Subject`, `Body`, `isAcknowledged`) VALUES ('" + currentUser.EmployeeID + "', '" + _recipientsGridSource.Rows[i][0].ToString() + "', '" + _subject + "', '" + _body + "', '0');");
+                DataTable dt = connection.dbTable("select MAX(Message_ID) from messages");
+                connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Message','" + dt.Rows[0][0].ToString() + "', '" + currentUser.EmployeeID + "', 'Sent Message " + dt.Rows[0][0].ToString() + "')");
             }
             TryClose();
         }

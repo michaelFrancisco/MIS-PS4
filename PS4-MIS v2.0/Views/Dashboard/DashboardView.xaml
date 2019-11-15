@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="PS4_MIS_v2._0.Views.Dashboard.DashboardView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:local="clr-namespace:PS4_MIS_v2._0.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="720" d:DesignWidth="1020" Background="#FF343477" FontFamily="Roboto" FontSize="16">
+    <Grid>
+        <WebBrowser x:Name="WebBrowser" Margin="10" Cursor="Arrow" Source="https://app.powerbi.com/view?r=eyJrIjoiYmRlMzNjMzItYzhlZC00NzNhLTg2NzQtYWVjYjg4Yzg4ZjUwIiwidCI6ImFhMWY3MmNiLTZhNzQtNGI5NC04MzVmLTU4ZmRjODRhYTFlOCIsImMiOjEwfQ%3D%3D" />
+    </Grid>
+</UserControl>
