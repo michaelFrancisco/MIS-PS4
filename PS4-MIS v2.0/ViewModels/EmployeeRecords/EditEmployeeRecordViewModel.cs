@@ -331,7 +331,15 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
             }
             if (areRequiredFieldsComplete() && _hasPicture)
             {
-                savePicture();
+                try
+                {
+                    savePicture();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Image Error, please contact IT admin");
+                    throw;
+                }
                 connection.dbCommand("UPDATE `ps4`.`employeerecords` SET `First_Name` = '" + _firstname + "', `Midle_Name` = '" + _middlename + "', `Last_Name` = '" + _lastname + "', `Sex` = '" + _sexSelectedItem + "', `Birthdate` = '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', `Age` = '" + _age + "', `Birthplace` = '" + _birthplace + "', `Civil_Status` = '" + _civilstatusSelectedItem + "', `Address` = '" + _address + "', `Department` = '" + _department + "', `Position` = '" + _position + "', `Rank` = '" + _rankSelectedItem + "', `User_Level` = '" + _userlevelSelectedItem + "', `Remarks` = '" + _remarks + "', `Picture` = '" + _savedEmployeePictureFilePath + "' WHERE (`Employee_ID` = '" + _selectedEmployeeID + "');");
                 connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Employee Record','" + _employeeID + "', '" + currentUser.EmployeeID + "', 'Edited Employee Record " + _employeeID + "')");
                 TryClose();
@@ -346,7 +354,6 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
             {
                 MessageBox.Show("Please fill out all required fields");
             }
-
         }
 
         protected override void OnActivate()

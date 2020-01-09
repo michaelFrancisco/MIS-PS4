@@ -4,8 +4,11 @@ using PS4_MIS_v2._0.ViewModels.Dashboard;
 using PS4_MIS_v2._0.ViewModels.Messages;
 using PS4_MIS_v2._0.ViewModels.Notifications;
 using PS4_MIS_v2._0.ViewModels.SystemLogs;
+using System;
 using System.Data;
+using System.Media;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace PS4_MIS_v2._0.ViewModels
 {
@@ -32,14 +35,34 @@ namespace PS4_MIS_v2._0.ViewModels
         private double _systemlogsHeight;
         private Brush _visitorlogbookbrush;
         private double _visitorlogbookHeight;
-        private Brush notificationsBrush;
+        private Brush _notificationsBrush;
         private IWindowManager windowManager = new WindowManager();
 
-        public Brush _notificationsBrush
+        public Brush notificationsBrush
         {
-            get { return notificationsBrush; }
+            get { return _notificationsBrush; }
             set { notificationsBrush = value; }
         }
+
+        private Brush _notificationsForeground;
+
+        public Brush notificationsForeground
+        {
+            get 
+            {
+                DataTable dt = connection.dbTable("Select * from messages where Receiver = " + currentUser.EmployeeID + " AND isAcknowledged = 0");
+                if (dt.Rows.Count > 0)
+                {
+                    return new SolidColorBrush(Colors.Red);
+                }
+                else
+                {
+                    return new SolidColorBrush(Colors.White);
+                }
+            }
+            set { _notificationsForeground = value; }
+        }
+
 
         public Brush criminalRecordsBrush
         {
@@ -118,7 +141,15 @@ namespace PS4_MIS_v2._0.ViewModels
             get
             {
                 DataTable dt = connection.dbTable("Select * from messages where Receiver = " + currentUser.EmployeeID + " AND isAcknowledged = 0");
-                return "Notifications(" + dt.Rows.Count.ToString() + ")";
+                if (dt.Rows.Count > 0)
+                {
+                    SystemSounds.Beep.Play();
+                    return "Notifications(" + dt.Rows.Count.ToString() + ")";
+                }
+                else
+                {
+                    return "Notifications(0)";
+                }
             }
             set { _notificationsText = value; }
         }
@@ -265,12 +296,23 @@ namespace PS4_MIS_v2._0.ViewModels
 
         public void visitorLogbookButton()
         {
+            ActivateItem(new VisitorLogbookViewModel());
             clearColors();
             _visitorlogbookbrush = new SolidColorBrush(Colors.DarkBlue);
             NotifyOfPropertyChange(null);//() => visitorlogbookbrush);
         }
 
         protected override void OnActivate()
+        {
+            DispatcherTimer dt = new DispatcherTimer();
+            dt.Tick += new EventHandler(timer_Tick);
+            dt.Interval = new TimeSpan(0, 0, 1); // execute every hour
+            dt.Start();
+            initializeSidebar();
+            base.OnActivate();
+        }
+
+        private void initializeSidebar()
         {
             _displayName = currentUser.Rank + " " + currentUser.Firstname + " " + currentUser.Lastname;
             NotifyOfPropertyChange(null);//() => displayName);
@@ -293,7 +335,7 @@ namespace PS4_MIS_v2._0.ViewModels
                 case "Jailer":
                     _notificationsHeight = 40;
                     _messagesHeight = 0;
-                    _criminalrecordsHeight = 0;
+                    _criminalrecordsHeight = 40;
                     _policereportsHeight = 0;
                     _stolenvehiclesHeight = 0;
                     _inventoryHeight = 0;
@@ -332,7 +374,11 @@ namespace PS4_MIS_v2._0.ViewModels
                     NotifyOfPropertyChange(null);
                     break;
             }
-            base.OnActivate();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            NotifyOfPropertyChange(null);
         }
     }
 }

@@ -166,7 +166,7 @@ namespace PS4_MIS_v2._0.ViewModels
 
         public void refreshButton()
         {
-            _criminalRecordsGridItemSource = connection.dbTable("SELECT Criminal_ID, First_Name, Middle_Name, Last_Name, Crime, Place_of_Arrest, Sex, Birthdate, Age, Birthplace, Address, Arresting_Officer, Date_of_Arrest, Eye_Color, Hair_Color, Remarks FROM `ps4`.`criminalrecords`;");
+            _criminalRecordsGridItemSource = connection.dbTable("SELECT Criminal_ID, Date_of_Arrest, Crime, First_Name, Last_Name, Place_of_Arrest, Sex, Age, Arresting_Officer, Birthdate, Birthplace, Address, Eye_Color, Hair_Color, Remarks FROM `ps4`.`criminalrecords`;");
             _basecriminalRecordsGridItemSource = _criminalRecordsGridItemSource;
             NotifyOfPropertyChange(() => criminalRecordsGridItemSource);
         }
@@ -178,7 +178,7 @@ namespace PS4_MIS_v2._0.ViewModels
             _criminalID = string.Empty;
             _crime = string.Empty;
             _location = string.Empty;
-            _criminalRecordsGridItemSource = connection.dbTable("SELECT Criminal_ID, First_Name, Middle_Name, Last_Name, Crime, Place_of_Arrest, Sex, Birthdate, Age, Birthplace, Address, Arresting_Officer, Date_of_Arrest, Eye_Color, Hair_Color, Remarks FROM `ps4`.`criminalrecords`;");
+            _criminalRecordsGridItemSource = connection.dbTable("SELECT Criminal_ID, Date_of_Arrest, Crime, First_Name, Last_Name, Place_of_Arrest, Sex, Age, Arresting_Officer, Birthdate, Birthplace, Address, Eye_Color, Hair_Color, Remarks FROM `ps4`.`criminalrecords`;");
             _basecriminalRecordsGridItemSource = _criminalRecordsGridItemSource;
             NotifyOfPropertyChange(() => firstname);
             NotifyOfPropertyChange(() => lastname);
@@ -201,7 +201,7 @@ namespace PS4_MIS_v2._0.ViewModels
 
         protected override void OnActivate()
         {
-            _criminalRecordsGridItemSource = connection.dbTable("SELECT Criminal_ID, First_Name, Middle_Name, Last_Name, Crime, Place_of_Arrest, Sex, Birthdate, Age, Birthplace, Address, Arresting_Officer, Date_of_Arrest, Eye_Color, Hair_Color, Remarks FROM `ps4`.`criminalrecords`;");
+            _criminalRecordsGridItemSource = connection.dbTable("SELECT Criminal_ID, Date_of_Arrest, Crime, First_Name, Last_Name, Place_of_Arrest, Sex, Age, Arresting_Officer, Birthdate, Birthplace, Address, Eye_Color, Hair_Color, Remarks FROM `ps4`.`criminalrecords`;");
             _basecriminalRecordsGridItemSource = _criminalRecordsGridItemSource;
             NotifyOfPropertyChange(() => criminalRecordsGridItemSource);
             base.OnActivate();

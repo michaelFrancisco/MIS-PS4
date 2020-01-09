@@ -142,6 +142,7 @@
     <Compile Include="ViewModels\StolenVehicles\EditVehicleViewModel.cs" />
     <Compile Include="ViewModels\StolenVehicles\StolenVehiclesViewModel.cs" />
     <Compile Include="ViewModels\SystemLogs\SystemLogsViewModel.cs" />
+    <Compile Include="ViewModels\VisitorLogbook\AddVisitorViewModel.cs" />
     <Compile Include="ViewModels\VisitorLogbook\VisitorLogbookViewModel.cs" />
     <Compile Include="Views\CriminalRecords\AddCriminalRecordView.xaml.cs">
       <DependentUpon>AddCriminalRecordView.xaml</DependentUpon>
@@ -223,6 +224,9 @@
     </Compile>
     <Compile Include="Views\SystemLogs\SystemLogsView.xaml.cs">
       <DependentUpon>SystemLogsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VisitorLogbook\AddVisitorView.xaml.cs">
+      <DependentUpon>AddVisitorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VisitorLogbook\VisitorLogbookView.xaml.cs">
       <DependentUpon>VisitorLogbookView.xaml</DependentUpon>
@@ -362,6 +366,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SystemLogs\SystemLogsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VisitorLogbook\AddVisitorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

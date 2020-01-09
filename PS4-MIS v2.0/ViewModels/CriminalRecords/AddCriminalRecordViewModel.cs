@@ -230,7 +230,15 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
         {
             if (areRequiredFieldsComplete() && _hasPicture)
             {
-                savePicture();
+                try
+                {
+                    savePicture();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Image Error, please contact IT admin");
+                    throw;
+                }
                 connection.dbCommand("INSERT INTO `ps4`.`criminalrecords` (`First_Name`, `Middle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Address`, `Crime`, `Place_of_Arrest`, `Arresting_Officer`, `Date_of_Arrest`, `Eye_Color`, `Hair_Color`, `Remarks`, `Picture`, `Hospital`) " +
                     "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _selectedSex + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _address + "', '" + _selectedCrime + "', '" + _placeofarrest + "', '" + _arrestingofficer + "', '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', '" + _eyecolor + "', '" + _haircolor + "', '" + _remarks + "', '" + _savedCriminalPictureFilePath + "', '" + _hospital + "');");
                 DataTable dt = connection.dbTable("select MAX(Criminal_ID) from criminalrecords");
@@ -243,6 +251,7 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
                     "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _selectedSex + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _address + "', '" + _selectedCrime + "', '" + _placeofarrest + "', '" + _arrestingofficer + "', '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', '" + _eyecolor + "', '" + _haircolor + "', '" + _remarks + "', null, '" + _hospital + "');");
                 DataTable dt = connection.dbTable("select MAX(Criminal_ID) from criminalrecords");
                 connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Criminal Record','" + dt.Rows[0][0].ToString() + "', '" + currentUser.EmployeeID + "', 'Created Criminal Record " + dt.Rows[0][0].ToString() + "')");
+                TryClose();
             }
             else
             {

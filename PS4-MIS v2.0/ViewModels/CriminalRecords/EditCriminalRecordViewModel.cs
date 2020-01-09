@@ -296,7 +296,15 @@ namespace PS4_MIS_v2._0.ViewModels.CriminalRecords
         {
             if (areRequiredFieldsComplete() && _hasPicture)
             {
-                savePicture();
+                try
+                {
+                    savePicture();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Image Error, please contact IT admin");
+                    throw;
+                }
                 connection.dbCommand("UPDATE `ps4`.`criminalrecords` SET `First_Name` = '" + _firstname + "', `Middle_Name` = '" + _middlename + "', `Last_Name` = '" + _lastname + "', `Sex` = '" + _selectedSex + "', `Birthdate` = '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', `Age` = '" + _age + "', `Birthplace` = '" + _birthplace + "', `Address` = '" + _address + "', `Crime` = '" + _selectedCrime + "', `Place_of_Arrest` = '" + _placeofarrest + "', `Arresting_Officer` = '" + _arrestingofficer + "', `Date_of_Arrest` = '" + _dateofarrestSelectedDate.ToString("yyyy-MM-dd") + "', `Eye_Color` = '" + _eyecolor + "', `Hair_Color` = '" + _haircolor + "', `Remarks` = '" + _remarks + "', `Picture` = '" + _savedCriminalPictureFilePath + "', `Hospital` = '" +_hospital+ "' WHERE (`Criminal_ID` = '" + _criminalID + "');");
                 connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Criminal Record','" + _criminalID + "', '" + currentUser.EmployeeID + "', 'Edited Criminal Record " + _criminalID + "')");
                 TryClose();

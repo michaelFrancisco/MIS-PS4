@@ -24,8 +24,8 @@
                 <TextBlock Foreground="White" HorizontalAlignment="Center" FontSize="12" x:Name="display" Text="{Binding displayName}"></TextBlock>
             </StackPanel>
             <StackPanel>
+                <Button Height="{Binding notificationsHeight}" Background="{Binding notificationsBrush}" Foreground="{Binding notificationsForeground}" x:Name="notificationsButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" VerticalContentAlignment="Center" Content="{Binding notificationsText}"/>
                 <Button Height="{Binding dashboardHeight}" Background="{Binding dashboardBrush}" Foreground="White" x:Name="dashboardButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" VerticalContentAlignment="Center" Content="Dashboard"/>
-                <Button Height="{Binding notificationsHeight}" Background="{Binding notificationsBrush}" Foreground="White" x:Name="notificationsButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" VerticalContentAlignment="Center" Content="{Binding notificationsText}"/>
                 <Button Height="{Binding messagesHeight}" Background="{Binding messagesBrush}" Foreground="White" x:Name="messagesButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" VerticalContentAlignment="Center" Content="Messages"/>
                 <Button Background="{Binding criminalRecordsBrush}" Foreground="White" x:Name="criminalRecordsButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5" Content="Criminal Records" Height="{Binding criminalrecordsHeight}"/>
                 <Button Height="{Binding policereportsHeight}" Background="{Binding policeReportsBrush}" Foreground="White" x:Name="policeReportsButton" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Padding="25,5,10,5">Police Reports</Button>

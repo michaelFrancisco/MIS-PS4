@@ -263,7 +263,15 @@ namespace PS4_MIS_v2._0.ViewModels.EmployeeRecords
             }
             if (areRequiredFieldsComplete() && _hasPicture)
             {
-                savePicture();
+                try
+                {
+                    savePicture();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Image Error, please contact IT admin");
+                    throw;
+                }
                 connection.dbCommand("INSERT INTO `ps4`.`employeerecords` (`First_Name`, `Midle_Name`, `Last_Name`, `Sex`, `Birthdate`, `Age`, `Birthplace`, `Civil_Status`, `Address`, `Department`, `Position`, `Rank`, `User_Level`, `Remarks`, `Picture`) " +
                     "VALUES ('" + _firstname + "', '" + _middlename + "', '" + _lastname + "', '" + _sexSelectedItem + "', '" + _birthdateSelectedDate.ToString("yyyy-MM-dd") + "', '" + _age + "', '" + _birthplace + "', '" + _civilstatusSelectedItem + "', '" + _address + "', '" + _department + "', '" + _position + "', '" + _rankSelectedItem + "', '" + _userlevelSelectedItem + "', '" + _remarks + "', '" + _savedEmployeePictureFilePath + "');");
                 DataTable dt2 = connection.dbTable("select MAX(Employee_ID) from employeerecords");

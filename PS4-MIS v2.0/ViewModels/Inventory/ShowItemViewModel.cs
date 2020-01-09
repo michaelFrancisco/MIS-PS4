@@ -160,7 +160,15 @@ namespace PS4_MIS_v2._0.ViewModels.Inventory
         {
             if (areRequiredFieldsComplete() && _hasPicture)
             {
-                savePicture();
+                try
+                {
+                    savePicture();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Image Error, please contact IT admin");
+                    throw;
+                }
                 connection.dbCommand("UPDATE `ps4`.`inventory` SET `Category` = '" + _categorySelectedItem + "', `Name` = '" + _name + "', `Make` = '" + _make + "', `Model` = '" + _model + "', `Serial` = '" + _serial + "', `Quantity` = " + _quantity + ", `Acquired` = '" + _acquiredSelectedDate.ToString("yyyy-MM-dd") + "', `Remarks` = '" + _remarks + "', `Picture` = '" + _savedItemPictureFilePath + "' WHERE (`Inventory_ID` = " + _selectedInventoryID + ");");
                 connection.dbCommand("INSERT INTO `ps4`.`system_log` (`Type`,`Item_ID`, `User`, `Action`) VALUES('Inventory','" + _inventoryid + "', '" + currentUser.EmployeeID + "', 'Edited Inventory Item " + _inventoryid + "')");
                 TryClose();
